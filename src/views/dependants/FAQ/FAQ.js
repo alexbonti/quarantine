@@ -24,10 +24,10 @@ const FAQ = props => {
   return (
     <Grid container justify="center" style={{padding: "2vh 0"}}>
 
-    <Grid item xs={11} md={7} lg={5}>
+    <Grid item xs={11} md={7} lg={7}>
         <Typography variant="h5">Frequent Asked Questions</Typography>
     </Grid>
-      <Grid item xs={11} md={7} lg={5} style={{padding: "3vh 0"}}>
+      <Grid item xs={11} md={7} lg={7} style={{padding: "3vh 0"}}>
         <ExpansionPanelComponent faq={FAQData} />
       </Grid>
     </Grid>

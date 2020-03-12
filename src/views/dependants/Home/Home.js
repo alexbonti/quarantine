@@ -13,7 +13,7 @@ export const Home = () => {
   useEffect(() => {
     const callApi = async () => {
       let data = {
-        category: "MECHID",
+        category: "NEWS",
         numberOfRecords: 10
       };
       const newsData = await API.getNews(data);
@@ -29,7 +29,7 @@ export const Home = () => {
       <Grid
         container
         justify="center"
-        style={{padding: "0 2vw"}}
+        style={{padding: "2vh  3vw"}}
       >
         <Grid  item xs={12} md={7} container >
           {/* <Grid item xs={11} >

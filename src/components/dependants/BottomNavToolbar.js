@@ -25,6 +25,11 @@ const useStyles = makeStyles(theme => ({
     bottom: "0",
     backgroundColor: "transparent"
   },
+  actionItemStyles: {
+    color: "grey",
+    "&$selected": {
+      color: "#f38443"
+    }},
   iOSPadding: {
     height: iOS ? theme.spacing(2) : 0
   },
@@ -33,7 +38,8 @@ const useStyles = makeStyles(theme => ({
   },
   fullList: {
     width: "auto"
-  }
+  },
+  selected: {}
 }));
 
 export const BottomNavToolbar = () => {
@@ -78,6 +84,10 @@ export const BottomNavToolbar = () => {
               label={item.name}
               icon={<Icon style={{color: item.color}}>{item.icon}</Icon>}
               key={key}
+              classes={{
+                root: classes.actionItemStyles,
+                selected: classes.selected
+              }}
             />
           );
         return (
@@ -90,6 +100,10 @@ export const BottomNavToolbar = () => {
             label={item.name}
             icon={<Icon>{item.icon}</Icon>}
             key={key}
+            classes={{
+              root: classes.actionItemStyles,
+              selected: classes.selected
+            }}
           />
         );
       }
@@ -117,6 +131,10 @@ export const BottomNavToolbar = () => {
             to={"/menu"}
             label={menuButtonLabel}
             icon={<Icon>menu</Icon>}
+            classes={{
+              root: classes.actionItemStyles,
+              selected: classes.selected
+            }}
           />
         ) : null}
       </BottomNavigation>
