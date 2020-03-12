@@ -1,0 +1,58 @@
+
+
+{
+  "headerWelcomeText": "Hello",
+  "landingPage": "/home",
+  "menuItems": [
+    {
+      "name": "NEWS",
+      "type": "button",
+      "icon": "home",
+      "controller": "/home",
+      "customTitle": "News",
+      "isFavourite": true,
+      "color": "red",
+      "subMenuItems": []
+    },
+    {
+      "name": "FAQ",
+      "type": "button",
+      "icon": "facebook",
+      "controller": "/FAQ",
+      "customTitle": "FAQ",
+      "isFavourite": true,
+      "color": "red",
+
+      "subMenuItems": []
+    },
+    
+    {
+      "name": "Logout",
+      "type": "logout",
+      "icon": "logout",
+      "controller": "",
+      "customTitle": "Welcome to Boiler Plate",
+      "isFavourite": false,
+      "color": "red",
+
+      "subMenuItems": []
+    }
+  ],
+  "bottomMobileNavigation": true,
+  "displayMobileMenuHam": true,
+  "displayMobileHeader": true,
+  "menuButtonLabel": "Menu",
+  "sideMenu": {
+    "permanent": false,
+    "default": "open"
+  },
+  "theme": {
+    "colors": {
+      "primary": "#ff2f2f",
+      "secondary": "rgba(0, 0, 0, 0.87)"
+    },
+    "appBarElevation": 1
+  }
+}
+
+

@@ -1,0 +1,11 @@
+{
+  "visible": false,
+  "label": "Auto",
+  "bypassBackend": false,
+  "verticlePosition": "top",
+  "horizontalPosition": "right",
+  "devDetails": {
+    "user": "anirudh.m0009@gmail.com",
+    "password": "123456"
+  }
+}
