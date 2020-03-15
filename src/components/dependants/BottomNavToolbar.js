@@ -23,12 +23,12 @@ const useStyles = makeStyles(theme => ({
     width: "100%",
     position: "fixed",
     bottom: "0",
-    backgroundColor: "transparent"
+    backgroundColor: "black"
   },
   actionItemStyles: {
     color: "grey",
     "&$selected": {
-      color: "#f38443"
+      color: "red"
     }},
   iOSPadding: {
     height: iOS ? theme.spacing(2) : 0

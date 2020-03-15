@@ -1,6 +1,6 @@
 import { AccessToken, logout } from "contexts/helpers";
 import { notify } from "components";
-import { axiosInstance, axiosInstanceNews} from "../index";
+import { axiosInstance, axiosInstanceNews, axiosInstanceStats} from "../index";
 /**
  *  @errorHelper :  Function to return error StatusText.
  */
@@ -140,6 +140,19 @@ verifyOTP = async (data, accessToken) =>{
         return errorHelper(error);
       });
   };
+
+  getStats = async () => {
+    return await axiosInstanceStats
+      .get("/quarantine/data")
+      .then(response => {
+        return { "response": response };
+      })
+      .catch(error => {
+        return errorHelper(error);
+      });
+  };
 }
+
+
 const instance = new API();
 export default instance;

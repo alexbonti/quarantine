@@ -1,4 +1,4 @@
-import { axiosInstance, axiosInstanceNews} from './API/axiosInstance';
+import { axiosInstance, axiosInstanceNews, axiosInstanceStats} from './API/axiosInstance';
 import API from './API/api.js';
 import TextHelper from './data/TextHelper';
 import OutputHelper from './data/OutputHelper';
@@ -19,5 +19,6 @@ export {
   socketAuthCallback,
   typeAgginator,
   iconAssignator,
+  axiosInstanceStats,
   axiosInstanceNews
 };

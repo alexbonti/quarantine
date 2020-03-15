@@ -8,6 +8,7 @@ import { Home } from "./dependants/Home/Home";
 import { MobileMenu } from "./dependants/mobileMenu/mobileMenu";
 import FAQ  from "./dependants/FAQ/FAQ";
 import News  from "./dependants/News/News";
+import Charts  from "./dependants/Charts/Charts";
 
 
 
@@ -19,6 +20,7 @@ export {
   MobileMenu,
   FAQ,
   FourOFour,
-  News
+  News,
+  Charts
 
 };

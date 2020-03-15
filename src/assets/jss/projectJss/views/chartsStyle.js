@@ -7,7 +7,7 @@ import {
   roseColor,
   grayColor,
   cardTitle
-} from "assets/jss/projectJss/views/assets/jss/baseJSS.js.js";
+} from "assets/jss/baseJss.js";
 
 const chartsStyle = {
   cardTitle,

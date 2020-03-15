@@ -94,9 +94,9 @@ export const Header = () => {
   const handleDrawerClose = () => {
     setOpen(false);
   };
-  let content = (
+  let content =  (
     <>
-      <AppBar elevation={LayoutConfig.theme !== undefined ? LayoutConfig.theme.appBarElevation !== undefined ? LayoutConfig.theme.appBarElevation : 1 : 1} position={LayoutConfig.sideMenu.permanent ? 'fixed' : 'absolute'} className={LayoutConfig.sideMenu.permanent ? (isItDesktop ? classes.appBarShift : classes.appBar) : clsx(classes.appBar, open && classes.appBarShift)}>
+      {/* <AppBar elevation={LayoutConfig.theme !== undefined ? LayoutConfig.theme.appBarElevation !== undefined ? LayoutConfig.theme.appBarElevation : 1 : 1} position={LayoutConfig.sideMenu.permanent ? 'fixed' : 'absolute'} className={LayoutConfig.sideMenu.permanent ? (isItDesktop ? classes.appBarShift : classes.appBar) : clsx(classes.appBar, open && classes.appBarShift)}>
         <Toolbar className={classes.toolbar}>
           {isItDesktop ? LayoutConfig.sideMenu.permanent ? null : < IconButton
             edge="start"
@@ -114,10 +114,12 @@ export const Header = () => {
               </Typography>
           }
         </Toolbar>
-      </AppBar>
+      </AppBar> */}
       {
         isItDesktop ? <Drawer
-          variant="permanent"
+          anchor="left"
+          variant="temporary"
+          open="false"
           classes={{
             paper: LayoutConfig.sideMenu.permanent ? classes.drawerPaper : clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
           }}

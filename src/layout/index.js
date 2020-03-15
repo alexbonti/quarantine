@@ -35,7 +35,7 @@ export const Layout = (props) => {
 
    let applicationTheme = createMuiTheme({
     palette: {
-       type: "light",
+       type: "dark",
       primary: {
         main: LayoutConfig.theme !== undefined ? LayoutConfig.theme.colors !== undefined ? LayoutConfig.theme.colors.primary !== undefined ? LayoutConfig.theme.colors.primary : null : null : null
       },
@@ -88,7 +88,7 @@ export const Layout = (props) => {
       <div className={classes.root}>
         {isItDesktop ? <Header /> : LayoutConfig.bottomMobileNavigation ? LayoutConfig.displayMobileHeader ? <Header /> : null : <Header />}
         <main className={isItDesktop ? classes.content : classes.mobileContent}>
-          <div className={isItDesktop ? classes.appBarSpacer : LayoutConfig.displayMobileHeader ? classes.appBarSpacer : null} />
+          {/* <div className={isItDesktop ? classes.appBarSpacer : LayoutConfig.displayMobileHeader ? classes.appBarSpacer : null} /> */}
           {props.children}
           <div className={isItDesktop ? null : LayoutConfig.bottomMobileNavigation ? classes.appBarSpacer : null} />
           <div className={classes.iOSPadding} />

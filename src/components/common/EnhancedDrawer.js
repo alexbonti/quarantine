@@ -20,7 +20,7 @@ export const EnhancedDrawer = (props) => {
   const [isOpen, setIsOpen] = useState(false);
   const [title, setTitle] = useState('DrawerTitle');
   const [drawerContent, setDrawerContent] = useState(<p>Please pass content for the drawer</p>);
-  const [anchor, setAnchor] = useState('bottom');
+  const [anchor, setAnchor] = useState('right');
   const [drawerElevation, setDrawerElevation] = useState(16);
   useEffect(() => {
     if (props.title)
