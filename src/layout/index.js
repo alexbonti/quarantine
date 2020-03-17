@@ -1,6 +1,6 @@
 import React from 'react';
 import { makeStyles, useMediaQuery, createMuiTheme, MuiThemeProvider } from '@material-ui/core';
-import { Header, BottomNavToolbar } from 'components';
+import { Header, BottomNavToolbar , NavBar} from 'components';
 import { LayoutConfig } from 'configurations';
 
 const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
@@ -85,9 +85,11 @@ export const Layout = (props) => {
   let isItDesktop = useMediaQuery('(min-width:600px) and (min-height:600px)');
   let content = (
     <MuiThemeProvider theme={applicationTheme} >
+
       <div className={classes.root}>
         {isItDesktop ? <Header /> : LayoutConfig.bottomMobileNavigation ? LayoutConfig.displayMobileHeader ? <Header /> : null : <Header />}
         <main className={isItDesktop ? classes.content : classes.mobileContent}>
+        {isItDesktop ? <NavBar /> : ""}
           {/* <div className={isItDesktop ? classes.appBarSpacer : LayoutConfig.displayMobileHeader ? classes.appBarSpacer : null} /> */}
           {props.children}
           <div className={isItDesktop ? null : LayoutConfig.bottomMobileNavigation ? classes.appBarSpacer : null} />

@@ -2,6 +2,7 @@
 // // // javascript library for creating charts
 // #############################
 var Chartist = require("chartist");
+var ReactEcharts = require('echarts-for-react')
 
 // ##############################
 // // // Charts used in Dahsboard view
@@ -27,10 +28,10 @@ const dailySalesChart = {
   },
   options: {
     lineSmooth: Chartist.Interpolation.cardinal({
-      tension: 0
+      tension: 1
     }),
     low: 0,
-    high: 50, // creative tim: we recommend you to set the high sa the biggest value + something for a better look
+    high: 10,
     chartPadding: {
       top: 0,
       right: 0,
@@ -105,19 +106,6 @@ const emailsSubscriptionChart = {
       left: 0
     }
   },
-  responsiveOptions: [
-    [
-      "screen and (max-width: 640px)",
-      {
-        seriesBarDistance: 5,
-        axisX: {
-          labelInterpolationFnc: function(value) {
-            return value[0];
-          }
-        }
-      }
-    ]
-  ],
   animation: {
     draw: function(data) {
       if (data.type === "bar") {
@@ -205,7 +193,7 @@ const roundedLineChart = {
       showGrid: false
     },
     low: 0,
-    high: 50, // creative tim: we recommend you to set the high sa the biggest value + something for a better look
+    high: 500, // creative tim: we recommend you to set the high sa the biggest value + something for a better look
     chartPadding: {
       top: 0,
       right: 0,
@@ -259,7 +247,7 @@ const straightLinesChart = {
       tension: 0
     }),
     low: 0,
-    high: 50, 
+    high: 500, 
     chartPadding: {
       top: 0,
       right: 0,
@@ -271,6 +259,8 @@ const straightLinesChart = {
       line: "ct-line ct-white"
     }
   },
+
+  
   animation: {
     draw: function(data) {
       if (data.type === "line" || data.type === "area") {
@@ -574,6 +564,94 @@ const pieChart = {
   }
 };
 
+
+const echart = {
+  option:{
+    
+      title: {
+          text: 'Data'
+      },
+      tooltip: {
+          trigger: 'axis',
+          axisPointer: {
+              type: 'cross',
+              label: {
+                  backgroundColor: '#6a7985'
+              }
+          }
+      },
+      legend: {
+          data: ['Total Deaths', 'Total New Cases', 'New Cases', 'New Deaths', '搜索引擎']
+      },
+      toolbox: {
+          feature: {
+              saveAsImage: {}
+          }
+      },
+      grid: {
+          left: '3%',
+          right: '4%',
+          bottom: '3%',
+          containLabel: true
+      },
+      xAxis: [
+          {
+              type: 'category',
+              boundaryGap: false,
+              data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
+          }
+      ],
+      yAxis: [
+          {
+              type: 'value'
+          }
+      ],
+      series: [
+          {
+              name: '邮件营销',
+              type: 'line',
+              stack: '总量',
+              areaStyle: {},
+              data: [120, 132, 101, 134, 90, 230, 210]
+          },
+          {
+              name: 'Total Deaths',
+              type: 'line',
+              stack: '总量',
+              areaStyle: {},
+              data: [220, 182, 191, 234, 290, 330, 310]
+          },
+          {
+              name: '视频广告',
+              type: 'line',
+              stack: '总量',
+              areaStyle: {},
+              data: [150, 232, 201, 154, 190, 330, 410]
+          },
+          {
+              name: '直接访问',
+              type: 'line',
+              stack: '总量',
+              areaStyle: {},
+              data: [320, 332, 301, 334, 390, 330, 320]
+          },
+          {
+              name: '搜索引擎',
+              type: 'line',
+              stack: '总量',
+              label: {
+                  normal: {
+                      show: true,
+                      position: 'top'
+                  }
+              },
+              areaStyle: {},
+              data: [820, 932, 901, 934, 1290, 1330, 1320]
+          }
+      ]
+  }
+}
+
 module.exports = {
   // Charts used in Dahsboard view
   dailySalesChart,
@@ -586,5 +664,6 @@ module.exports = {
   colouredLineChart,
   multipleBarsChart,
   colouredLinesChart,
-  pieChart
+  pieChart,
+  echart
 };

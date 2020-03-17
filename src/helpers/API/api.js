@@ -143,9 +143,9 @@ verifyOTP = async (data, accessToken) =>{
 
   getStats = async () => {
     return await axiosInstanceStats
-      .get("/quarantine/data")
+      .get("/getdata")
       .then(response => {
-        return { "response": response };
+        return response.data
       })
       .catch(error => {
         return errorHelper(error);

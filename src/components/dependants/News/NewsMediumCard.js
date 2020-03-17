@@ -7,7 +7,7 @@ export const NewsMediumCard = props => {
   console.log("props", props);
   return (
     <>
-      <Grid container style={{ margin: "1vh 0vw", overflow: "hidden", maxHeight: "125px"}} justify="space-between">
+      <Grid container style={{ margin: "1vh 0vw", overflow: "hidden"}} justify="space-between">
         <Grid item xs={8} container>
           <Grid item xs={11} >
             <Typography variant="h6">
