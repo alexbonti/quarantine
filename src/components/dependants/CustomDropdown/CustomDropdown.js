@@ -14,7 +14,7 @@ import Grow from "@material-ui/core/Grow";
 import Divider from "@material-ui/core/Divider";
 import Popper from "@material-ui/core/Popper";
 // core components
-import Button from "../CustomButtons/Button.js";
+import {RegularButton} from "../CustomButtons/Button.js";
 
 import styles from "assets/jss/projectJss/components/customDropdownStyle.js";
 
@@ -117,7 +117,7 @@ export default function CustomDropdown(props) {
   return (
     <div className={innerDropDown ? classes.innerManager : classes.manager}>
       <div className={buttonText !== undefined ? "" : classes.target}>
-        <Button
+        <RegularButton
           aria-label="Notifications"
           aria-owns={anchorEl ? "menu-list" : null}
           aria-haspopup="true"
@@ -129,7 +129,7 @@ export default function CustomDropdown(props) {
           ) : null}
           {buttonText !== undefined ? buttonText : null}
           {caret ? <b className={caretClasses} /> : null}
-        </Button>
+        </RegularButton>
       </div>
       <Popper
         open={Boolean(anchorEl)}

@@ -14,7 +14,8 @@ import {
   ConfirmRegistration,
   FourOFour,
   Charts,
-  Profile
+  Profile,
+  AdView
 } from "views";
 import { Layout } from "../layout";
 import { LayoutConfig } from "configurations";
@@ -136,6 +137,16 @@ export const AppRoutes = props => {
           <Layout>
             {" "}
             <Charts {...props} />
+          </Layout>
+        )}
+      />
+      <Route
+        exact
+        path="/adv"
+        render={() => (
+          <Layout>
+            {" "}
+            <AdView {...props} />
           </Layout>
         )}
       />

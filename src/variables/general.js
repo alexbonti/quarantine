@@ -342,7 +342,6 @@ export {
   // data for React Big Calendar in Calendar view
   events,
   // stories for RTLSupport view
-  rtlStories,
   // stories for Widgets view
   widgetStories,
   // stories for Timeline view
