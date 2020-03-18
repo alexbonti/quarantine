@@ -99,6 +99,30 @@ verifyOTP = async (data, accessToken) =>{
   .catch(error=>errorHelper(error))
 }
 
+getAds = async (data, callback) => {
+  return await axiosInstance.post("/listing/getListings", data, {
+    headers: {
+      authorization: `Bearer ${AccessToken}`
+    }
+  }).then(response => {
+    performCallback(callback, response.data.data.data);
+  }).catch(err => {
+    errorHelper(err);
+  })
+};
+
+searchByKeyword = async (data, callback) => {
+  return await axiosInstance.post("/listing/searchByKeyword", data, {
+    headers: {
+      authorization: `Bearer ${AccessToken}`
+    }
+  }).then(response => {
+    performCallback(callback, response.data.data.data);
+  }).catch(err => {
+    errorHelper(err);
+  })
+};
+
   getProfile= async () => {
     return await axiosInstance
     .get(
