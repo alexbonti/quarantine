@@ -117,10 +117,13 @@ const ConfirmRegistration = (props) => {
                           fullWidth: true
                         }}/>
                     </CardBody>
-                    <Grid item xs={12} align="center">
+                    <Grid item xs={12} align="center" style={{padding: "2vh 0"}}>
 
-                        <RegularButton color="info" onClick={()=> sendOTP()}>
+                        <RegularButton color="info" onClick={()=> sendOTP() }>
                             Confirm OTP
+                        </RegularButton>
+                        <RegularButton color="info" onClick={()=> sendOTP()}>
+                            Resend OTP
                         </RegularButton>
                         </Grid>
                 </Card>

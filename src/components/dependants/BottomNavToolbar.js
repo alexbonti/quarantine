@@ -28,7 +28,7 @@ const useStyles = makeStyles(theme => ({
   actionItemStyles: {
     color: "grey",
     "&$selected": {
-      color: "red"
+      color: "rgb(0, 172, 193)"
     }},
   iOSPadding: {
     height: iOS ? theme.spacing(2) : 0
@@ -130,7 +130,7 @@ export const BottomNavToolbar = () => {
             component={Link}
             to={"/menu"}
             label={menuButtonLabel}
-            icon={<Icon>menu</Icon>}
+            icon={<Icon>people</Icon>}
             classes={{
               root: classes.actionItemStyles,
               selected: classes.selected

@@ -40,7 +40,7 @@ export const ExpansionPanelComponent = ({ faq }) => {
               key={key}
               expanded={expanded === `panelS${key}`}
               onChange={handleChange(`panelS${key}`)}
-              style={{ backgroundColor: " #5f5f5f" }}
+              style={{ background: "#4c586a" }}
             >
               <ExpansionPanelSummary
                 expandIcon={<ExpandMoreIcon />}

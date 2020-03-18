@@ -1,7 +1,6 @@
 /*eslint-disable*/
 import React, { useState, useEffect } from "react";
-// react plugin for creating charts
-import ChartistGraph from "react-chartist";
+
 
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
@@ -24,7 +23,7 @@ import {
   GridItem
 } from "components";
 
-import { dailySalesChart, roundedLineChart, straightLinesChart , echart} from "../../../variables/charts";
+
 
 import styles from "../../../assets/jss/projectJss/views/chartsStyle";
 
@@ -69,16 +68,15 @@ const Charts = () => {
   return stats !== undefined  ? (
     <Grid container justify="center" >
       <Grid item xs={10}>
-        <Heading title="Chart" />
-      
-        <GridContainer style={{ padding: "3vh 1vw" }}>
+      <Heading title={moment().format("LL")} color="snow"/>
+        <GridContainer style={{ padding: "10vh 1vw" }}>
           <GridItem xs={12} sm={12} >
             <Card chart>
-              <CardHeader color="warning" icon>
-                <CardIcon color="warning">
+              <CardHeader color="info" icon>
+                <CardIcon color="info">
                   <Timeline />
                 </CardIcon>
-                <h4 className={classes.cardIconTitle}> Total Cases </h4>
+                <h4 className={classes.cardIconTitle}> </h4>
               </CardHeader>
               <CardBody>
                 <Chart data={{stats,statsNewCases,statsTotalCases}} />

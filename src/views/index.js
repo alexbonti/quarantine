@@ -9,6 +9,7 @@ import { MobileMenu } from "./dependants/mobileMenu/mobileMenu";
 import FAQ  from "./dependants/FAQ/FAQ";
 import News  from "./dependants/News/News";
 import Charts  from "./dependants/Charts/Charts";
+import ConfirmRegistration  from "./common/Register/ConfirmRegistration";
 
 
 
@@ -21,6 +22,7 @@ export {
   FAQ,
   FourOFour,
   News,
-  Charts
+  Charts,
+  ConfirmRegistration
 
 };
