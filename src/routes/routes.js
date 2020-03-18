@@ -11,6 +11,7 @@ import {
   MobileMenu,
   FAQ,
   News,
+  ConfirmRegistration,
   FourOFour,
   Charts
 } from "views";
@@ -69,7 +70,17 @@ export const AppRoutes = props => {
           )
         }
       />
-
+  <Route
+        exact
+        path="/confirm-registration"
+        render={() =>
+          !loginStatus ? (
+            <ConfirmRegistration {...props} />
+          ) : (
+            <Redirect to={{ pathname: landingPage }} {...props} />
+          )
+        }
+      />
 
       <Route
         exact
@@ -87,7 +98,6 @@ export const AppRoutes = props => {
             <Layout>
               <FAQ {...props} />
             </Layout>
-          
         }
       />
       <Route
@@ -95,7 +105,8 @@ export const AppRoutes = props => {
         path="/menu"
         render={() =>
           loginStatus === false ? (
-            <Redirect to={{ pathname: "/" }} {...props} />
+            
+            <Redirect to={{ pathname: "/login" }} {...props} />
           ) : (
             <Layout>
               {" "}
@@ -128,13 +139,6 @@ export const AppRoutes = props => {
           )
         }
       />
-     
-
-     
-     
-   
-     
-     
       <Route
         render={() =>
           loginStatus === false ? (

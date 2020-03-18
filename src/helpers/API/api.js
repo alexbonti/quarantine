@@ -1,3 +1,4 @@
+import axios from "axios";
 import { AccessToken, logout } from "contexts/helpers";
 import { notify } from "components";
 import { axiosInstance, axiosInstanceNews, axiosInstanceStats} from "../index";
@@ -114,21 +115,34 @@ verifyOTP = async (data, accessToken) =>{
   };
 
 
-
-
-  getUserList= async () => {
-    return await axiosInstance
-    .get(
-        "contracts/getUser",
-        {
-          headers: {
-            authorization: `Bearer ${AccessToken}`
-          }
-        }
-      )
-      .then(response => response.data.data.data)
+  getAddress = async input => {
+    const app_id = "TUbNW3GcKxN51q3zZJB0";
+    const app_code = "SOaMBDA1FYyc8mAtg7STgg";
+    return axios({
+      method: "get",
+      url: ` http://autocomplete.geocoder.api.here.com/6.2/suggest.json?app_id=${app_id}&app_code=${app_code}&query=${input}&country=AUS`,
+    })
+      .then(response => response.data)
       .catch(error => errorHelper(error));
   };
+
+  getLatLong = async input => {
+    const app_id = "TUbNW3GcKxN51q3zZJB0";
+    const app_code = "SOaMBDA1FYyc8mAtg7STgg";
+    return await axios({
+      method: "get",
+      url: ` http://geocoder.api.here.com/6.2/geocode.json?locationid=${input}&jsonattributes=1&gen=9&app_id=${app_id}&app_code=${app_code}`,
+    })
+      .then(response => {
+        return {
+          "response":
+            response.data.response.view[0].result[0].location.displayPosition,
+        };
+      })
+      .catch(error => errorHelper(error));
+  };
+
+
 
   getNews = async data => {
     return await axiosInstanceNews

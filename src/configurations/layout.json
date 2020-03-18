@@ -5,7 +5,7 @@
   "landingPage": "/home",
   "menuItems": [
     {
-      "name": "NEWS",
+      "name": "News",
       "type": "button",
       "icon": "home",
       "controller": "/home",
@@ -15,7 +15,7 @@
       "subMenuItems": []
     },
     {
-      "name": "FAQ",
+      "name": "Faq",
       "type": "button",
       "icon": "facebook",
       "controller": "/FAQ",
@@ -41,7 +41,7 @@
       "name": "Logout",
       "type": "logout",
       "icon": "logout",
-      "controller": "",
+      "controller": "/login",
       "customTitle": "Welcome to Boiler Plate",
       "isFavourite": false,
       "color": "red",
@@ -49,17 +49,18 @@
       "subMenuItems": []
     }
   ],
+  
   "bottomMobileNavigation": true,
   "displayMobileMenuHam": true,
   "displayMobileHeader": true,
-  "menuButtonLabel": "Menu",
+  "menuButtonLabel": "Profile",
   "sideMenu": {
     "permanent": false,
     "default": "open"
   },
   "theme": {
     "colors": {
-      "primary": "#f38443",
+      "primary": "#576571",
       "secondary": "rgba(0, 0, 0, 0.87)"
     },
     "appBarElevation": 1

@@ -35,7 +35,7 @@ const useStyles = makeStyles(theme => ({
     flexDirection: "column",
     alignItems: "center",
     padding: theme.spacing(4),
-    backgroundColor: "#0A2463"
+    background: "linear-gradient(#36404b, #1b2127)"
   },
 
   avatar: {
@@ -244,13 +244,14 @@ export const Login = () => {
                 Login
               </RegularButton>
               <RegularButton  fullWidth variant="contained" color="info" className={classes.buttons} component={Link} to='/register'>Sign Up</RegularButton>
+              <RegularButton  fullWidth variant="contained" color="info" className={classes.buttons} component={Link} to='/'>Back</RegularButton>
             </form>
           </Paper>
         </Grid>
 
         <Grid item xs={12} className={classes.developMessage}>
           <Box mt={5}>
-            <Typography variant="body2" color="textSecondary" align="center">
+            <Typography variant="body2" color="textSecondary" align="center" style={{indexZ: -1}}>
               Developed by Deakin Launchpad
             </Typography>
           </Box>
