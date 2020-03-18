@@ -112,6 +112,20 @@ getAds = async (data, callback) => {
   })
 };
 
+
+getPersonalAds= async () => {
+  return await axiosInstance
+  .get(
+      "/listing/getPersonalListings",
+      {
+        headers: {
+          authorization: `Bearer ${AccessToken}`
+        }
+      }
+    )
+    .then(response => response.data.data.data)
+    .catch(error => errorHelper(error));
+};
 searchByKeyword = async (data, callback) => {
   return await axiosInstance.post("/listing/searchByKeyword", data, {
     headers: {
