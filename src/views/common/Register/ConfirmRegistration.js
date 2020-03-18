@@ -92,6 +92,15 @@ const ConfirmRegistration = (props) => {
         }
     }
 
+    const resendOTP = async () =>{
+     
+
+      const respResendOTP = await API.resendOTP( accessToken)
+      if(respResendOTP){
+          console.log(respResendOTP)
+      }
+  }
+
     return (
         <MuiThemeProvider theme={applicationTheme}>
 
@@ -100,7 +109,7 @@ const ConfirmRegistration = (props) => {
                 <Card>
                     <CardBody>
                         <Typography variant="body1">
-                            An OTP code has been sent to your email
+                            An verification code has been sent to your email
                         </Typography>
                         <CustomInput 
                         id="OTP"
@@ -117,10 +126,13 @@ const ConfirmRegistration = (props) => {
                           fullWidth: true
                         }}/>
                     </CardBody>
-                    <Grid item xs={12} align="center">
+                    <Grid item xs={12} align="center" style={{padding: "2vh 0"}}>
 
-                        <RegularButton color="info" onClick={()=> sendOTP()}>
-                            Confirm OTP
+                        <RegularButton  style={{marginRight: "2vh"}} color="info" onClick={()=> sendOTP() }>
+                            Confirm 
+                        </RegularButton>
+                        <RegularButton color="info" onClick={()=> resendOTP()}>
+                            Resend code
                         </RegularButton>
                         </Grid>
                 </Card>

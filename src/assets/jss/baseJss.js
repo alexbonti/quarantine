@@ -156,7 +156,7 @@ const tumblrColor = "#35465c";
 const behanceColor = "#1769ff";
 const dribbbleColor = "#ea4c89";
 const redditColor = "#ff4500";
-const darkMode=  "#2a3239"
+const darkMode=  "#424242"
 
 const boxShadow = {
   boxShadow:

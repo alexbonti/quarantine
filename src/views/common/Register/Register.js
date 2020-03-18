@@ -17,6 +17,7 @@ import {
 import { notify, Card, RegularButton, CustomInput } from "components";
 import { LayoutConfig } from "configurations";
 import { API } from "helpers/index";
+import imgBG from "../../../assets/img/background-bw.jpg";
 
 const useStyles = makeStyles(theme => ({
   paper: {
@@ -24,7 +25,7 @@ const useStyles = makeStyles(theme => ({
     display: "flex",
     alignItems: "center",
     padding: theme.spacing(3),
-    backgroundColor: "#0A2463"
+    background: "linear-gradient(#36404b, #1b2127)"
   },
   avatar: {
     margin: theme.spacing(1),
@@ -98,6 +99,11 @@ let applicationTheme = createMuiTheme({
       fontWeight: "bold",
       fontSize: 10,
       color: "white"
+    },
+    selection: {
+      '&:hover': {
+        color: "blue",
+      },
     }
   }
 });
@@ -110,30 +116,32 @@ export const Register = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
-  const [response, setResponse] = useState("")
+  const [response, setResponse] = useState("");
   const [redirect, setRedirect] = useState(false);
+  const [suggestedLocations, setSuggestedLocaionts] = useState([]);
+  const [valueLocation, setValueLocation] = useState("");
+  const [latitude, setLatitude] = useState("");
+  const [longitude, setLongitude] = useState("");
 
-
-
-  const register = async ()=> {
+  const register = async () => {
     const data = {
       firstName,
       lastName,
       emailId,
       phoneNumber,
       countryCode: "+61",
-      password
-    }
+      password,
+      "suburb": valueLocation,
+      "lat": latitude,
+      "long": longitude
+    };
 
-
-    const dataResponseRegister = await API.registerUser(data)
-    if(dataResponseRegister){
-
-      setResponse(dataResponseRegister)
-      setRedirect(true)
+    const dataResponseRegister = await API.registerUser(data);
+    if (dataResponseRegister) {
+      setResponse(dataResponseRegister);
+      setRedirect(true);
     }
   };
-
 
   const validationCheck = () => {
     if (
@@ -146,7 +154,7 @@ export const Register = () => {
       password === "" ||
       confirmPassword === "" ||
       firstName === "" ||
-      lastName === ""||
+      lastName === "" ||
       phoneNumber === "" ||
       phoneNumber.length < 0
     ) {
@@ -165,9 +173,29 @@ export const Register = () => {
     }
   };
 
+  const getLocation = async input => {
+    const locationSuggestionsResp = await API.getAddress(input);
+    if (locationSuggestionsResp) {
+      setSuggestedLocaionts(locationSuggestionsResp.suggestions);
+    }
+  };
+
+  const getLatLong = async input => {
+    const longLatResp = await API.getLatLong(input);
+    if (longLatResp) {
+      setLatitude(longLatResp.response.latitude)
+      setLongitude(longLatResp.response.longitude)
+    }
+  }
+
   let content = (
     <MuiThemeProvider theme={applicationTheme}>
-      <Grid container spacing={0} justify="center">
+      <Grid
+        container
+        spacing={0}
+        justify="center"
+        style={{ backgroundImg: `url(${imgBG})` }}
+      >
         <Grid
           className={classes.registerBox}
           item
@@ -184,9 +212,8 @@ export const Register = () => {
                   {pageHeading}
                 </Typography>
               </Grid>
-            
-            <Grid item xs={11}>
-             
+
+              <Grid item xs={11}>
                 <CustomInput
                   id="First Name"
                   labelText="First Name*"
@@ -203,19 +230,19 @@ export const Register = () => {
                   }}
                 />
                 <CustomInput
-                   id="Last Name"
-                   labelText="Last Name*"
-                   required
-                   fullWidth
-                   inputProps={{
-                     label: "Last Name",
-                     placeholder: "Last Name",
-                     name: "Last Name",
-                     onChange: e => setLastName(e.target.value)
-                   }}
-                   formControlProps={{
-                     fullWidth: true
-                   }}
+                  id="Last Name"
+                  labelText="Last Name*"
+                  required
+                  fullWidth
+                  inputProps={{
+                    label: "Last Name",
+                    placeholder: "Last Name",
+                    name: "Last Name",
+                    onChange: e => setLastName(e.target.value)
+                  }}
+                  formControlProps={{
+                    fullWidth: true
+                  }}
                 />
                 <CustomInput
                   id="Email "
@@ -267,20 +294,60 @@ export const Register = () => {
                 />
 
                 <CustomInput
-                id="confirmPassword "
-                labelText="Confirm Password *"
-                required
-                fullWidth
-                inputProps={{
-                  placeholder: "Confirm Password ",
-                  name: "confirmPassword ",
-                  type: "password",
-                  onChange: e => setConfirmPassword(e.target.value)
-                }}
-                formControlProps={{
-                  fullWidth: true
-                }}
+                  id="confirmPassword "
+                  labelText="Confirm Password *"
+                  required
+                  fullWidth
+                  inputProps={{
+                    placeholder: "Confirm Password ",
+                    name: "confirmPassword ",
+                    type: "password",
+                    onChange: e => setConfirmPassword(e.target.value)
+                  }}
+                  formControlProps={{
+                    fullWidth: true
+                  }}
                 />
+
+                <CustomInput
+                  id="getLocation "
+                  labelText="Location *"
+                  required
+                  fullWidth
+                  inputProps={{
+                    placeholder: "Suburb ",
+                    name: "location ",
+                    autoComplete: "hidden",
+                    value: valueLocation !== "" ? valueLocation : "",
+                    onChange: e => {
+                      getLocation(e.target.value)
+                      setValueLocation(e.target.value)
+                    }
+                  }}
+                  formControlProps={{
+                    fullWidth: true
+                  }}
+                />
+   
+                {suggestedLocations !== undefined ? (
+                  <Grid container>
+                    {suggestedLocations.map((location, key) => {
+                     return (<Grid item key={key} xs={12}>
+                        <Typography variant="caption"  onClick={(e)=> {
+                          getLatLong(location.locationId)
+                          setValueLocation(e.target.innerText)
+                          setSuggestedLocaionts([])
+                          }}>
+                          {location.address.district }
+                          {" "}
+                          {location.address.postalCode}
+                        </Typography>
+                      </Grid>)
+                    })}
+                  </Grid>
+                ) : (
+                  ""
+                )}
 
                 <RegularButton
                   fullWidth
@@ -301,20 +368,18 @@ export const Register = () => {
                 >
                   Back
                 </RegularButton>
-            </Grid>
+              </Grid>
             </Grid>
           </Paper>
         </Grid>
 
-        <Grid item xs={12} className={classes.developMessage}>
-          <Box mt={5}>
-            <Typography variant="body2" color="textSecondary" align="center">
-              Developed by Deakin Launchpad
-            </Typography>
-          </Box>
-        </Grid>
+        
       </Grid>
     </MuiThemeProvider>
   );
-  return redirect ? <Redirect  to={{ pathname: "/confirm-registration", state:{response } }}/> : content;
+  return redirect ? (
+    <Redirect to={{ pathname: "/confirm-registration", state: { response } }} />
+  ) : (
+    content
+  );
 };

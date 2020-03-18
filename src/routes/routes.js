@@ -11,8 +11,10 @@ import {
   MobileMenu,
   FAQ,
   News,
+  ConfirmRegistration,
   FourOFour,
-  Charts
+  Charts,
+  Profile
 } from "views";
 import { Layout } from "../layout";
 import { LayoutConfig } from "configurations";
@@ -29,7 +31,6 @@ export const AppRoutes = props => {
       : "/";
   if (loginStatus === undefined) return <LoadingScreen />;
   return (
-
     <Switch>
       <Route
         exact
@@ -70,25 +71,48 @@ export const AppRoutes = props => {
             )
         }
       />
-
+      <Route
+        exact
+        path="/confirm-registration"
+        render={() =>
+          !loginStatus ? (
+            <ConfirmRegistration {...props} />
+          ) : (
+            <Redirect to={{ pathname: landingPage }} {...props} />
+          )
+        }
+      />
 
       <Route
         exact
         path="/home"
-        render={() =>
+        render={() => (
           <Layout>
             <Home {...props} />
           </Layout>
-        }
+        )}
       />
       <Route
         exact
         path="/FAQ"
-        render={() =>
+        render={() => (
           <Layout>
             <FAQ {...props} />
           </Layout>
-
+        )}
+      />
+      <Route
+        exact
+        path="/profile"
+        render={() =>
+          loginStatus === false ? (
+            <Redirect to={{ pathname: "/login" }} {...props} />
+          ) : (
+            <Layout>
+              {" "}
+              <Profile {...props} />
+            </Layout>
+          )
         }
       />
       <Route
@@ -96,7 +120,7 @@ export const AppRoutes = props => {
         path="/menu"
         render={() =>
           loginStatus === false ? (
-            <Redirect to={{ pathname: "/" }} {...props} />
+            <Redirect to={{ pathname: "/login" }} {...props} />
           ) : (
               <Layout>
                 {" "}
@@ -108,14 +132,12 @@ export const AppRoutes = props => {
       <Route
         exact
         path="/stats"
-        render={() =>
-          (
-            <Layout>
-              {" "}
-              <Charts {...props} />
-            </Layout>
-          )
-        }
+        render={() => (
+          <Layout>
+            {" "}
+            <Charts {...props} />
+          </Layout>
+        )}
       />
       <Route
         exact

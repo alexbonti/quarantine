@@ -35,12 +35,12 @@ export const ExpansionPanelComponent = ({ faq }) => {
     <div className={classes.root}>
       {faq.map((faq, key) => {
         return (
-          <>
+          
             <ExpansionPanel
               key={key}
               expanded={expanded === `panelS${key}`}
               onChange={handleChange(`panelS${key}`)}
-              style={{ backgroundColor: " #5f5f5f" }}
+              style={{ background: "#4c586a" }}
             >
               <ExpansionPanelSummary
                 expandIcon={<ExpandMoreIcon />}
@@ -58,7 +58,7 @@ export const ExpansionPanelComponent = ({ faq }) => {
                 <Typography dangerouslySetInnerHTML={{ __html: faq.content }} />
               </ExpansionPanelDetails>
             </ExpansionPanel>
-          </>
+          
         );
       })}
     </div>

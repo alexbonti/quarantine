@@ -59,7 +59,7 @@ export const MobileMenu = () => {
   };
   let isItDesktop = useMediaQuery('(min-width:600px) or (min-height:600px)');
   if (isItDesktop)
-    return <Redirect to='/' />;
+    return <Redirect to='/home' />;
   let content = (
     <div className={classes.root}>
       <List disablePadding
