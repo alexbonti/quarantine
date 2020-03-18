@@ -179,7 +179,8 @@ const cardStyle = {
     "& p": {
       marginTop: "0px",
       paddingTop: "0px"
-    }
+    },
+    backgroundColor: "#e6e6e6"
   },
   cardLogin: {
     transform: "translate3d(" + hexToRgb(blackColor) + ")",

@@ -8,6 +8,7 @@ const useStyles = makeStyles(theme => ({
   root: {
     minWidth: '100%',
     backgroundColor: theme.palette.grey,
+
   },
   menu: {
     width: '100%',

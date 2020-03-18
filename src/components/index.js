@@ -52,6 +52,8 @@ import {NewsCard} from "components/dependants/News/NewsSmallCard"
 import {NewsLargeCard} from "components/dependants/News/NewsLargeCard"
 import {NewsMediumCard} from "components/dependants/News/NewsMediumCard"
 import {ExpansionPanelComponent} from "components/dependants/ExpansionPanel/ExpansionPanel"
+import {NavBar} from "components/dependants/Navigator/Nav"
+import {Chart} from "components/dependants/Chart/Chart"
 
 
 export {
@@ -93,5 +95,7 @@ export {
   NewsCard,
   NewsLargeCard,
   NewsMediumCard,
-  ExpansionPanelComponent
+  ExpansionPanelComponent,
+  NavBar,
+  Chart
 };

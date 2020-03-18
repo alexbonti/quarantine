@@ -29,12 +29,12 @@ export const Home = () => {
       <Grid
         container
         justify="center"
-        style={{padding: "2vh  3vw"}}
+        style={{padding: "0 3vw"}}
       >
         <Grid  item xs={12} md={7} container >
-          {/* <Grid item xs={11} >
-            <Heading title="News" color="red" />
-          </Grid> */}
+          <Grid item xs={11} >
+            <Heading title="News" color="red" style={{fontSize: "24px"}} />
+          </Grid>
           <Grid item xs={11}>
             <Typography variant="h5">{moment().format("LLL")}</Typography>
           </Grid>

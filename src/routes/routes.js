@@ -11,7 +11,8 @@ import {
   MobileMenu,
   FAQ,
   News,
-  FourOFour
+  FourOFour,
+  Charts
 } from "views";
 import { Layout } from "../layout";
 import { LayoutConfig } from "configurations";
@@ -103,6 +104,18 @@ export const AppRoutes = props => {
           )
         }
       />
+       <Route
+        exact
+        path="/stats"
+        render={() =>
+        (
+            <Layout>
+              {" "}
+              <Charts {...props} />
+            </Layout>
+          )
+        }
+      />
       <Route
         exact
         path="/news"
@@ -115,6 +128,7 @@ export const AppRoutes = props => {
           )
         }
       />
+     
 
      
      

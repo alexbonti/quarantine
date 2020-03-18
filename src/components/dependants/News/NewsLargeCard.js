@@ -15,7 +15,8 @@ export const NewsLargeCard = props => {
               backgroundImage: `url(${props.news.imageURL})`,
               height: "30vh",
               backgroundAttachment: "fixed",
-              backgroundSize: "contain"
+              backgroundSize: "cover",
+              backgroundRepeat: "no-repeat"
             }}
           >
             <CardBody>
