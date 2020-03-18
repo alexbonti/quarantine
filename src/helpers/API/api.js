@@ -101,9 +101,9 @@ verifyOTP = async (data, accessToken) =>{
 
 getAds = async (data, callback) => {
   return await axiosInstance.post("/listing/getListings", data, {
-    headers: {
-      authorization: `Bearer ${AccessToken}`
-    }
+    // headers: {
+    //   authorization: `Bearer ${AccessToken}`
+    // }
   }).then(response => {
     performCallback(callback, response.data.data.data);
   }).catch(err => {
@@ -117,6 +117,19 @@ searchByKeyword = async (data, callback) => {
       authorization: `Bearer ${AccessToken}`
     }
   }).then(response => {
+    performCallback(callback, response.data.data.data);
+  }).catch(err => {
+    errorHelper(err);
+  })
+};
+
+getCategories = async (callback) => {
+  return await axiosInstance.get("/listing/getCategories", {
+    // headers: {
+    //   authorization: `Bearer ${AccessToken}`
+    // }
+  }).then(response => {
+    console.log(response.data.data.data);
     performCallback(callback, response.data.data.data);
   }).catch(err => {
     errorHelper(err);

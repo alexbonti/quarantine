@@ -6,6 +6,7 @@ import { FourOFour } from "./common/FourOFour/FourOFour";
 import { Register } from "./common/Register/Register";
 import { Home } from "./dependants/Home/Home";
 import { MobileMenu } from "./dependants/mobileMenu/mobileMenu";
+import { AdList } from "./dependants/MarketPlace/AdList";
 import FAQ  from "./dependants/FAQ/FAQ";
 import News  from "./dependants/News/News";
 import Charts  from "./dependants/Charts/Charts";
@@ -21,6 +22,7 @@ export {
   FAQ,
   FourOFour,
   News,
-  Charts
+  Charts,
+  AdList
 
 };
