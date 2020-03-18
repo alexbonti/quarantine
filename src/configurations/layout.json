@@ -36,13 +36,24 @@
 
       "subMenuItems": []
     },
+    {
+      "name": "Profile",
+      "type": "button",
+      "icon": "people",
+      "controller": "/profile",
+      "customTitle": "Profile",
+      "isFavourite": true,
+      "color": "red",
+
+      "subMenuItems": []
+    },
     
     {
       "name": "Logout",
       "type": "logout",
       "icon": "logout",
       "controller": "/login",
-      "customTitle": "Welcome to Boiler Plate",
+      "customTitle": "",
       "isFavourite": false,
       "color": "red",
 
@@ -51,7 +62,7 @@
   ],
   
   "bottomMobileNavigation": true,
-  "displayMobileMenuHam": true,
+  "displayMobileMenuHam": false,
   "displayMobileHeader": true,
   "menuButtonLabel": "Profile",
   "sideMenu": {

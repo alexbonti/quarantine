@@ -114,6 +114,20 @@ verifyOTP = async (data, accessToken) =>{
       .catch(error => errorHelper(error));
   };
 
+  resendOTP = async (data) => {
+    return await axiosInstance
+    .put(
+        "/user/resendOTP",{},
+        {
+          headers: {
+            authorization: `Bearer ${data}`
+          }
+        }
+      )
+      .then(response => response)
+      .catch(error => errorHelper(error));
+  };
+
 
   getAddress = async input => {
     const app_id = "TUbNW3GcKxN51q3zZJB0";

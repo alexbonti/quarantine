@@ -120,6 +120,8 @@ export const Register = () => {
   const [redirect, setRedirect] = useState(false);
   const [suggestedLocations, setSuggestedLocaionts] = useState([]);
   const [valueLocation, setValueLocation] = useState("");
+  const [latitude, setLatitude] = useState("");
+  const [longitude, setLongitude] = useState("");
 
   const register = async () => {
     const data = {
@@ -128,7 +130,10 @@ export const Register = () => {
       emailId,
       phoneNumber,
       countryCode: "+61",
-      password
+      password,
+      "suburb": valueLocation,
+      "lat": latitude,
+      "long": longitude
     };
 
     const dataResponseRegister = await API.registerUser(data);
@@ -174,6 +179,14 @@ export const Register = () => {
       setSuggestedLocaionts(locationSuggestionsResp.suggestions);
     }
   };
+
+  const getLatLong = async input => {
+    const longLatResp = await API.getLatLong(input);
+    if (longLatResp) {
+      setLatitude(longLatResp.response.latitude)
+      setLongitude(longLatResp.response.longitude)
+    }
+  }
 
   let content = (
     <MuiThemeProvider theme={applicationTheme}>
@@ -321,6 +334,7 @@ export const Register = () => {
                     {suggestedLocations.map((location, key) => {
                      return (<Grid item key={key} xs={12}>
                         <Typography variant="caption"  onClick={(e)=> {
+                          getLatLong(location.locationId)
                           setValueLocation(e.target.innerText)
                           setSuggestedLocaionts([])
                           }}>
