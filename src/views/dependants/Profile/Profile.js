@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { withRouter, Link } from "react-router-dom";
-import { Grid, Typography } from "@material-ui/core";
+import { Grid, Typography, Button } from "@material-ui/core";
 import { API } from "helpers/index";
+import { logout } from "contexts/helpers";
 import { CardBody, Card } from "components";
 import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
 import { dataTable } from "variables/general";
@@ -43,6 +44,7 @@ const Profile = props => {
         <Typography variant="h6">
           Phone Number: {profile.countryCode} {profile.phoneNumber}
         </Typography>
+        <Button variant="contained" color="primary" onClick={() => { logout(); }} style={{ marginTop: '10px' }} >Logout</Button>
       </Grid>
       <Grid item xs={12}>
         <hr style={{ border: ".5px solid grey" }} />
@@ -123,8 +125,8 @@ const Profile = props => {
       </Grid>
     </Grid>
   ) : (
-    ""
-  );
+      ""
+    );
 };
 
 export default withRouter(Profile);

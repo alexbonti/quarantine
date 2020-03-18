@@ -38,7 +38,7 @@ export const AppRoutes = props => {
         path="/"
         render={() =>
           loginStatus ? (
-            <Redirect to={{ pathname: "/" }} {...props} />
+            <Redirect to={{ pathname: landingPage }} {...props} />
           ) : (
               <Redirect
                 to={{
