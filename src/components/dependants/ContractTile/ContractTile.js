@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { Typography, Grid } from "@material-ui/core";
-import { RegularButton, Card, CardBody } from "components";
+import { RegularButton, Card, CardBody , LoadingScreen} from "components";
 import { contractType } from "configurations";
 import NotificationsNoneOutlinedIcon from "@material-ui/icons/NotificationsNoneOutlined";
 export const ContractTile = ({ list }) => {
@@ -81,9 +81,7 @@ export const ContractTile = ({ list }) => {
         );
       })}
     </>
-  ) : (
-    "loading"
-  );
+  ) : <LoadingScreen loadingText="Loading"/>;
 };
 
 ContractTile.propTypes = {
