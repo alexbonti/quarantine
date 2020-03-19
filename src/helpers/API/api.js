@@ -114,16 +114,7 @@ class API {
       });
   };
 
-  getPersonalAds = async () => {
-    return await axiosInstance
-      .get("/listing/getPersonalListings", {
-        headers: {
-          authorization: `Bearer ${AccessToken}`
-        }
-      })
-      .then(response => response.data.data.data)
-      .catch(error => errorHelper(error));
-  };
+  
   searchByKeyword = async (data, callback) => {
     return await axiosInstance
       .post("/listing/searchByKeyword", data, {
@@ -155,9 +146,58 @@ class API {
       });
   };
 
-  confirmInterest = async (data) => {
+  
+
+  uploadImages = async file => {
     return await axiosInstance
-      .put("/listing/confirmInterest",data, {
+      .post("/upload/uploadImage", file, {
+        headers: {
+          authorization: "Bearer " + AccessToken,
+          "Content-Type": "multipart/form-data; boundary='boundary'"
+        }
+      })
+      .then(response => {
+        // console.log(JSON.parse(response.request.response).data.documentFileUrl.original);
+        return JSON.parse(response.request.response).data.imageFileURL;
+      })
+      .catch(error => {
+        errorHelper(error);
+        return false;
+      });
+  };
+
+
+  // --------LISTING API ----------------------
+  createListing = async (data, callback) => {
+    return await axiosInstance
+      .post("/listing/createListing", data, {
+        headers: {
+          authorization: `Bearer ${AccessToken}`
+        }
+      })
+      .then(response => {
+        performCallback(callback);
+      })
+      .catch(err => {
+        errorHelper(err);
+      });
+  };
+
+
+  getPersonalAds = async () => {
+    return await axiosInstance
+      .get("/listing/getPersonalListings", {
+        headers: {
+          authorization: `Bearer ${AccessToken}`
+        }
+      })
+      .then(response => response.data.data.data)
+      .catch(error => errorHelper(error));
+  };
+
+  deleteListing = async (data) => {
+    return await axiosInstance
+      .put("/listing/deleteListing", data, {
         headers: {
           authorization: `Bearer ${AccessToken}`
         }
@@ -168,34 +208,20 @@ class API {
       });
   };
 
-uploadImages = async (file) => {
-  return await axiosInstance.post('/upload/uploadImage', file, {
-    headers: {
-      authorization: "Bearer " + AccessToken,
-      "Content-Type": "multipart/form-data; boundary='boundary'"
-    }
-  }).then(response => {
-    // console.log(JSON.parse(response.request.response).data.documentFileUrl.original);
-    return JSON.parse(response.request.response).data.imageFileURL;
-  }).catch(error => {
-    errorHelper(error)
-    return false;
-  })
-};
-
-createListing = async (data, callback) => {
-  return await axiosInstance.post("/listing/createListing", data, {
-    headers: {
-      authorization: `Bearer ${AccessToken}`
-    }
-  }).then(response => {
-    performCallback(callback);
-  }).catch(err => {
-    errorHelper(err);
-  })
-};
-
-  getProfile= async () => {
+  confirmInterest = async data => {
+    return await axiosInstance
+      .put("/listing/confirmInterest", data, {
+        headers: {
+          authorization: `Bearer ${AccessToken}`
+        }
+      })
+      .then(response => response)
+      .catch(err => {
+        errorHelper(err);
+      });
+  };
+//-----------------------------------------------------------
+  getProfile = async () => {
     return await axiosInstance
       .get("/user/getProfile", {
         headers: {

@@ -1,10 +1,13 @@
-import React from "react";
-import { withRouter } from "react-router-dom";
+import React, { useState } from "react";
+import { withRouter, Redirect} from "react-router-dom";
 import { Grid, Typography } from "@material-ui/core";
 import { Card, CardHeader, CardBody, CardFooter, Heading } from "components";
 import { FourOFour } from "views/common/FourOFour/FourOFour";
-import { RegularButton, ExpansionPanelComponent } from "components/index";
+import { RegularButton, ExpansionPanelComponent, notify } from "components/index";
 import moment from "moment";
+import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
+import EditOutlinedIcon from "@material-ui/icons/EditOutlined";
+
 import { API } from "helpers/index";
 
 const interestPeopleData = [
@@ -39,7 +42,7 @@ const interestPeopleData = [
     lastName: "Battistuta",
     countryCode: "+61",
     phoneNumber: "+67133212"
-  } ,
+  },
   {
     suburb: "Brighton",
     emailId: "test@test.com",
@@ -51,12 +54,53 @@ const interestPeopleData = [
 ];
 
 const AdView = props => {
+  //state
+  const [redirect, setRedirect] = useState(false)
+  const [itemClicked, setItemClicked] = useState(false);
+  const [styleItem, setStyleItem] = useState({
+    margin: "1vh  0",
+    opacity: "1",
+    color: "white"
+  });
+  const [styleCancelItem, setStyleCancelItem] = useState({
+    opacity: "0",
+    position: "relative",
+    top: "200px",
+    transition: "all .3s"
+  });
 
-//check if data is available otherwise renders 404
+  const handleDeleteItem = id => {
+    setItemClicked(!itemClicked);
+    itemClicked
+      ? setStyleItem({ margin: "1vh  0", opacity: "1", color: "white" })
+      : setStyleItem({
+          position: "relative",
+          top: "200px",
+          margin: "1vh  0",
+          opacity: "0",
+          transform: "scale(.5)",
+          color: "white"
+        });
+
+    itemClicked
+      ? setStyleCancelItem({
+          opacity: "0",
+          position: "relative",
+          top: "200px",
+          transition: "all .3s"
+        })
+      : setStyleCancelItem({
+          opacity: "1",
+          position: "relative",
+          top: "-10px",
+          transition: "all .3s"
+        });
+  };
+  //check if data is available otherwise renders 404
   if (props.location.state === undefined) {
     return <FourOFour />;
   }
-// data
+  // data
   const {
     category,
     description,
@@ -65,39 +109,66 @@ const AdView = props => {
     createdAt,
     _id
   } = props.location.state;
-  
-  console.log("_id", _id)
+
+  console.log("_id", props);
+
   //change the status of the adv
 
-  const handleStatusAdv = async() => {
+  const handleStatusAdv = async () => {
     const data = {
-      "listId": _id
+      listId: _id
+    };
+    const respData = await API.confirmInterest(data);
+    if (respData) {
     }
-    const respData = await API.confirmInterest(data)
-    if(respData){
-      console.log("gone")
-    }
-  }
-  return (
+  };
+
+  // delete the adv 
+
+  const handleDeleteAdv = async () => {
+    const data = {
+      listId: _id
+    };
+    const respData = await API.deleteListing(data);
+    if (respData) {
+      notify("Adv Deleted")
+      setRedirect(true)  }
+  };
+
+  return redirect ? (<Redirect to="/profile"/>) : (
     <Grid container justify="center" style={{ padding: "5vh 0" }}>
       <Grid item xs={11} md={6} lg={4}>
         <Card>
           <CardHeader>
             <Grid container justify="space-between">
-              <Grid item xs={5}>
+              <Grid item xs={5} md={6}>
                 <Typography variant="caption">{category}</Typography>
               </Grid>
-              <Grid item xs={5} align="right">
+              <Grid item xs={5} md={6} align="right">
                 <Typography
-                  style={status === "AVAILABLE" ? { color: "green" } : ""}
+                  style={status === "AVAILABLE" ? { color: "#8bdc8b" } : ""}
                 >
                   {status}
                 </Typography>
               </Grid>
-              <Grid item xs={11}>
+              <Grid item xs={5}>
                 <Typography variant="caption">
                   {moment(createdAt).format("LL")}
                 </Typography>
+              </Grid>
+              <Grid item xs={3} container align="right" justify="space-evenly">
+                <Grid item xs={2}>
+                  <DeleteForeverIcon
+                    style={styleItem}
+                    onClick={() => handleDeleteItem()}
+                  />
+                </Grid>
+                <Grid item xs={2}>
+                  <EditOutlinedIcon
+                    style={styleItem}
+                    onClick={() => handleDeleteItem()}
+                  />
+                </Grid>
               </Grid>
             </Grid>
 
@@ -108,22 +179,46 @@ const AdView = props => {
           </CardBody>
           <CardFooter>
             <Grid container>
-              <Grid item align="center" xs={11}>
-                <RegularButton color="primary" onClick={()=> handleStatusAdv()}>
+              <Grid
+                item
+                align="center"
+                xs={12}
+                container
+                justify="space-around"
+              >
+                <RegularButton style={styleCancelItem} color="danger"                     onClick={() => handleDeleteAdv()}
+>
+                  Delete
+                </RegularButton>
+                <Grid item align="center" xs={5}>
+                  <RegularButton
+                    onClick={() => handleDeleteItem()}
+                    style={styleCancelItem}
+                    color="info"
+                  >
+                    Cancel
+                  </RegularButton>
+                </Grid>
+              </Grid>
+              <Grid item xs={11}>
+                <RegularButton
+                  color="primary"
+                  onClick={() => handleStatusAdv()}
+                >
                   {" "}
-                  Transaction Completed
+                  Close Adv
                 </RegularButton>
               </Grid>
             </Grid>
           </CardFooter>
         </Card>
-      </Grid>
-      <Grid container justify="center" style={{ padding: "3vh 0" }}>
-        <Grid item xs={11} >
-          <Typography variant="h5">Confirm interes</Typography>
-        </Grid>
-        <Grid item xs={11} style={{ padding: "3vh 0" }}>
-          <ExpansionPanelComponent interestedData={interestPeopleData} />
+        <Grid container justify="center" style={{ padding: "3vh 0" }}>
+          <Grid item xs={12}>
+            <Typography variant="h5">Users Interested</Typography>
+          </Grid>
+          <Grid item xs={12} style={{ padding: "3vh 0" }}>
+            <ExpansionPanelComponent interestedData={interestPeopleData} />
+          </Grid>
         </Grid>
       </Grid>
     </Grid>

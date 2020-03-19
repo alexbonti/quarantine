@@ -5,11 +5,13 @@ import { API } from "helpers/index";
 import { logout } from "contexts/helpers";
 import { CardBody, Card } from "components";
 import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
+import { RegularButton } from "components/index";
 
 const Profile = props => {
   const [profile, setProfile] = useState({});
   const [needs, setNeeds] = useState([]);
   const [offers, setOffers] = useState([]);
+
 
   useEffect(() => {
     const triggerApi = async () => {
@@ -55,13 +57,13 @@ const Profile = props => {
         </Grid>
         {offers.map((item, key) => {
           return (
+            
             <Grid
               item
-              xs={12}
+              xs={10}
               md={5}
               lg={3}
               key={key}
-              style={{ margin: "1vh " }}
             >
               <Card>
                 <CardBody>
@@ -75,12 +77,12 @@ const Profile = props => {
                       <Typography variant="h6">{item.title}</Typography>
                     </Grid>
                     <Grid item xs={2} align="right">
-                      <DeleteForeverIcon />
                     </Grid>
                   </Grid>
                 </CardBody>
               </Card>
             </Grid>
+       
           );
         })}
       </Grid>
@@ -99,7 +101,7 @@ const Profile = props => {
               md={5}
               lg={3}
               key={key}
-              style={{ margin: "1vh " }}
+              style={{ margin: "1vh 0 " }}
             >
               <Card>
                 <CardBody>
