@@ -130,7 +130,6 @@ getCategories = async (callback) => {
     //   authorization: `Bearer ${AccessToken}`
     // }
   }).then(response => {
-    console.log(response.data.data.data);
     performCallback(callback, response.data.data.data);
   }).catch(err => {
     errorHelper(err);

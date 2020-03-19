@@ -115,7 +115,7 @@ export const AdList = () => {
         setType(props.type);
     }, [props]);
 
-    return (<Card style={{ height: '100%', width: '100%' }}>
+    return (<Card style={{ height: '100%', width: '100%', background: '#4c586a', backgroundColor: '#4c586a' }}>
       <CardBody>
         <Grid container direction='row' spacing={3}>
           <Grid item xs={4}>
