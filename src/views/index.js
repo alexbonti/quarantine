@@ -7,6 +7,7 @@ import { Register } from "./common/Register/Register";
 import { Home } from "./dependants/Home/Home";
 import { MobileMenu } from "./dependants/mobileMenu/mobileMenu";
 import { AdList } from "./dependants/MarketPlace/AdList";
+import { NewPost } from "./dependants/MarketPlace/NewPost";
 import FAQ  from "./dependants/FAQ/FAQ";
 import News  from "./dependants/News/News";
 import Charts  from "./dependants/Charts/Charts";
@@ -27,6 +28,6 @@ export {
   Charts,
   AdList,
   ConfirmRegistration,
-  Profile
-
+  Profile,
+  NewPost
 };

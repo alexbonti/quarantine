@@ -14,12 +14,13 @@ import {
   ConfirmRegistration,
   FourOFour,
   Charts,
-  Profile
+  Profile,
+  AdList,
+  NewPost
 } from "views";
 import { Layout } from "../layout";
 import { LayoutConfig } from "configurations";
 import { LoadingScreen } from "components";
-import { AdList } from "views/index";
 
 export const AppRoutes = props => {
   const { loginStatus } = useContext(LoginContext);
@@ -78,8 +79,8 @@ export const AppRoutes = props => {
           !loginStatus ? (
             <ConfirmRegistration {...props} />
           ) : (
-            <Redirect to={{ pathname: landingPage }} {...props} />
-          )
+              <Redirect to={{ pathname: landingPage }} {...props} />
+            )
         }
       />
 
@@ -108,11 +109,11 @@ export const AppRoutes = props => {
           loginStatus === false ? (
             <Redirect to={{ pathname: "/login" }} {...props} />
           ) : (
-            <Layout>
-              {" "}
-              <Profile {...props} />
-            </Layout>
-          )
+              <Layout>
+                {" "}
+                <Profile {...props} />
+              </Layout>
+            )
         }
       />
       <Route
@@ -163,11 +164,16 @@ export const AppRoutes = props => {
         }
       />
 
+      <Route
+        exact
+        path="/newPost"
+        render={() =>
+          <Layout>
+            <NewPost {...props} />
+          </Layout>
 
-
-
-
-
+        }
+      />
 
       <Route
         render={() =>
