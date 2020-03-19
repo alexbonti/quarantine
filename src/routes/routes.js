@@ -17,6 +17,7 @@ import {
   Profile,
   AdView,
   AdList,
+  AdEdit,
   NewPost
 } from "views";
 import { Layout } from "../layout";
@@ -171,7 +172,6 @@ export const AppRoutes = props => {
           <Layout>
             <AdList {...props} />
           </Layout>
-
         }
       />
 
@@ -182,7 +182,15 @@ export const AppRoutes = props => {
           <Layout>
             <NewPost {...props} />
           </Layout>
-
+        }
+      />
+      <Route
+        exact
+        path="/adedit"
+        render={() =>
+          <Layout>
+            <AdEdit {...props} />
+          </Layout>
         }
       />
 

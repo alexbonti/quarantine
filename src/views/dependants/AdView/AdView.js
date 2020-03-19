@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { withRouter, Redirect} from "react-router-dom";
+import { withRouter, Redirect, Link} from "react-router-dom";
 import { Grid, Typography } from "@material-ui/core";
 import { Card, CardHeader, CardBody, CardFooter, Heading } from "components";
 import { FourOFour } from "views/common/FourOFour/FourOFour";
@@ -163,11 +163,12 @@ const AdView = props => {
                     onClick={() => handleDeleteItem()}
                   />
                 </Grid>
-                <Grid item xs={2}>
+                <Grid item xs={2}  component={Link}
+                    to="/adedit">
                   <EditOutlinedIcon
                     style={styleItem}
-                    onClick={() => handleDeleteItem()}
-                  />
+                   
+                  >Test</EditOutlinedIcon>
                 </Grid>
               </Grid>
             </Grid>

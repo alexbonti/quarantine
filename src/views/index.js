@@ -14,6 +14,7 @@ import Charts  from "./dependants/Charts/Charts";
 import ConfirmRegistration  from "./common/Register/ConfirmRegistration";
 import Profile  from "./dependants/Profile/Profile";
 import AdView  from "./dependants/AdView/AdView";
+import AdEdit  from "./dependants/MarketPlace/AdEdit";
 
 
 
@@ -31,5 +32,6 @@ export {
   ConfirmRegistration,
   Profile,
   AdView,
+  AdEdit,
   NewPost
 };

@@ -45,7 +45,7 @@ const Profile = props => {
         <Typography variant="h6">
           Phone Number: {profile.countryCode} {profile.phoneNumber}
         </Typography>
-        <Button variant="contained" color="primary" onClick={() => { logout(); }} style={{ marginTop: '10px' }} >Logout</Button>
+        <RegularButton variant="contained" color="primary" onClick={() => { logout(); }} style={{ marginTop: '10px' }} >Logout</RegularButton>
       </Grid>
       <Grid item xs={12}>
         <hr style={{ border: ".5px solid grey" }} />
@@ -70,14 +70,13 @@ const Profile = props => {
                   <Grid container justify="space-between" alignItems="center">
                     <Grid
                       item
-                      xs={8}
+                      xs={12}
                       component={Link}
                       to={{ pathname: "/adv", state: item }}
                     >
                       <Typography variant="h6">{item.title}</Typography>
                     </Grid>
-                    <Grid item xs={2} align="right">
-                    </Grid>
+                  
                   </Grid>
                 </CardBody>
               </Card>
@@ -108,15 +107,13 @@ const Profile = props => {
                   <Grid container justify="space-between" alignItems="center">
                     <Grid
                       item
-                      xs={8}
+                      xs={12}
                       component={Link}
                       to={{ pathname: "/adv", state: item }}
                     >
                       <Typography variant="h6">{item.title}</Typography>
                     </Grid>
-                    <Grid item xs={2} align="right">
-                      <DeleteForeverIcon />
-                    </Grid>
+                 
                   </Grid>
                 </CardBody>
               </Card>
