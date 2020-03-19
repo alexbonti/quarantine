@@ -128,7 +128,8 @@ const AdView = props => {
     };
     const respData = await API.completeListing(data);
     if (respData) {
-      notify("Adv Closed")
+      notify("Adv Closed");
+      setRedirect(true);
     }
   };
 
@@ -138,11 +139,12 @@ const AdView = props => {
     };
     const respData = await API.confirmInterest(data);
     if (respData) {
-        notify("Interested")
+        notify("Interested");
+        setRedirect(true);
     }
   };
   // delete the adv 
-const showButton  =  loginStatus ? (postedBy  === profileId? true : false) : ""
+const showButton  =  loginStatus ? (postedBy  === profileId ? true : false) : ""
 console.log("showButton", showButton)
   const handleDeleteAdv = async () => {
     const data = {
@@ -219,7 +221,7 @@ console.log("showButton", showButton)
                   </RegularButton>
                 </Grid>
               </Grid>
-              {status === "COMPLETED" ? (""): (<Grid item xs={11}>
+              {status === "COMPLETED" || !showButton ? null : (<Grid item xs={11}>
                 <RegularButton
                   color="primary"
                   onClick={() => handleStatusAdv()}
@@ -228,7 +230,7 @@ console.log("showButton", showButton)
                   Close Adv
                 </RegularButton>
               </Grid>) }
-              {!showButton ? (""): (<Grid item xs={11}>
+              {showButton || status === "COMPLETED" || profileId === undefined ? null : (<Grid item xs={11}>
                 <RegularButton
                   color="primary"
                   onClick={() => handleInterestedAd()}
