@@ -37,6 +37,17 @@
       "subMenuItems": []
     },
     {
+      "name": "Marketplace",
+      "type": "button",
+      "icon": "store",
+      "controller": "/marketplace",
+      "customTitle": "Marketplace",
+      "isFavourite": true,
+      "color": "red",
+
+      "subMenuItems": []
+    },
+    {
       "name": "Profile",
       "type": "button",
       "icon": "people",
@@ -47,7 +58,6 @@
 
       "subMenuItems": []
     },
-    
     {
       "name": "Logout",
       "type": "logout",

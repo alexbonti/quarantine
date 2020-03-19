@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { Grid, Typography, Card, CardContent, Container, Icon, TextField, IconButton } from "@material-ui/core";
+import { Grid, Typography, Container, Icon, TextField, IconButton, Tab, Tabs, Fab } from "@material-ui/core";
+import AddIcon from '@material-ui/icons/Add';
 import { Link } from "react-router-dom";
-import {  Image } from "components";
+import { Image, Card, CardBody } from "components";
 import { API } from "helpers/index";
 import { LoadingScreen } from "components/index";
 
@@ -61,21 +62,29 @@ export const AdList = () => {
   const [selectedCategory, setSelectedCategory] = useState();
   const [ads, setAds] = useState();
   const [search, setSearch] = useState();
+  const [value, setValue] = useState(0);
+
+  // useEffect(() => {
+  //   if (search === '' || search === ' ')
+  //     API.getAds({ Type: "NEED", category: '', numberOfRecords: 100, currentPageNumber: 1 }, setAds);
+  // }, [search]);
 
   useEffect(() => {
-    if (search === '' || search === ' ')
-      API.getAds({ category: '', numberOfRecords: 100, currentPageNumber: 1 }, setAds);
-  }, [search]);
-
-  useEffect(() => {
-    API.getAds({ category: '', numberOfRecords: 100, currentPageNumber: 1 }, setAds);
     API.getCategories(setCategories);
+    API.getAds({ type: "NEED", category: '', numberOfRecords: 100, currentPageNumber: 1 }, setAds);
   }, []);
 
   useEffect(() => {
-    if (selectedCategory !== undefined)
-      API.getAds({ category: selectedCategory !== '' ? selectedCategory.name.toUpperCase() : '', numberOfRecords: 100, currentPageNumber: 1 }, setAds);
-  }, [selectedCategory]);
+    if (search === undefined || search === '' || search === ' ') {
+      setAds();
+      API.getAds({
+        type: value === 0 ? "NEED" : "OFFER",
+        category: selectedCategory && selectedCategory !== '' ? selectedCategory.name.toUpperCase() : '',
+        numberOfRecords: 100,
+        currentPageNumber: 1
+      }, setAds)
+    }
+  }, [selectedCategory, value, search]);
 
   const handleChange = (event) => {
     setSearch(event.target.value);
@@ -86,40 +95,54 @@ export const AdList = () => {
     API.searchByKeyword({ title: search, numberOfRecords: 100, currentPageNumber: 1 }, setAds);
   }
 
-  console.log("RENDER");
+  const handleTabChange = (event, newValue) => {
+    setValue(newValue);
+  };
 
   const AdCard = (props) => {
     const [image, setImage] = useState('');
     const [title, setTitle] = useState();
     const [suburb, setSuburb] = useState();
+    const [type, setType] = useState();
+    const [ad, setAd] = useState();
     useEffect(() => {
       if (props.image !== undefined && props.image !== null)
         setImage(props.image);
-      if (props.title !== undefined && props.title !== null)
-        setTitle(props.title);
-      if (props.suburb !== undefined && props.suburb !== null)
-        setSuburb(props.suburb);
+      if (props.item !== undefined && props.item !== null) {
+        setAd(props.item);
+        if (props.item.title !== undefined && props.item.title !== null)
+          setTitle(props.item.title);
+        if (props.item.suburb !== undefined && props.item.suburb !== null)
+          setSuburb(props.item.suburb);
+        if (props.item.postType !== undefined && props.item.postType !== null)
+          setType(props.item.type);
+      }
     }, [props]);
 
-    return (<Card style={{ height: '100%', width: '100%' }}>
-      <CardContent>
-        <Grid container direction='row' spacing={3}>
-          <Grid item xs={4}>
-            <Image
-              style={{ width: '10vh', height: '10vh', borderRadius: 5 }}
-              src={image ? image.thumbnail && image.thumbnail !== '' ? image.thumbnail : image.original && image.original !== '' ?
-                image.original : 'https://penserra.com/wp-content/uploads/2018/03/dummy-post-square-1-300x300.jpg' :
-                'https://penserra.com/wp-content/uploads/2018/03/dummy-post-square-1-300x300.jpg'}
-              alt="imagepost"
-            />
+    return (
+      <Link to={{ pathname: 'adv', state: ad ? { category: ad.category, description: ad.description, status: ad.status, title: title, createdAt: ad.createdAt, _id: ad._id  } : {} }}>
+      <Card
+        style={{ height: '100%', width: '100%', background: '#4c586a', backgroundColor: '#4c586a' }}
+      >
+        <CardBody>
+          <Grid container direction='row' spacing={3}>
+            <Grid item xs={4}>
+              <Image
+                style={{ width: '10vh', height: '10vh', borderRadius: 5 }}
+                src={image ? image.thumbnail && image.thumbnail !== '' ? image.thumbnail : image.original && image.original !== '' ?
+                  image.original : 'https://penserra.com/wp-content/uploads/2018/03/dummy-post-square-1-300x300.jpg' :
+                  'https://penserra.com/wp-content/uploads/2018/03/dummy-post-square-1-300x300.jpg'}
+                alt="imagepost"
+              />
+            </Grid>
+            <Grid item xs={7}>
+              <Typography component='p' variant='h5'>{title}</Typography>
+              <Typography variant='subtitle1'>({type === "NEED" ? "Needed" : "Offered"})</Typography>
+              <Typography variant='subtitle1'>{<Icon fontSize='small'>room</Icon>}{suburb}</Typography>
+            </Grid>
           </Grid>
-          <Grid item xs={7}>
-            <Typography component='p' variant='h5'>{title}</Typography>
-            <Typography variant='subtitle1'>{<Icon fontSize='small'>room</Icon>}{suburb}</Typography>
-          </Grid>
-        </Grid>
-      </CardContent>
-    </Card>)
+        </CardBody>
+      </Card></Link>)
   };
 
   const CategoryCard = (props) => {
@@ -132,35 +155,40 @@ export const AdList = () => {
         setName(props.name);
       if (props.image)
         setImage(props.image);
-      if (props.selected !== undefined && props.name !== undefined && props.selected.name.toLowerCase() === props.name.toLowerCase())
+      if (props.selected !== undefined && props.name !== undefined && props.selected.name !== undefined && props.selected.name.toLowerCase() === props.name.toLowerCase())
         setIsSelected(true);
     }, [props]);
 
     return (
       <div><center>
-        <Image
+        {image && image !== '' ? <Image
           style={{ width: '6vh', height: '6vh', borderRadius: 5 }}
-          src={image && image !== '' ? image : 'https://penserra.com/wp-content/uploads/2018/03/dummy-post-square-1-300x300.jpg'}
+          src={image && image !== '' ? image : ''}
           alt="imagepost"
-        />
+        /> : null}
         <Typography variant='subtitle1' style={{ color: `${isSelected ? 'red' : ''}` }}>{name}</Typography>
       </center></div>
     );
   };
 
   const content = (
-    <Container maxWidth='sm' style={{ marginTop: '5%', marginBottom: '5%', alignItems: 'center' }}>
-      <Grid item xs={11} md={7} lg={7}>
-        <Typography variant="h5">Marketplace</Typography>
+    <Container maxWidth='sm' style={{ marginTop: '4%', alignItems: 'center', overflow: 'hidden' }}>
+      <Grid item xs={5}>
+        <Typography inline variant="h5" align='left'>Marketplace
+          </Typography>
       </Grid>
       <Grid container direction='row' spacing={1} justify='space-between' style={{ marginTop: '2%' }}>
         {categories === undefined ? <LoadingScreen /> : categories.length > 0 ? categories.map((item, index) => {
           return (
-            <Grid item xs={2} key={index} onClick={() => {
-              if (selectedCategory !== undefined && selectedCategory.name === item.name)
-                setSelectedCategory('');
-              else setSelectedCategory(item);
-              // API.getAds({ category: item.name.toUpperCase(), numberOfRecords: 100, currentPageNumber: 1 }, setAds);
+            <Grid item xs={2} key={index}
+              onClick={() => {
+                if (selectedCategory !== undefined && selectedCategory.name === item.name) {
+                  setSelectedCategory('');
+                  setSearch();
+                } else {
+                  setSelectedCategory(item);
+                  setSearch();
+                }
               }}>
               <CategoryCard name={titleCase(item.name)} image={item.image} selected={selectedCategory} />
             </Grid>
@@ -179,15 +207,31 @@ export const AdList = () => {
           </IconButton>
         </Grid>
       </Grid>
-      <Grid container direction='column' spacing={1} style={{ marginTop: '3%' }}>
+      {search === undefined || search === '' || search === ' ' ? <Grid>
+        <Tabs
+          value={value}
+          indicatorColor="primary"
+          textColor="primary"
+          onChange={handleTabChange}
+          centered
+        >
+          <Tab label="Needs" />
+          <Tab label="Offers" />
+        </Tabs>
+      </Grid> : null}
+      <Grid container direction='row' spacing={1} style={{ marginTop: '3%', maxHeight: '61vh', overflow: 'auto' }}>
         {ads === undefined ? <LoadingScreen /> : ads.length > 0 ? ads.map((item, index) => {
           return (
             <Grid item xs={12} key={index}>
-              <AdCard title={item.title} image={item.images.length > 0 ? item.images[0] : null} suburb={item.postedBy.suburb} />
+              <AdCard image={item.images.length > 0 ? item.images[0] : null} item={item} />
             </Grid>
           );
         }) : <Typography>No listings found.</Typography>}
       </Grid>
+      <Fab color="primary" aria-label="add" style={{ position: 'absolute', right: 6, bottom: 62 }}
+        component={Link} to={{ pathname: 'newPost' }}>
+        <AddIcon />
+      </Fab>
     </Container>
   );
 
