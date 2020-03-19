@@ -1,7 +1,7 @@
 import axios from "axios";
 import { AccessToken, logout } from "contexts/helpers";
 import { notify } from "components";
-import { axiosInstance, axiosInstanceNews, axiosInstanceStats} from "../index";
+import { axiosInstance, axiosInstanceNews, axiosInstanceStats } from "../index";
 /**
  *  @errorHelper :  Function to return error StatusText.
  */
@@ -81,94 +81,109 @@ class API {
     performCallback(callback);
   };
 
+  registerUser = async data => {
+    return await axiosInstance
+      .post("user/register", data)
+      .then(response => response.data.data)
+      .catch(error => errorHelper(error));
+  };
 
-registerUser = async (data) =>{
-  return await axiosInstance
-  .post("user/register", data)
-  .then(response => response.data.data)
-  .catch(error=>errorHelper(error))
-}
+  verifyOTP = async (data, accessToken) => {
+    return await axiosInstance
+      .put("user/verifyOTP", data, {
+        headers: {
+          authorization: `Bearer ${accessToken}`
+        }
+      })
+      .then(response => response.data.data)
+      .catch(error => errorHelper(error));
+  };
 
-verifyOTP = async (data, accessToken) =>{
-  return await axiosInstance
-  .put("user/verifyOTP", data,{
-    headers: {
-      authorization: `Bearer ${accessToken}`
-    }
-  })
-  .then(response => response.data.data)
-  .catch(error=>errorHelper(error))
-}
+  getAds = async (data, callback) => {
+    return await axiosInstance
+      .post("/listing/getListings", data, {
+        // headers: {
+        //   authorization: `Bearer ${AccessToken}`
+        // }
+      })
+      .then(response => {
+        performCallback(callback, response.data.data.data);
+      })
+      .catch(err => {
+        errorHelper(err);
+      });
+  };
 
-getAds = async (data, callback) => {
-  return await axiosInstance.post("/listing/getListings", data, {
-    // headers: {
-    //   authorization: `Bearer ${AccessToken}`
-    // }
-  }).then(response => {
-    performCallback(callback, response.data.data.data);
-  }).catch(err => {
-    errorHelper(err);
-  })
-};
-
-
-getPersonalAds= async () => {
-  return await axiosInstance
-  .get(
-      "/listing/getPersonalListings",
-      {
+  getPersonalAds = async () => {
+    return await axiosInstance
+      .get("/listing/getPersonalListings", {
         headers: {
           authorization: `Bearer ${AccessToken}`
         }
-      }
-    )
-    .then(response => response.data.data.data)
-    .catch(error => errorHelper(error));
-};
-searchByKeyword = async (data, callback) => {
-  return await axiosInstance.post("/listing/searchByKeyword", data, {
-    headers: {
-      authorization: `Bearer ${AccessToken}`
-    }
-  }).then(response => {
-    performCallback(callback, response.data.data.data);
-  }).catch(err => {
-    errorHelper(err);
-  })
-};
-
-getCategories = async (callback) => {
-  return await axiosInstance.get("/listing/getCategories", {
-    // headers: {
-    //   authorization: `Bearer ${AccessToken}`
-    // }
-  }).then(response => {
-    console.log(response.data.data.data);
-    performCallback(callback, response.data.data.data);
-  }).catch(err => {
-    errorHelper(err);
-  })
-};
-
-  getProfile= async () => {
+      })
+      .then(response => response.data.data.data)
+      .catch(error => errorHelper(error));
+  };
+  searchByKeyword = async (data, callback) => {
     return await axiosInstance
-    .get(
-        "/user/getProfile",
-        {
-          headers: {
-            authorization: `Bearer ${AccessToken}`
-          }
+      .post("/listing/searchByKeyword", data, {
+        headers: {
+          authorization: `Bearer ${AccessToken}`
         }
-      )
+      })
+      .then(response => {
+        performCallback(callback, response.data.data.data);
+      })
+      .catch(err => {
+        errorHelper(err);
+      });
+  };
+
+  getCategories = async callback => {
+    return await axiosInstance
+      .get("/listing/getCategories", {
+        // headers: {
+        //   authorization: `Bearer ${AccessToken}`
+        // }
+      })
+      .then(response => {
+        console.log(response.data.data.data);
+        performCallback(callback, response.data.data.data);
+      })
+      .catch(err => {
+        errorHelper(err);
+      });
+  };
+
+  confirmInterest = async (data) => {
+    return await axiosInstance
+      .put("/listing/confirmInterest",data, {
+        headers: {
+          authorization: `Bearer ${AccessToken}`
+        }
+      })
+      .then(response => response)
+      .catch(err => {
+        errorHelper(err);
+      });
+  };
+
+  getProfile = async () => {
+    return await axiosInstance
+      .get("/user/getProfile", {
+        headers: {
+          authorization: `Bearer ${AccessToken}`
+        }
+      })
       .then(response => response.data.data.customerData)
       .catch(error => errorHelper(error));
   };
 
-  resendOTP = async (data) => {
+  resendOTP = async data => {
     return await axiosInstance
-    .put(
-        "/user/resendOTP",{},
+      .put(
+        "/user/resendOTP",
+        {},
         {
           headers: {
             authorization: `Bearer ${data}`
@@ -179,13 +194,12 @@ getCategories = async (callback) => {
       .catch(error => errorHelper(error));
   };
 
-
   getAddress = async input => {
     const app_id = "TUbNW3GcKxN51q3zZJB0";
     const app_code = "SOaMBDA1FYyc8mAtg7STgg";
     return axios({
       method: "get",
-      url: ` http://autocomplete.geocoder.api.here.com/6.2/suggest.json?app_id=${app_id}&app_code=${app_code}&query=${input}&country=AUS`,
+      url: ` http://autocomplete.geocoder.api.here.com/6.2/suggest.json?app_id=${app_id}&app_code=${app_code}&query=${input}&country=AUS`
     })
       .then(response => response.data)
       .catch(error => errorHelper(error));
@@ -196,24 +210,22 @@ getCategories = async (callback) => {
     const app_code = "SOaMBDA1FYyc8mAtg7STgg";
     return await axios({
       method: "get",
-      url: ` http://geocoder.api.here.com/6.2/geocode.json?locationid=${input}&jsonattributes=1&gen=9&app_id=${app_id}&app_code=${app_code}`,
+      url: ` http://geocoder.api.here.com/6.2/geocode.json?locationid=${input}&jsonattributes=1&gen=9&app_id=${app_id}&app_code=${app_code}`
     })
       .then(response => {
         return {
-          "response":
-            response.data.response.view[0].result[0].location.displayPosition,
+          response:
+            response.data.response.view[0].result[0].location.displayPosition
         };
       })
       .catch(error => errorHelper(error));
   };
 
-
-
   getNews = async data => {
     return await axiosInstanceNews
       .post("/news/getNews", data)
       .then(response => {
-        return { "response": response };
+        return { response: response };
       })
       .catch(error => {
         return errorHelper(error);
@@ -224,14 +236,13 @@ getCategories = async (callback) => {
     return await axiosInstanceStats
       .get("/getdata")
       .then(response => {
-        return response.data
+        return response.data;
       })
       .catch(error => {
         return errorHelper(error);
       });
   };
 }
-
 
 const instance = new API();
 export default instance;

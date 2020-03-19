@@ -5,7 +5,6 @@ import { API } from "helpers/index";
 import { logout } from "contexts/helpers";
 import { CardBody, Card } from "components";
 import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
-import { dataTable } from "variables/general";
 
 const Profile = props => {
   const [profile, setProfile] = useState({});
