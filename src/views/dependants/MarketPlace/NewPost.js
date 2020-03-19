@@ -1,60 +1,67 @@
 import React, { useState } from "react";
-import { Grid, Typography, Container, TextField, IconButton, Button, FormControl, MenuItem, Select, Paper, MobileStepper, Icon } from "@material-ui/core";
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { Grid, Typography, Container, TextField, 
+  // IconButton, 
+  Button, FormControl, MenuItem, Select, 
+  // Paper, MobileStepper, Icon 
+} from "@material-ui/core";
+// import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { Redirect } from "react-router-dom";
-import { Image, notify } from "components";
+import { 
+  // Image, 
+  // notify
+} from "components";
 import { API } from "helpers/index";
-import DeleteIcon from '@material-ui/icons/Delete';
-import Dropzone from 'react-dropzone';
-import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
-import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
+// import DeleteIcon from '@material-ui/icons/Delete';
+// import Dropzone from 'react-dropzone';
+// import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
+// import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 
-const useStyles = makeStyles(theme => ({
-  root: {
-    maxWidth: 400,
-    flexGrow: 1,
-  },
-  header: {
-    display: 'flex',
-    alignItems: 'center',
-    height: 50,
-    paddingLeft: theme.spacing(4),
-    backgroundColor: theme.palette.background.default,
-  },
-  img: {
-    height: 255,
-    maxWidth: 400,
-    overflow: 'hidden',
-    display: 'block',
-    width: '100%',
-  },
-}));
+// const useStyles = makeStyles(theme => ({
+//   root: {
+//     maxWidth: 400,
+//     flexGrow: 1,
+//   },
+//   header: {
+//     display: 'flex',
+//     alignItems: 'center',
+//     height: 50,
+//     paddingLeft: theme.spacing(4),
+//     backgroundColor: theme.palette.background.default,
+//   },
+//   img: {
+//     height: 255,
+//     maxWidth: 400,
+//     overflow: 'hidden',
+//     display: 'block',
+//     width: '100%',
+//   },
+// }));
 
 export const NewPost = () => {
-  const classes = useStyles();
-  const theme = useTheme();
+  // const classes = useStyles();
+  // const theme = useTheme();
   const [title, setTitle] = useState();
   const [description, setDescription] = useState();
   const [category, setCategory] = useState('');
   const [type, setType] = useState('');
-  const [images, setImages] = useState([]);
-  const [activeStep, setActiveStep] = useState(0);
-  const [maxSteps, setMaxSteps] = useState(1);
+  // const [images, setImages] = useState([]);
+  // const [activeStep, setActiveStep] = useState(0);
+  // const [maxSteps, setMaxSteps] = useState(1);
   const [redirect, setRedirect] = useState(false);
 
   // Upload a document
-  const uploadDocument = async (files) => {
-    notify('Uploading image in-progress');
-    let data = new FormData();
-    data.append('imageFile', files);
-    const response = await API.uploadImages(data);
-    notify('Image uploaded');
-    let temp = images;
-    temp.push(response);
-    setImages(temp);
-    setMaxSteps(temp.length);
-    setActiveStep(0);
-  };
+  // const uploadDocument = async (files) => {
+  //   notify('Uploading image in-progress');
+  //   let data = new FormData();
+  //   data.append('imageFile', files);
+  //   const response = await API.uploadImages(data);
+  //   notify('Image uploaded');
+  //   let temp = images;
+  //   temp.push(response);
+  //   setImages(temp);
+  //   setMaxSteps(temp.length);
+  //   setActiveStep(0);
+  // };
 
   const handleChange = (event, variant) => {
     if (variant === 'title')
@@ -62,13 +69,13 @@ export const NewPost = () => {
     else setDescription(event.target.value);
   }
 
-  const handleNext = () => {
-    setActiveStep(prevActiveStep => prevActiveStep + 1);
-  };
+  // const handleNext = () => {
+  //   setActiveStep(prevActiveStep => prevActiveStep + 1);
+  // };
 
-  const handleBack = () => {
-    setActiveStep(prevActiveStep => prevActiveStep - 1);
-  };
+  // const handleBack = () => {
+  //   setActiveStep(prevActiveStep => prevActiveStep - 1);
+  // };
 
   if (redirect)
     return <Redirect to={{ pathname: '/marketplace' }} />;
@@ -82,7 +89,7 @@ export const NewPost = () => {
         <Grid item xs={12}>
           <TextField label='Title' id='standard-text' variant='outlined' fullWidth value={title} onChange={(e) => handleChange(e, 'title')} />
         </Grid>
-        <Grid item xs={12}>
+        {/* <Grid item xs={12}>
           <Paper square elevation={0} className={classes.header}>
             <Grid container direction='row'>
               <Grid item xs={10}>
@@ -141,7 +148,7 @@ export const NewPost = () => {
           </Button>
             }
           />
-        </Grid>
+        </Grid> */}
         <Grid item xs={12}>
           <TextField label='Description' id='standard-text-description' variant='outlined' multiline rows={5} fullWidth value={description} onChange={(e) => handleChange(e, 'description')} />
         </Grid>
@@ -185,7 +192,7 @@ export const NewPost = () => {
           </Grid>
         </Grid>
         <Grid item xs={12}>
-          <Button variant='outlined' onClick={() => 
+          <Button variant='outlined' fullWidth onClick={() => 
             API.createListing({ title: title, description: description, images: [], category: category, postType: type }, () => {
               setRedirect(true);
             })}>Post</Button>
