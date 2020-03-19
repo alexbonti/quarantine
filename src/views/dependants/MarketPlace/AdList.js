@@ -104,37 +104,45 @@ export const AdList = () => {
     const [title, setTitle] = useState();
     const [suburb, setSuburb] = useState();
     const [type, setType] = useState();
+    const [ad, setAd] = useState();
     useEffect(() => {
       if (props.image !== undefined && props.image !== null)
         setImage(props.image);
-      if (props.title !== undefined && props.title !== null)
-        setTitle(props.title);
-      if (props.suburb !== undefined && props.suburb !== null)
-        setSuburb(props.suburb);
-      if (props.type !== undefined && props.type !== null)
-        setType(props.type);
+      if (props.item !== undefined && props.item !== null) {
+        setAd(props.item);
+        if (props.item.title !== undefined && props.item.title !== null)
+          setTitle(props.item.title);
+        if (props.item.suburb !== undefined && props.item.suburb !== null)
+          setSuburb(props.item.suburb);
+        if (props.item.postType !== undefined && props.item.postType !== null)
+          setType(props.item.type);
+      }
     }, [props]);
 
-    return (<Card style={{ height: '100%', width: '100%', background: '#4c586a', backgroundColor: '#4c586a' }}>
-      <CardBody>
-        <Grid container direction='row' spacing={3}>
-          <Grid item xs={4}>
-            <Image
-              style={{ width: '10vh', height: '10vh', borderRadius: 5 }}
-              src={image ? image.thumbnail && image.thumbnail !== '' ? image.thumbnail : image.original && image.original !== '' ?
-                image.original : 'https://penserra.com/wp-content/uploads/2018/03/dummy-post-square-1-300x300.jpg' :
-                'https://penserra.com/wp-content/uploads/2018/03/dummy-post-square-1-300x300.jpg'}
-              alt="imagepost"
-            />
+    return (
+      <Link to={{ pathname: 'adv', state: ad ? { category: ad.category, description: ad.description, status: ad.status, title: title, createdAt: ad.createdAt, _id: ad._id  } : {} }}>
+      <Card
+        style={{ height: '100%', width: '100%', background: '#4c586a', backgroundColor: '#4c586a' }}
+      >
+        <CardBody>
+          <Grid container direction='row' spacing={3}>
+            <Grid item xs={4}>
+              <Image
+                style={{ width: '10vh', height: '10vh', borderRadius: 5 }}
+                src={image ? image.thumbnail && image.thumbnail !== '' ? image.thumbnail : image.original && image.original !== '' ?
+                  image.original : 'https://penserra.com/wp-content/uploads/2018/03/dummy-post-square-1-300x300.jpg' :
+                  'https://penserra.com/wp-content/uploads/2018/03/dummy-post-square-1-300x300.jpg'}
+                alt="imagepost"
+              />
+            </Grid>
+            <Grid item xs={7}>
+              <Typography component='p' variant='h5'>{title}</Typography>
+              <Typography variant='subtitle1'>({type === "NEED" ? "Needed" : "Offered"})</Typography>
+              <Typography variant='subtitle1'>{<Icon fontSize='small'>room</Icon>}{suburb}</Typography>
+            </Grid>
           </Grid>
-          <Grid item xs={7}>
-            <Typography component='p' variant='h5'>{title}</Typography>
-            <Typography variant='subtitle1'>({type === "NEED" ? "Needed" : "Offered"})</Typography>
-            <Typography variant='subtitle1'>{<Icon fontSize='small'>room</Icon>}{suburb}</Typography>
-          </Grid>
-        </Grid>
-      </CardBody>
-    </Card>)
+        </CardBody>
+      </Card></Link>)
   };
 
   const CategoryCard = (props) => {
@@ -215,7 +223,7 @@ export const AdList = () => {
         {ads === undefined ? <LoadingScreen /> : ads.length > 0 ? ads.map((item, index) => {
           return (
             <Grid item xs={12} key={index}>
-              <AdCard title={item.title} image={item.images.length > 0 ? item.images[0] : null} suburb={item.postedBy.suburb} type={item.postType} />
+              <AdCard image={item.images.length > 0 ? item.images[0] : null} item={item} />
             </Grid>
           );
         }) : <Typography>No listings found.</Typography>}
