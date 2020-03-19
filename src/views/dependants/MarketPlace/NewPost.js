@@ -1,12 +1,15 @@
 import React, { useState } from "react";
-import { Grid, Typography, Container, TextField, 
+import {
+  Grid, Typography, Container,
   // IconButton, 
-  Button, FormControl, MenuItem, Select, 
+  FormControl, MenuItem, Select,
   // Paper, MobileStepper, Icon 
 } from "@material-ui/core";
 // import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { Redirect } from "react-router-dom";
-import { 
+import {
+  CustomInput,
+  RegularButton
   // Image, 
   // notify
 } from "components";
@@ -87,7 +90,23 @@ export const NewPost = () => {
           <Typography variant='h5'>Create Need/Offer</Typography>
         </Grid>
         <Grid item xs={12}>
-          <TextField label='Title' id='standard-text' variant='outlined' fullWidth value={title} onChange={(e) => handleChange(e, 'title')} />
+          {/* <TextField label='Title' id='standard-text' variant='outlined' fullWidth value={title} onChange={(e) => handleChange(e, 'title')} /> */}
+          <CustomInput
+            id="standard-text-description "
+            labelText="Title *"
+            required
+            fullWidth
+            inputProps={{
+              label: "Title ",
+              placeholder: "Title ",
+              name: "Title ",
+              value: title,
+              onChange: e => handleChange(e, "title")
+            }}
+            formControlProps={{
+              fullWidth: true
+            }}
+          />
         </Grid>
         {/* <Grid item xs={12}>
           <Paper square elevation={0} className={classes.header}>
@@ -150,7 +169,25 @@ export const NewPost = () => {
           />
         </Grid> */}
         <Grid item xs={12}>
-          <TextField label='Description' id='standard-text-description' variant='outlined' multiline rows={5} fullWidth value={description} onChange={(e) => handleChange(e, 'description')} />
+          {/* <TextField label='Description' id='standard-text-description' variant='outlined' multiline rows={5} fullWidth value={description} onChange={(e) => handleChange(e, 'description')} /> */}
+          <CustomInput
+            id="standard-text-description "
+            labelText="Description *"
+            required
+            fullWidth
+            inputProps={{
+              label: "Description ",
+              multiline: true,
+              placeholder: "Description ",
+              rows: 7,
+              name: "Description ",
+              value: description,
+              onChange: e => handleChange(e, "description")
+            }}
+            formControlProps={{
+              fullWidth: true
+            }}
+          />
         </Grid>
         <Grid item xs={12}>
           <Grid container direction='row'>
@@ -192,13 +229,24 @@ export const NewPost = () => {
           </Grid>
         </Grid>
         <Grid item xs={12}>
-          <Button variant='outlined' fullWidth onClick={() => 
+          {/* <Button variant='outlined' fullWidth onClick={() =>
             API.createListing({ title: title, description: description, images: [], category: category, postType: type }, () => {
               setRedirect(true);
-            })}>Post</Button>
-        </Grid>
+            })}>Post</Button> */}
+          <RegularButton
+            fullWidth
+            color="primary"
+            onClick={() => {
+              API.createListing({ title: title, description: description, images: [], category: category, postType: type }, () => {
+                setRedirect(true);
+              })
+            }}
+          >
+            Post
+          </RegularButton>
       </Grid>
-    </Container>
+      </Grid>
+    </Container >
   );
-  return content;
+return content;
 }
