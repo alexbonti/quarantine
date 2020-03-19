@@ -15,6 +15,7 @@ import {
   FourOFour,
   Charts,
   Profile,
+  AdView,
   AdList,
   NewPost
 } from "views";
@@ -38,7 +39,7 @@ export const AppRoutes = props => {
         path="/"
         render={() =>
           loginStatus ? (
-            <Redirect to={{ pathname: "/" }} {...props} />
+            <Redirect to={{ pathname: landingPage }} {...props} />
           ) : (
               <Redirect
                 to={{
@@ -137,6 +138,16 @@ export const AppRoutes = props => {
           <Layout>
             {" "}
             <Charts {...props} />
+          </Layout>
+        )}
+      />
+      <Route
+        exact
+        path="/adv"
+        render={() => (
+          <Layout>
+            {" "}
+            <AdView {...props} />
           </Layout>
         )}
       />

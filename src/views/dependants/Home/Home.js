@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { Heading, NewsMediumCard, NewsCard } from "components";
 import { API } from "helpers/index";
 import moment from "moment";
-import { NewsLargeCard } from "components/index";
+import { NewsLargeCard, LoadingScreen } from "components/index";
 
 export const Home = () => {
   const [news, setNews] = useState([]);
@@ -99,7 +99,5 @@ export const Home = () => {
       </Grid>
       </Grid>
     </>
-  ) : (
-    "Loading"
-  );
+  ) : <LoadingScreen loadingText="loading"/>;
 };

@@ -13,6 +13,7 @@ import News  from "./dependants/News/News";
 import Charts  from "./dependants/Charts/Charts";
 import ConfirmRegistration  from "./common/Register/ConfirmRegistration";
 import Profile  from "./dependants/Profile/Profile";
+import AdView  from "./dependants/AdView/AdView";
 
 
 
@@ -29,5 +30,6 @@ export {
   AdList,
   ConfirmRegistration,
   Profile,
+  AdView,
   NewPost
 };
