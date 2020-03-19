@@ -208,6 +208,18 @@ class API {
       });
   };
 
+  completeListing = async data => {
+    return await axiosInstance
+      .put("/listing/completeListing", data, {
+        headers: {
+          authorization: `Bearer ${AccessToken}`
+        }
+      })
+      .then(response => response)
+      .catch(err => {
+        errorHelper(err);
+      });
+  };
   confirmInterest = async data => {
     return await axiosInstance
       .put("/listing/confirmInterest", data, {

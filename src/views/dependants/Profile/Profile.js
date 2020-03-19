@@ -60,10 +60,12 @@ const Profile = props => {
             
             <Grid
               item
-              xs={10}
+              xs={12}
               md={5}
               lg={3}
               key={key}
+              style={{ margin: "3vh 0 " }}
+
             >
               <Card>
                 <CardBody>
@@ -72,7 +74,7 @@ const Profile = props => {
                       item
                       xs={12}
                       component={Link}
-                      to={{ pathname: "/adv", state: item }}
+                      to={{ pathname: "/adv", state: {item, profileId: profile._id} }}
                     >
                       <Typography variant="h6">{item.title}</Typography>
                     </Grid>
@@ -88,7 +90,7 @@ const Profile = props => {
       <Grid item xs={12}>
         <hr style={{ border: ".5px solid grey" }} />
       </Grid>
-      <Grid item xs={11}>
+      <Grid item xs={11} container>
         <Grid item xs={12}>
           <Typography variant="h5">Need</Typography>
         </Grid>
@@ -100,7 +102,7 @@ const Profile = props => {
               md={5}
               lg={3}
               key={key}
-              style={{ margin: "1vh 0 " }}
+              style={{ margin: "3vh 0 " }}
             >
               <Card>
                 <CardBody>
@@ -109,7 +111,7 @@ const Profile = props => {
                       item
                       xs={12}
                       component={Link}
-                      to={{ pathname: "/adv", state: item }}
+                      to={{ pathname: "/adv", state: {item, profileId: profile._id} }}
                     >
                       <Typography variant="h6">{item.title}</Typography>
                     </Grid>

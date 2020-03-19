@@ -16,41 +16,18 @@ import { Redirect, withRouter } from "react-router-dom";
 import // Image,
 // notify
 "components";
+import { FourOFour } from "views/common/FourOFour/FourOFour";
+
 import { API } from "helpers/index";
 import { CustomInput, RegularButton } from "components/index";
-// import DeleteIcon from '@material-ui/icons/Delete';
-// import Dropzone from 'react-dropzone';
-// import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
-// import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 
-// const useStyles = makeStyles(theme => ({
-//   root: {
-//     maxWidth: 400,
-//     flexGrow: 1,
-//   },
-//   header: {
-//     display: 'flex',
-//     alignItems: 'center',
-//     height: 50,
-//     paddingLeft: theme.spacing(4),
-//     backgroundColor: theme.palette.background.default,
-//   },
-//   img: {
-//     height: 255,
-//     maxWidth: 400,
-//     overflow: 'hidden',
-//     display: 'block',
-//     width: '100%',
-//   },
-// }));
 
 const AdEdit = props => {
-console.log("props", props)
 
-  const [title, setTitle] = useState();
-  const [description, setDescription] = useState();
-  const [category, setCategory] = useState("");
-  const [type, setType] = useState("");
+  const [title, setTitle] = useState(props.location.state.title);
+  const [description, setDescription] = useState(props.location.state.description);
+  const [category, setCategory] = useState(props.location.state.category);
+  const [type, setType] = useState(props.location.state.postType);
   const [redirect, setRedirect] = useState(false);
 
 
@@ -60,6 +37,9 @@ console.log("props", props)
     else setDescription(event.target.value);
   };
 
+  if (props.location.state === undefined) {
+    return <FourOFour />;
+  }
 
   if (redirect) return <Redirect to={{ pathname: "/marketplace" }} />;
 
@@ -99,8 +79,10 @@ console.log("props", props)
             required
             fullWidth
             inputProps={{
-              label: "Description ",
-              placeholder: "Description ",
+                label: "Description ",
+                multiline: true,
+                placeholder: "Description ",
+                rows:7,
               name: "Description ",
               value: description,
               onChange: e => handleChange(e, "description")

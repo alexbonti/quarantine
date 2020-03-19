@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { withRouter, Redirect, Link} from "react-router-dom";
 import { Grid, Typography } from "@material-ui/core";
 import { Card, CardHeader, CardBody, CardFooter, Heading } from "components";
@@ -7,6 +7,8 @@ import { RegularButton, ExpansionPanelComponent, notify } from "components/index
 import moment from "moment";
 import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
 import EditOutlinedIcon from "@material-ui/icons/EditOutlined";
+import {LoginContext} from "contexts"
+
 
 import { API } from "helpers/index";
 
@@ -54,6 +56,10 @@ const interestPeopleData = [
 ];
 
 const AdView = props => {
+
+  //context get login status
+  const {loginStatus} = useContext(LoginContext)
+  console.log("loginStatus", loginStatus)
   //state
   const [redirect, setRedirect] = useState(false)
   const [itemClicked, setItemClicked] = useState(false);
@@ -68,7 +74,6 @@ const AdView = props => {
     top: "200px",
     transition: "all .3s"
   });
-
   const handleDeleteItem = id => {
     setItemClicked(!itemClicked);
     itemClicked
@@ -107,8 +112,11 @@ const AdView = props => {
     status,
     title,
     createdAt,
-    _id
-  } = props.location.state;
+    _id, 
+    postedBy,
+  } = props.location.state.item
+
+  const {profileId} = props.location.state
 
   console.log("_id", props);
 
@@ -118,13 +126,24 @@ const AdView = props => {
     const data = {
       listId: _id
     };
-    const respData = await API.confirmInterest(data);
+    const respData = await API.completeListing(data);
     if (respData) {
+      notify("Adv Closed")
     }
   };
 
+  const handleInterestedAd = async () => {
+    const data = {
+      listId: _id
+    };
+    const respData = await API.confirmInterest(data);
+    if (respData) {
+        notify("Interested")
+    }
+  };
   // delete the adv 
-
+const showButton  =  loginStatus ? (postedBy  === profileId? true : false) : ""
+console.log("showButton", showButton)
   const handleDeleteAdv = async () => {
     const data = {
       listId: _id
@@ -146,7 +165,7 @@ const AdView = props => {
               </Grid>
               <Grid item xs={5} md={6} align="right">
                 <Typography
-                  style={status === "AVAILABLE" ? { color: "#8bdc8b" } : ""}
+                  style={status === "AVAILABLE" ? { color: "#8bdc8b" } : { color: "red" } }
                 >
                   {status}
                 </Typography>
@@ -164,11 +183,10 @@ const AdView = props => {
                   />
                 </Grid>
                 <Grid item xs={2}  component={Link}
-                    to="/adedit">
+                     to={{ pathname: "/adedit", state: props.location.state.item} }>
                   <EditOutlinedIcon
                     style={styleItem}
-                   
-                  >Test</EditOutlinedIcon>
+                  />
                 </Grid>
               </Grid>
             </Grid>
@@ -201,7 +219,7 @@ const AdView = props => {
                   </RegularButton>
                 </Grid>
               </Grid>
-              <Grid item xs={11}>
+              {status === "COMPLETED" ? (""): (<Grid item xs={11}>
                 <RegularButton
                   color="primary"
                   onClick={() => handleStatusAdv()}
@@ -209,7 +227,16 @@ const AdView = props => {
                   {" "}
                   Close Adv
                 </RegularButton>
-              </Grid>
+              </Grid>) }
+              {!showButton ? (""): (<Grid item xs={11}>
+                <RegularButton
+                  color="primary"
+                  onClick={() => handleInterestedAd()}
+                >
+                  {" "}
+                  Interested
+                </RegularButton>
+              </Grid>) }
             </Grid>
           </CardFooter>
         </Card>
