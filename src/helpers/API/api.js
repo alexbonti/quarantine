@@ -168,7 +168,34 @@ class API {
       });
   };
 
-  getProfile = async () => {
+uploadImages = async (file) => {
+  return await axiosInstance.post('/upload/uploadImage', file, {
+    headers: {
+      authorization: "Bearer " + AccessToken,
+      "Content-Type": "multipart/form-data; boundary='boundary'"
+    }
+  }).then(response => {
+    // console.log(JSON.parse(response.request.response).data.documentFileUrl.original);
+    return JSON.parse(response.request.response).data.imageFileURL;
+  }).catch(error => {
+    errorHelper(error)
+    return false;
+  })
+};
+
+createListing = async (data, callback) => {
+  return await axiosInstance.post("/listing/createListing", data, {
+    headers: {
+      authorization: `Bearer ${AccessToken}`
+    }
+  }).then(response => {
+    performCallback(callback);
+  }).catch(err => {
+    errorHelper(err);
+  })
+};
+
+  getProfile= async () => {
     return await axiosInstance
       .get("/user/getProfile", {
         headers: {

@@ -120,7 +120,7 @@ const AdView = props => {
       </Grid>
       <Grid container justify="center" style={{ padding: "3vh 0" }}>
         <Grid item xs={11} >
-          <Typography variant="h5">Person interested</Typography>
+          <Typography variant="h5">Confirm interes</Typography>
         </Grid>
         <Grid item xs={11} style={{ padding: "3vh 0" }}>
           <ExpansionPanelComponent interestedData={interestPeopleData} />
