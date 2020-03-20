@@ -237,7 +237,7 @@ export const NewPost = () => {
             fullWidth
             color="primary"
             onClick={() => {
-              API.createListing({ title: title, description: description, images: ["https://penserra.com/wp-content/uploads/2018/03/dummy-post-square-1-300x300.jpg"], category: category, postType: type }, () => {
+              API.createListing({ title: title, description: description, images: [], category: category, postType: type }, () => {
                 setRedirect(true);
               })
             }}
