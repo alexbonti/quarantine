@@ -40,7 +40,7 @@ const AdEdit = props => {
     return <FourOFour />;
   }
 
-  if (redirect) return <Redirect to={{ pathname: "/marketplace" }} />;
+  if (redirect) return <Redirect to={{ pathname: "/locals" }} />;
 
 
   const updateListing = async () => {

@@ -167,7 +167,7 @@ export const AppRoutes = props => {
 
       <Route
         exact
-        path="/marketplace"
+        path="/locals"
         render={() =>
           <Layout>
             <AdList {...props} />

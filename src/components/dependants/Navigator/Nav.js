@@ -28,13 +28,13 @@ export const  NavBar = () => {
         <Toolbar>
    
           <Typography variant="h6" className={classes.title} component={Link} to="/">
-            News
+            Home
           </Typography>
           <Typography variant="h6" className={classes.title} component={Link} to="/FAQ">
             Faq
           </Typography>
           <Typography variant="h6" className={classes.title} component={Link} to="/marketplace">
-            Marketplace
+            Locals
           </Typography>
           <Typography variant="h6" className={classes.title} component={Link} to="/profile">
             Profile

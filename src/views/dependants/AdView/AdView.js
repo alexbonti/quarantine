@@ -61,68 +61,68 @@ import { API } from "helpers/index";
 
 const AdView = props => {
   //context get login status
-  const {history} = props.location.state
   const { loginStatus } = useContext(LoginContext);
   //state
   const [redirect, setRedirect] = useState(false);
- // const [itemClicked, setItemClicked] = useState(false);
+  // const [itemClicked, setItemClicked] = useState(false);
   const [message, setMessage] = useState("");
   const [showMessageInoput, setShowMessageInput] = useState(false);
   // const [styleItem, setStyleItem] = useState({
-  //   margin: "1vh  0",
-  //   opacity: "1",
-  //   color: "white"
-  // });
-  // const [styleCancelItem, setStyleCancelItem] = useState({
-  //   opacity: "0",
-  //   position: "relative",
-  //   top: "200px",
-  //   transition: "all .3s"
-  // });
-  // const handleDeleteItem = id => {
-  //   setItemClicked(!itemClicked);
-  //   itemClicked
-  //     ? setStyleItem({ margin: "1vh  0", opacity: "1", color: "white" })
-  //     : setStyleItem({
-  //         position: "relative",
-  //         top: "200px",
-  //         margin: "1vh  0",
-  //         opacity: "0",
-  //         transform: "scale(.5)",
-  //         color: "white"
-  //       });
-
-  //   itemClicked
-  //     ? setStyleCancelItem({
-  //         opacity: "0",
-  //         position: "relative",
-  //         top: "200px",
-  //         transition: "all .3s"
-  //       })
-  //     : setStyleCancelItem({
-  //         opacity: "1",
-  //         position: "relative",
-  //         top: "-10px",
-  //         transition: "all .3s"
-  //       });
-  // };
-  //check if data is available otherwise renders 404
-  if (props.location.state === undefined) {
-    return <FourOFour />;
-  }
-  // data
-  const {
-    category,
-    description,
-    status,
-    title,
-    createdAt,
-    _id,
-    postedBy,
-    type
-  } = props.location.state.item;
-
-  const { profileId } = props.location.state;
+    //   margin: "1vh  0",
+    //   opacity: "1",
+    //   color: "white"
+    // });
+    // const [styleCancelItem, setStyleCancelItem] = useState({
+      //   opacity: "0",
+      //   position: "relative",
+      //   top: "200px",
+      //   transition: "all .3s"
+      // });
+      // const handleDeleteItem = id => {
+        //   setItemClicked(!itemClicked);
+        //   itemClicked
+        //     ? setStyleItem({ margin: "1vh  0", opacity: "1", color: "white" })
+        //     : setStyleItem({
+          //         position: "relative",
+          //         top: "200px",
+          //         margin: "1vh  0",
+          //         opacity: "0",
+          //         transform: "scale(.5)",
+          //         color: "white"
+          //       });
+          
+          //   itemClicked
+          //     ? setStyleCancelItem({
+            //         opacity: "0",
+            //         position: "relative",
+            //         top: "200px",
+            //         transition: "all .3s"
+            //       })
+            //     : setStyleCancelItem({
+              //         opacity: "1",
+              //         position: "relative",
+              //         top: "-10px",
+              //         transition: "all .3s"
+              //       });
+              // };
+              //check if data is available otherwise renders 404
+              if (props.location.state === undefined) {
+                return <FourOFour />;
+              }
+              // data
+              const {
+                category,
+                description,
+                status,
+                title,
+                createdAt,
+                _id,
+                postedBy,
+                type
+              } = props.location.state.item;
+              
+              const { profileId } = props.location.state;
+              const {history} = props.location.state
 
 
   //change the status of the adv

@@ -5,11 +5,11 @@
   "landingPage": "/home",
   "menuItems": [
     {
-      "name": "News",
+      "name": "Home",
       "type": "button",
       "icon": "home",
       "controller": "/home",
-      "customTitle": "News",
+      "customTitle": "Home",
       "isFavourite": true,
       "color": "red",
       "subMenuItems": []
@@ -27,11 +27,11 @@
     },
 
     {
-      "name": "Marketplace",
+      "name": "Locals",
       "type": "button",
       "icon": "store",
-      "controller": "/marketplace",
-      "customTitle": "Marketplace",
+      "controller": "/locals",
+      "customTitle": "Locals",
       "isFavourite": true,
       "color": "red",
 
