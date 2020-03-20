@@ -207,7 +207,7 @@ export const AdList = () => {
       {search === undefined || search === '' || search === ' ' ? <Grid>
         <Tabs
           value={value}
-          indicatorColor="primary"
+          TabIndicatorProps={{style: {background:'rgb(0, 172, 193)'}}}
           textColor="primary"
           onChange={handleTabChange}
           centered

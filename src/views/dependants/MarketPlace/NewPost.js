@@ -1,16 +1,19 @@
 import React, { useState } from "react";
 import {
-  Grid, Typography, Container,
-  // IconButton, 
-  FormControl, MenuItem, Select,
-  // Paper, MobileStepper, Icon 
+  Grid,
+  Typography,
+  Container,
+  // IconButton,
+  MenuItem,
+  Select
+  // Paper, MobileStepper, Icon
 } from "@material-ui/core";
 // import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { Redirect } from "react-router-dom";
 import {
   CustomInput,
   RegularButton
-  // Image, 
+  // Image,
   // notify
 } from "components";
 import { API } from "helpers/index";
@@ -45,8 +48,8 @@ export const NewPost = () => {
   // const theme = useTheme();
   const [title, setTitle] = useState();
   const [description, setDescription] = useState();
-  const [category, setCategory] = useState('');
-  const [type, setType] = useState('');
+  const [category, setCategory] = useState("");
+  const [type, setType] = useState("");
   // const [images, setImages] = useState([]);
   // const [activeStep, setActiveStep] = useState(0);
   // const [maxSteps, setMaxSteps] = useState(1);
@@ -67,10 +70,9 @@ export const NewPost = () => {
   // };
 
   const handleChange = (event, variant) => {
-    if (variant === 'title')
-      setTitle(event.target.value);
+    if (variant === "title") setTitle(event.target.value);
     else setDescription(event.target.value);
-  }
+  };
 
   // const handleNext = () => {
   //   setActiveStep(prevActiveStep => prevActiveStep + 1);
@@ -80,14 +82,63 @@ export const NewPost = () => {
   //   setActiveStep(prevActiveStep => prevActiveStep - 1);
   // };
 
-  if (redirect)
-    return <Redirect to={{ pathname: '/marketplace' }} />;
+  if (redirect) return <Redirect to={{ pathname: "/marketplace" }} />;
 
   const content = (
-    <Container maxWidth='sm' style={{ marginTop: '5%', marginBottom: '5%', alignItems: 'center' }}>
-      <Grid container direction='column' spacing={2}>
-        <Grid item xs={12}>
-          <Typography variant='h5'>Create Need/Offer</Typography>
+    <Container
+      maxWidth="sm"
+      style={{ marginTop: "5%", marginBottom: "5%", alignItems: "center" }}
+    >
+      <Grid container >
+        <Grid item xs={5}>
+          <Typography variant="h5">Create Need/Offer</Typography>
+        </Grid>
+        <Grid item container xs={12}>
+          <Grid container direction="row">
+    
+            <Grid item xs={12}>
+                <Select
+                  value={type}
+                  fullWidth
+                  style={{paddingTop: "28px", marginBottom: "17px"}}
+
+                  onChange={e => {
+                    setType(e.target.value);
+                  }}
+                  displayEmpty
+                >
+                  <MenuItem value="" disabled>
+                    Type
+                  </MenuItem>
+                  <MenuItem value={"NEED"}>Need</MenuItem>
+                  <MenuItem value={"OFFER"}>Offer</MenuItem>
+                </Select>
+            </Grid>
+          </Grid>
+        </Grid>
+        <Grid item  container xs={12}>
+          <Grid container >
+            <Grid item xs={12} >
+                <Select
+                  fullWidth
+                  value={category}
+                  onChange={e => {
+                    setCategory(e.target.value);
+                  }}
+                  style={{paddingTop: "28px", marginBottom: "17px"}}
+                  displayEmpty
+                >
+                  <MenuItem value="" disabled>
+                    Category
+                  </MenuItem>
+                  <MenuItem value={"FOOD"}>Food</MenuItem>
+                  <MenuItem value={"ESSENTIALS"}>Essentials</MenuItem>
+                  <MenuItem value={"MEDICINES"}>Medicines</MenuItem>
+                  <MenuItem value={"ACCOMMODATION"}>Accommodation</MenuItem>
+                  <MenuItem value={"OTHER"}>Other</MenuItem>
+                </Select>
+            </Grid>
+          </Grid>
         </Grid>
         <Grid item xs={12}>
           {/* <TextField label='Title' id='standard-text' variant='outlined' fullWidth value={title} onChange={(e) => handleChange(e, 'title')} /> */}
@@ -96,6 +147,7 @@ export const NewPost = () => {
             labelText="Title *"
             required
             fullWidth
+            style={{color: "white"}}
             inputProps={{
               label: "Title ",
               placeholder: "Title ",
@@ -168,18 +220,21 @@ export const NewPost = () => {
             }
           />
         </Grid> */}
-        <Grid item xs={12}>
+
+        <Grid item xs={12}  style={{color: "white", paddingBottom: "17px"}}
+>
           {/* <TextField label='Description' id='standard-text-description' variant='outlined' multiline rows={5} fullWidth value={description} onChange={(e) => handleChange(e, 'description')} /> */}
           <CustomInput
             id="standard-text-description "
             labelText="Description *"
             required
+            style={{color: "white"}}
             fullWidth
             inputProps={{
               label: "Description ",
               multiline: true,
               placeholder: "Description ",
-              rows: 7,
+              rows: 1,
               name: "Description ",
               value: description,
               onChange: e => handleChange(e, "description")
@@ -189,45 +244,8 @@ export const NewPost = () => {
             }}
           />
         </Grid>
-        <Grid item xs={12}>
-          <Grid container direction='row'>
-            <Grid item xs={5}>
-              <Typography>Select Category:</Typography>
-            </Grid>
-            <Grid item xs={4}>
-              <FormControl>
-                <Select value={category} onChange={(e) => { setCategory(e.target.value); }} displayEmpty>
-                  <MenuItem value="" disabled>
-                    Category
-                  </MenuItem>
-                  <MenuItem value={'FOOD'}>Food</MenuItem>
-                  <MenuItem value={'ESSENTIALS'}>Essentials</MenuItem>
-                  <MenuItem value={'MEDICINES'}>Medicines</MenuItem>
-                  <MenuItem value={'ACCOMMODATION'}>Accommodation</MenuItem>
-                  <MenuItem value={'OTHER'}>Other</MenuItem>
-                </Select>
-              </FormControl>
-            </Grid>
-          </Grid>
-        </Grid>
-        <Grid item xs={12}>
-          <Grid container direction='row'>
-            <Grid item xs={5}>
-              <Typography>Select Type:</Typography>
-            </Grid>
-            <Grid item xs={4}>
-              <FormControl>
-                <Select value={type} onChange={(e) => { setType(e.target.value); }} displayEmpty>
-                  <MenuItem value="" disabled>
-                    Type
-                  </MenuItem>
-                  <MenuItem value={'NEED'}>Need</MenuItem>
-                  <MenuItem value={'OFFER'}>Offer</MenuItem>
-                </Select>
-              </FormControl>
-            </Grid>
-          </Grid>
-        </Grid>
+       
+
         <Grid item xs={12}>
           {/* <Button variant='outlined' fullWidth onClick={() =>
             API.createListing({ title: title, description: description, images: [], category: category, postType: type }, () => {
@@ -235,18 +253,28 @@ export const NewPost = () => {
             })}>Post</Button> */}
           <RegularButton
             fullWidth
+            size="lg"
             color="primary"
             onClick={() => {
-              API.createListing({ title: title, description: description, images: ["https://penserra.com/wp-content/uploads/2018/03/dummy-post-square-1-300x300.jpg"], category: category, postType: type }, () => {
-                setRedirect(true);
-              })
+              API.createListing(
+                {
+                  title: title,
+                  description: description,
+                  images: [],
+                  category: category,
+                  postType: type
+                },
+                () => {
+                  setRedirect(true);
+                }
+              );
             }}
           >
             Post
           </RegularButton>
+        </Grid>
       </Grid>
-      </Grid>
-    </Container >
+    </Container>
   );
-return content;
-}
+  return content;
+};
