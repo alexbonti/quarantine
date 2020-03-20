@@ -278,6 +278,7 @@ const AdView = props => {
               </Grid>) } */}
               {!showButton ||
               status === "COMPLETED" ||
+              type ==="NEED" ||
               profileId === undefined ? null : (
                 <Grid item xs={4}>
                   <RegularButton

@@ -182,7 +182,7 @@ export const AdList = () => {
                   src={item.image && item.image !== '' ? item.image : ''}
                   alt="imagepost"
                 /> : null}
-                <Typography variant='subtitle1' style={{ color: `${selectedCategory && selectedCategory.name === item.name ? 'red' : ''}` }}>{titleCase(item.name)}</Typography>
+                <Typography variant='subtitle1' style={{ color: `${selectedCategory && selectedCategory.name === item.name ? '#35a1b6' : ''}` }}>{titleCase(item.name)}</Typography>
               </center></div>
             </Grid>
           );
