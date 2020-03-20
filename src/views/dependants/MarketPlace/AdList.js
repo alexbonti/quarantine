@@ -250,7 +250,7 @@ export const AdList = () => {
         direction="row"
         spacing={1}
         justify="space-between"
-        style={{ marginTop: "2%" }}
+        style={{ marginTop: "2%", padding:"2vh 0" }}
       >
         {categories === undefined ? (
           <LoadingScreen />

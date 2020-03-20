@@ -34,6 +34,7 @@ const Profile = props => {
 
   return profile.firstName !== undefined && offers !== undefined ? (
     <Grid container justify="center" style={{ padding: "5vh 1vw" }}>
+      <Grid item container xs={12} md={6} lg={4}ustify="center" >
       <Grid item xs={11} style={{ padding: "5vh  0" }}>
         <Typography variant="h6">
           {" "}
@@ -46,7 +47,7 @@ const Profile = props => {
         </Typography>
         <RegularButton variant="contained" color="primary" onClick={() => { logout(); }} style={{ marginTop: '10px' }} >Logout</RegularButton>
       </Grid>
-      <Grid item xs={12}>
+      <Grid item xs={11}>
         <hr style={{ border: ".5px solid grey" }} />
       </Grid>
 
@@ -86,7 +87,7 @@ const Profile = props => {
           );
         })}
       </Grid>
-      <Grid item xs={12}>
+      <Grid item xs={11}>
         <hr style={{ border: ".5px solid grey" }} />
       </Grid>
       <Grid item xs={11} container>
@@ -121,6 +122,7 @@ const Profile = props => {
             </Grid>
           );
         })}
+      </Grid>
       </Grid>
     </Grid>
   ) : (

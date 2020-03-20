@@ -24,7 +24,7 @@ const FAQ = props => {
     <Grid container justify="center" style={{padding: "2vh 0"}}>
 
 
-    <Grid item xs={11}>
+    <Grid item xs={11}  md={7} lg={7}>
         <hr />
             <Typography variant="h6"> Proident dolore non commodo anim adipisicing nulla. Qui magna dolor adipisicing aute commodo irure culpa quis excepteur mollit in consectetur. Nisi dolor ea velit eiusmod. Eu id laborum qui nostrud irure elit aliqua laboris. </Typography>
             <hr />

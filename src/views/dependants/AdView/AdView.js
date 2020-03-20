@@ -183,13 +183,12 @@ const AdView = props => {
     <Redirect to="/profile" />
   ) : (
     <Grid container justify="center" style={{ padding: "5vh 0" }}>
-      <Grid item xs={11}>
+      <Grid item xs={11} md={6} lg={4}>
+      <Grid item xs={11} >
         <Link to={history}>
       <Heading title=" < BACK" textAlign="left" color="white"/>
         </Link>
-
       </Grid>
-      <Grid item xs={11} md={6} lg={4}>
         <Card>
           <CardHeader>
             <Grid container justify="space-between">
