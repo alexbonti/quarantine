@@ -60,7 +60,6 @@ import { API } from "helpers/index";
 // ];
 
 const AdView = props => {
-console.log("props", props)
   //context get login status
   const {history} = props.location.state
   const { loginStatus } = useContext(LoginContext);

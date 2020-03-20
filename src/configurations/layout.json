@@ -15,7 +15,7 @@
       "subMenuItems": []
     },
     {
-      "name": "Faq",
+      "name": "FAQs",
       "type": "button",
       "icon": "facebook",
       "controller": "/faq",
