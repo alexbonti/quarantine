@@ -5,7 +5,6 @@ import React, { useState, useContext } from "react";
 
 import { Link } from "react-router-dom";
 import {
-  TextField,
   Paper,
   makeStyles,
   Typography,
@@ -115,7 +114,6 @@ let applicationTheme = createMuiTheme({
 });
 export const Login = () => {
   const classes = useStyles();
-  const [pageHeading] = useState("Login");
   const [emailId, setEmailId] = useState("");
   const [password, setPassword] = useState("");
   const { devMode, loginStatus, setLoginStatus, setAccessToken } = useContext(

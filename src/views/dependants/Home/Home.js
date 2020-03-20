@@ -1,4 +1,4 @@
-import React, { useEffect, useContext, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Grid, Typography } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import { Heading, NewsMediumCard, NewsCard } from "components";
@@ -8,7 +8,6 @@ import { NewsLargeCard, LoadingScreen } from "components/index";
 
 export const Home = () => {
   const [news, setNews] = useState([]);
-  console.log("Home -> news", news);
 
   useEffect(() => {
     const callApi = async () => {

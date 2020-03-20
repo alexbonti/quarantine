@@ -203,7 +203,7 @@ export const NewPost = () => {
                   <MenuItem value={'FOOD'}>Food</MenuItem>
                   <MenuItem value={'ESSENTIALS'}>Essentials</MenuItem>
                   <MenuItem value={'MEDICINES'}>Medicines</MenuItem>
-                  <MenuItem value={'FURNITURE'}>Furniture</MenuItem>
+                  <MenuItem value={'ACCOMMODATION'}>Accommodation</MenuItem>
                   <MenuItem value={'OTHER'}>Other</MenuItem>
                 </Select>
               </FormControl>
@@ -237,7 +237,7 @@ export const NewPost = () => {
             fullWidth
             color="primary"
             onClick={() => {
-              API.createListing({ title: title, description: description, images: [], category: category, postType: type }, () => {
+              API.createListing({ title: title, description: description, images: ["https://penserra.com/wp-content/uploads/2018/03/dummy-post-square-1-300x300.jpg"], category: category, postType: type }, () => {
                 setRedirect(true);
               })
             }}

@@ -5,107 +5,108 @@ import { Card, CardHeader, CardBody, CardFooter, Heading } from "components";
 import { FourOFour } from "views/common/FourOFour/FourOFour";
 import {
   RegularButton,
-  ExpansionPanelComponent,
+  //ExpansionPanelComponent,
   notify,
   CustomInput
 } from "components/index";
 import moment from "moment";
-import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
-import EditOutlinedIcon from "@material-ui/icons/EditOutlined";
+// import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
+// import EditOutlinedIcon from "@material-ui/icons/EditOutlined";
 import { LoginContext } from "contexts";
 
 import { API } from "helpers/index";
 
-const interestPeopleData = [
-  {
-    suburb: "Brighton",
-    emailId: "test@test.com",
-    firstName: "Zigo",
-    lastName: "Zago",
-    countryCode: "+61",
-    phoneNumber: "+67133212"
-  },
-  {
-    suburb: "Brighton",
-    emailId: "test@test.com",
-    firstName: "Carlos",
-    lastName: "Zampa",
-    countryCode: "+61",
-    phoneNumber: "+67133212"
-  },
-  {
-    suburb: "Brighton",
-    emailId: "test@test.com",
-    firstName: "Aldair",
-    lastName: "Santos",
-    countryCode: "+61",
-    phoneNumber: "+67133212"
-  },
-  {
-    suburb: "Brighton",
-    emailId: "test@test.com",
-    firstName: "Gabriel Omar",
-    lastName: "Battistuta",
-    countryCode: "+61",
-    phoneNumber: "+67133212"
-  },
-  {
-    suburb: "Brighton",
-    emailId: "test@test.com",
-    firstName: "Francesco",
-    lastName: "Totti",
-    countryCode: "+61",
-    phoneNumber: "+67133212"
-  }
-];
+// const interestPeopleData = [
+//   {
+//     suburb: "Brighton",
+//     emailId: "test@test.com",
+//     firstName: "Zigo",
+//     lastName: "Zago",
+//     countryCode: "+61",
+//     phoneNumber: "+67133212"
+//   },
+//   {
+//     suburb: "Brighton",
+//     emailId: "test@test.com",
+//     firstName: "Carlos",
+//     lastName: "Zampa",
+//     countryCode: "+61",
+//     phoneNumber: "+67133212"
+//   },
+//   {
+//     suburb: "Brighton",
+//     emailId: "test@test.com",
+//     firstName: "Aldair",
+//     lastName: "Santos",
+//     countryCode: "+61",
+//     phoneNumber: "+67133212"
+//   },
+//   {
+//     suburb: "Brighton",
+//     emailId: "test@test.com",
+//     firstName: "Gabriel Omar",
+//     lastName: "Battistuta",
+//     countryCode: "+61",
+//     phoneNumber: "+67133212"
+//   },
+//   {
+//     suburb: "Brighton",
+//     emailId: "test@test.com",
+//     firstName: "Francesco",
+//     lastName: "Totti",
+//     countryCode: "+61",
+//     phoneNumber: "+67133212"
+//   }
+// ];
 
 const AdView = props => {
+console.log("props", props)
   //context get login status
+  const {history} = props.location.state
   const { loginStatus } = useContext(LoginContext);
-  console.log("loginStatus", loginStatus);
   //state
   const [redirect, setRedirect] = useState(false);
-  const [itemClicked, setItemClicked] = useState(false);
+ // const [itemClicked, setItemClicked] = useState(false);
   const [message, setMessage] = useState("");
   const [showMessageInoput, setShowMessageInput] = useState(false);
-  const [styleItem, setStyleItem] = useState({
-    margin: "1vh  0",
-    opacity: "1",
-    color: "white"
-  });
-  const [styleCancelItem, setStyleCancelItem] = useState({
-    opacity: "0",
-    position: "relative",
-    top: "200px",
-    transition: "all .3s"
-  });
-  const handleDeleteItem = id => {
-    setItemClicked(!itemClicked);
-    itemClicked
-      ? setStyleItem({ margin: "1vh  0", opacity: "1", color: "white" })
-      : setStyleItem({
-          position: "relative",
-          top: "200px",
-          margin: "1vh  0",
-          opacity: "0",
-          transform: "scale(.5)",
-          color: "white"
-        });
+  // const [styleItem, setStyleItem] = useState({
+  //   margin: "1vh  0",
+  //   opacity: "1",
+  //   color: "white"
+  // });
+  // const [styleCancelItem, setStyleCancelItem] = useState({
+  //   opacity: "0",
+  //   position: "relative",
+  //   top: "200px",
+  //   transition: "all .3s"
+  // });
+  // const handleDeleteItem = id => {
+  //   setItemClicked(!itemClicked);
+  //   itemClicked
+  //     ? setStyleItem({ margin: "1vh  0", opacity: "1", color: "white" })
+  //     : setStyleItem({
+  //         position: "relative",
+  //         top: "200px",
+  //         margin: "1vh  0",
+  //         opacity: "0",
+  //         transform: "scale(.5)",
+  //         color: "white"
+  //       });
 
-    itemClicked
-      ? setStyleCancelItem({
-          opacity: "0",
-          position: "relative",
-          top: "200px",
-          transition: "all .3s"
-        })
-      : setStyleCancelItem({
-          opacity: "1",
-          position: "relative",
-          top: "-10px",
-          transition: "all .3s"
-        });
-  };
+  //   itemClicked
+  //     ? setStyleCancelItem({
+  //         opacity: "0",
+  //         position: "relative",
+  //         top: "200px",
+  //         transition: "all .3s"
+  //       })
+  //     : setStyleCancelItem({
+  //         opacity: "1",
+  //         position: "relative",
+  //         top: "-10px",
+  //         transition: "all .3s"
+  //       });
+  // };
   //check if data is available otherwise renders 404
   if (props.location.state === undefined) {
     return <FourOFour />;
@@ -124,20 +125,19 @@ const AdView = props => {
 
   const { profileId } = props.location.state;
 
-  console.log("_id", props);
 
   //change the status of the adv
 
-  const handleStatusAdv = async () => {
-    const data = {
-      listId: _id
-    };
-    const respData = await API.completeListing(data);
-    if (respData) {
-      notify("Adv Closed");
-      setRedirect(true);
-    }
-  };
+  // const handleStatusAdv = async () => {
+  //   const data = {
+  //     listId: _id
+  //   };
+  //   const respData = await API.completeListing(data);
+  //   if (respData) {
+  //     notify("Adv Closed");
+  //     setRedirect(true);
+  //   }
+  // };
 
   const handleInterestedAd = async () => {
     const data = {
@@ -180,11 +180,16 @@ const AdView = props => {
       ? true
       : false
     : null;
-  console.log(type === "NEEDS");
   return redirect ? (
     <Redirect to="/profile" />
   ) : (
     <Grid container justify="center" style={{ padding: "5vh 0" }}>
+      <Grid item xs={11}>
+        <Link to={history}>
+      <Heading title=" < BACK" textAlign="left" color="white"/>
+        </Link>
+
+      </Grid>
       <Grid item xs={11} md={6} lg={4}>
         <Card>
           <CardHeader>

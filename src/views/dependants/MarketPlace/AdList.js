@@ -6,6 +6,7 @@ import { Image, Card, CardBody } from "components";
 import { API } from "helpers/index";
 import { LoadingScreen } from "components/index";
 import { LoginContext } from "contexts"
+import LabelImportantIcon from '@material-ui/icons/LabelImportant';
 
 // let data = [
 //   {
@@ -99,8 +100,9 @@ export const AdList = () => {
   };
 
   const searchByKeyword = () => {
+    if(search !== "" && search !== undefined && search !== null){
     setSelectedCategory();
-    API.searchByKeyword({ title: search, numberOfRecords: 100, currentPageNumber: 1 }, setAds);
+    API.searchByKeyword({ title: search, numberOfRecords: 100, currentPageNumber: 1 }, setAds);}
   }
 
   const handleTabChange = (event, newValue) => {
@@ -130,7 +132,7 @@ export const AdList = () => {
     return (
       <Link to={{
         pathname: '/adv', state: ad ? {
-          item: { category: ad.category, description: ad.description, status: ad.status, title: title, createdAt: ad.createdAt, _id: ad._id, postedBy: ad.postedBy._id, type},
+          item: { category: ad.category, description: ad.description, status: ad.status, title: title, createdAt: ad.createdAt, _id: ad._id, postedBy: ad.postedBy._id, type},history:"marketplace",
           profileId: profile ? profile._id : undefined
         } : {}
       }}>
@@ -140,13 +142,14 @@ export const AdList = () => {
           <CardBody>
             <Grid container direction='row' spacing={3}>
               <Grid item xs={4}>
-                <Image
+                {/* <Image
                   style={{ width: '10vh', height: '10vh', borderRadius: 5 }}
                   src={image ? image.thumbnail && image.thumbnail !== '' ? image.thumbnail : image.original && image.original !== '' ?
                     image.original : 'https://penserra.com/wp-content/uploads/2018/03/dummy-post-square-1-300x300.jpg' :
                     'https://penserra.com/wp-content/uploads/2018/03/dummy-post-square-1-300x300.jpg'}
                   alt="imagepost"
-                />
+                /> */}
+                <LabelImportantIcon color="primary" style={{fontSize: "55px", color: "white"}} />
               </Grid>
               <Grid item xs={7}>
                 <Typography component='p' variant='h5'>{title}</Typography>
@@ -173,6 +176,7 @@ export const AdList = () => {
                 if (selectedCategory !== undefined && selectedCategory.name === item.name) {
                   setSelectedCategory('');
                 } else {
+                
                   setSelectedCategory(item);
                 }
               }}>
@@ -221,10 +225,13 @@ export const AdList = () => {
           );
         }) : <Typography>No listings found.</Typography>}
       </Grid>
-      <Fab color="primary" aria-label="add" style={{ position: 'absolute', right: 6, bottom: 62 }}
+      {!loginStatus ? null : (
+      <Fab color="primary" aria-label="add" style={{ position: 'absolute', right: 6, bottom: 75 }}
         component={Link} to={{ pathname: 'newPost' }}>
         <AddIcon />
       </Fab>
+
+      )}
     </Container>
   );
 

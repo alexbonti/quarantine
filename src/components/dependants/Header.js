@@ -1,9 +1,7 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import clsx from 'clsx';
-import { AppBar, Toolbar, Typography, makeStyles, Drawer, Divider, IconButton, useMediaQuery } from '@material-ui/core';
-import { LayoutContext } from 'contexts';
+import { makeStyles, Drawer, Divider, IconButton, useMediaQuery } from '@material-ui/core';
 import { SideMenuItems } from './SideMenuItems';
-import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import { LayoutConfig } from 'configurations';
 
@@ -87,10 +85,10 @@ export const Header = () => {
   let isItDesktop = useMediaQuery('(min-width:600px) and (min-height:600px)');
   const classes = useStyles();
   const [open, setOpen] = useState(isItDesktop ? (LayoutConfig.sideMenu.default === 'open' ? true : false) : false);
-  const { pageTitle, headerElements } = useContext(LayoutContext);
-  const handleDrawerOpen = () => {
-    setOpen(true);
-  };
+  // const { pageTitle, headerElements } = useContext(LayoutContext);
+  // const handleDrawerOpen = () => {
+  //   setOpen(true);
+  // };
   const handleDrawerClose = () => {
     setOpen(false);
   };
@@ -119,7 +117,6 @@ export const Header = () => {
         isItDesktop ? <Drawer
           anchor="left"
           variant="temporary"
-          open="false"
           classes={{
             paper: LayoutConfig.sideMenu.permanent ? classes.drawerPaper : clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
           }}

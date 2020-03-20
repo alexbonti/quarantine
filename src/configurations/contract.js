@@ -2,7 +2,6 @@
 
 
 export const contractType = type => {
-console.log("TCL: type", type)
   switch (type) {
     case "Initiated":
       return status.initiated;

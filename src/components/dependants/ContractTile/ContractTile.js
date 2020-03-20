@@ -9,7 +9,6 @@ export const ContractTile = ({ list }) => {
   return list !== undefined ? (
     <>
       {list.map((contract, key) => {
-        console.log("TCL: ContractTile -> contract", contract);
 
         return (
           <Grid

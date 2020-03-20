@@ -4,17 +4,14 @@
 import React, { useState } from "react";
 import { Link, Redirect } from "react-router-dom";
 import {
-  TextField,
   makeStyles,
   Typography,
-  Button,
   Paper,
-  Box,
   Grid,
   MuiThemeProvider,
   createMuiTheme
 } from "@material-ui/core";
-import { notify, Card, RegularButton, CustomInput } from "components";
+import { notify, RegularButton, CustomInput } from "components";
 import { LayoutConfig } from "configurations";
 import { API } from "helpers/index";
 import imgBG from "../../../assets/img/background-bw.jpg";
@@ -116,6 +113,7 @@ export const Register = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
+  console.log("Register -> phoneNumber", phoneNumber)
   const [response, setResponse] = useState("");
   const [redirect, setRedirect] = useState(false);
   const [suggestedLocations, setSuggestedLocaionts] = useState([]);
@@ -143,7 +141,18 @@ export const Register = () => {
     }
   };
 
+  // const cleanPhoneNumber = (arrayPhoneNumber) => {
+  //   arrayPhoneNumber.shift().join("")
+  //   setPhoneNumber(arrayPhoneNumber)
+  //   validationCheck()
+  // }
+
   const validationCheck = () => {
+    // let arrayPhoneNumber = phoneNumber.split("")
+    // console.log("validationCheck -> arrayPhoneNumber", arrayPhoneNumber, phoneNumber)
+    // if(arrayPhoneNumber[0] === "0" || arrayPhoneNumber[0] === 0) {
+    //   cleanPhoneNumber(arrayPhoneNumber)
+    // }
     if (
       emailId.length < 0 ||
       password.length < 0 ||

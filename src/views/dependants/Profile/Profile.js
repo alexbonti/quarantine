@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { withRouter, Link } from "react-router-dom";
-import { Grid, Typography, Button } from "@material-ui/core";
+import { Grid, Typography } from "@material-ui/core";
 import { API } from "helpers/index";
 import { logout } from "contexts/helpers";
 import { CardBody, Card } from "components";
-import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
 import { RegularButton } from "components/index";
 
 const Profile = props => {
@@ -74,7 +73,7 @@ const Profile = props => {
                       item
                       xs={12}
                       component={Link}
-                      to={{ pathname: "/adv", state: {item, profileId: profile._id} }}
+                      to={{ pathname: "/adv", state: {history:"profile", item, profileId: profile._id} }}
                     >
                       <Typography variant="h6">{item.title}</Typography>
                     </Grid>
@@ -111,7 +110,7 @@ const Profile = props => {
                       item
                       xs={12}
                       component={Link}
-                      to={{ pathname: "/adv", state: {item, profileId: profile._id} }}
+                      to={{ pathname: "/adv", state: {history:"profile", item, profileId: profile._id,} }}
                     >
                       <Typography variant="h6">{item.title}</Typography>
                     </Grid>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import { Redirect } from "react-router-dom";
 import cx from "classnames";
 import PropTypes from "prop-types";
@@ -15,9 +15,7 @@ import { Badge, CustomInput, Snackbar } from "components";
 import styles from "assets/jss/projectJss/components/timelineStyle.js";
 import { RegularButton } from "../CustomButtons/Button";
 import { API } from "helpers/index";
-import { notify } from "components/common/Notification";
 // import context
-import { UserContext } from "contexts";
 const useStyles = makeStyles(styles);
 
 export const TimeLine = props => {
@@ -83,7 +81,6 @@ export const TimeLine = props => {
   ) : (
     <ul className={timelineClass}>
       {stories.map((prop, key) => {
-        console.log(prop)
         const whoAmI = prop.requestor === userId ? "REQUESTOR" : "RESPONDENT";
 
         const valueRespondent =

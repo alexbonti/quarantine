@@ -6,7 +6,6 @@ import {
   warningColor,
   roseColor,
   whiteColor,
-  darkMode,
   blackColor,
   grayColor,
   hexToRgb
@@ -69,12 +68,12 @@ const cardStyle = {
     },
     "& small": {
       color: "rgba(" + hexToRgb(whiteColor) + ", 0.7) !important"
-    },
-    "&:after": {borderRadius: "16px"}
+    }
   },
   cardPricing: {
     textAlign: "center",
     "&:after": {
+      borderRadius: "16px",
       backgroundColor: "rgba(" + hexToRgb(blackColor) + ", 0.7) !important",
       
       

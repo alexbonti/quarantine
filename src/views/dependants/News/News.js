@@ -10,7 +10,6 @@ const News = props => {
 
     if(props.location.state === null || props.location.state === undefined){return <FourOFour /> }
     const {news} = props.location.state
-    console.log("news", news)
     return news !== undefined ? (<> 
     <Grid container justify="center">
         <Grid item xs={11} md={7} component={Link} to="/home"  style={{textDecoration: "none"}}>

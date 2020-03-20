@@ -18,7 +18,7 @@
       "name": "Faq",
       "type": "button",
       "icon": "facebook",
-      "controller": "/FAQ",
+      "controller": "/faq",
       "customTitle": "FAQ",
       "isFavourite": true,
       "color": "red",

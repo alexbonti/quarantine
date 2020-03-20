@@ -6,7 +6,6 @@ import { API } from "helpers/index";
 
 const FAQ = props => {
   const [FAQData, setFAQData] = useState([]);
-  console.log("FAQData", FAQData);
 
   useEffect(() => {
     const callAPI = async () => {
