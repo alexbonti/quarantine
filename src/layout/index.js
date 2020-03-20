@@ -23,7 +23,9 @@ const useStyles = makeStyles(theme => ({
     flexGrow: 1,
     height: '100%',
     overflowY: 'scroll',
-    overflowX: 'hidden'
+    overflowX: 'hidden',
+    paddingTop: "65px"
+
   },
   iOSPadding: {
     height: iOS ? theme.spacing(2) : 0
@@ -79,6 +81,8 @@ export const Layout = (props) => {
         fontWeight: "bold",
         fontSize: 10,
         color: "white"
+      },
+      mobileContent: {
       }
     },
   });

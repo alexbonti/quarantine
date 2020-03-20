@@ -82,7 +82,7 @@ export const NewPost = () => {
   //   setActiveStep(prevActiveStep => prevActiveStep - 1);
   // };
 
-  if (redirect) return <Redirect to={{ pathname: "/marketplace" }} />;
+  if (redirect) return <Redirect to={{ pathname: "/locals" }} />;
 
   const content = (
     <Container
