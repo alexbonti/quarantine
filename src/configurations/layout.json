@@ -25,17 +25,7 @@
 
       "subMenuItems": []
     },
-    {
-      "name": "Stats",
-      "type": "button",
-      "icon": "list",
-      "controller": "/stats",
-      "customTitle": "stats",
-      "isFavourite": true,
-      "color": "red",
 
-      "subMenuItems": []
-    },
     {
       "name": "Marketplace",
       "type": "button",

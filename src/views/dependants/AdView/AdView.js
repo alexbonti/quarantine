@@ -1,14 +1,18 @@
 import React, { useState, useContext } from "react";
-import { withRouter, Redirect, Link} from "react-router-dom";
+import { withRouter, Redirect, Link } from "react-router-dom";
 import { Grid, Typography } from "@material-ui/core";
 import { Card, CardHeader, CardBody, CardFooter, Heading } from "components";
 import { FourOFour } from "views/common/FourOFour/FourOFour";
-import { RegularButton, ExpansionPanelComponent, notify } from "components/index";
+import {
+  RegularButton,
+  ExpansionPanelComponent,
+  notify,
+  CustomInput
+} from "components/index";
 import moment from "moment";
 import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
 import EditOutlinedIcon from "@material-ui/icons/EditOutlined";
-import {LoginContext} from "contexts"
-
+import { LoginContext } from "contexts";
 
 import { API } from "helpers/index";
 
@@ -56,13 +60,14 @@ const interestPeopleData = [
 ];
 
 const AdView = props => {
-
   //context get login status
-  const {loginStatus} = useContext(LoginContext)
-  console.log("loginStatus", loginStatus)
+  const { loginStatus } = useContext(LoginContext);
+  console.log("loginStatus", loginStatus);
   //state
-  const [redirect, setRedirect] = useState(false)
+  const [redirect, setRedirect] = useState(false);
   const [itemClicked, setItemClicked] = useState(false);
+  const [message, setMessage] = useState("");
+  const [showMessageInoput, setShowMessageInput] = useState(false);
   const [styleItem, setStyleItem] = useState({
     margin: "1vh  0",
     opacity: "1",
@@ -112,11 +117,12 @@ const AdView = props => {
     status,
     title,
     createdAt,
-    _id, 
+    _id,
     postedBy,
-  } = props.location.state.item
+    type
+  } = props.location.state.item;
 
-  const {profileId} = props.location.state
+  const { profileId } = props.location.state;
 
   console.log("_id", props);
 
@@ -128,7 +134,8 @@ const AdView = props => {
     };
     const respData = await API.completeListing(data);
     if (respData) {
-      notify("Adv Closed")
+      notify("Adv Closed");
+      setRedirect(true);
     }
   };
 
@@ -138,23 +145,45 @@ const AdView = props => {
     };
     const respData = await API.confirmInterest(data);
     if (respData) {
-        notify("Interested")
+      notify("Interested");
+      setRedirect(true);
     }
   };
-  // delete the adv 
-const showButton  =  loginStatus ? (postedBy  === profileId? true : false) : ""
-console.log("showButton", showButton)
-  const handleDeleteAdv = async () => {
+
+  const handleContactInNeed = async () => {
     const data = {
-      listId: _id
+      listId: _id,
+      message
     };
-    const respData = await API.deleteListing(data);
+    const respData = await API.contactInNeed(data);
     if (respData) {
-      notify("Adv Deleted")
-      setRedirect(true)  }
+      notify("Message Sent");
+      setRedirect(true);
+    }
   };
 
-  return redirect ? (<Redirect to="/profile"/>) : (
+  // delete the adv
+  // const handleDeleteAdv = async () => {
+  //   const data = {
+  //     listId: _id
+  //   };
+  //   const respData = await API.deleteListing(data);
+  //   if (respData) {
+  //     notify("Adv Deleted");
+  //     setRedirect(true);
+  //   }
+  // };
+
+  // dynamic buttons
+  const showButton = loginStatus
+    ? postedBy !== profileId
+      ? true
+      : false
+    : null;
+  console.log(type === "NEEDS");
+  return redirect ? (
+    <Redirect to="/profile" />
+  ) : (
     <Grid container justify="center" style={{ padding: "5vh 0" }}>
       <Grid item xs={11} md={6} lg={4}>
         <Card>
@@ -165,7 +194,11 @@ console.log("showButton", showButton)
               </Grid>
               <Grid item xs={5} md={6} align="right">
                 <Typography
-                  style={status === "AVAILABLE" ? { color: "#8bdc8b" } : { color: "red" } }
+                  style={
+                    status === "AVAILABLE"
+                      ? { color: "#8bdc8b" }
+                      : { color: "red" }
+                  }
                 >
                   {status}
                 </Typography>
@@ -175,6 +208,8 @@ console.log("showButton", showButton)
                   {moment(createdAt).format("LL")}
                 </Typography>
               </Grid>
+              {/* 
+              DELETE UPDATE BUTTONS
               <Grid item xs={3} container align="right" justify="space-evenly">
                 <Grid item xs={2}>
                   <DeleteForeverIcon
@@ -188,7 +223,7 @@ console.log("showButton", showButton)
                     style={styleItem}
                   />
                 </Grid>
-              </Grid>
+              </Grid> */}
             </Grid>
 
             <Typography variant="h5">{title}</Typography>
@@ -197,8 +232,8 @@ console.log("showButton", showButton)
             <Typography variant="caption">{description}</Typography>
           </CardBody>
           <CardFooter>
-            <Grid container>
-              <Grid
+            <Grid container justify="space-between">
+              {/* <Grid
                 item
                 align="center"
                 xs={12}
@@ -217,9 +252,22 @@ console.log("showButton", showButton)
                   >
                     Cancel
                   </RegularButton>
+                </Grid> */}
+              {/* </Grid> */}
+              {type === "NEED" && showButton ? (
+                <Grid item xs={4}>
+                  <RegularButton
+                    color="warning"
+                    size="sm"
+                    onClick={() => setShowMessageInput(!showMessageInoput)}
+                  >
+                    {" "}
+                    I have what you need
+                  </RegularButton>
                 </Grid>
-              </Grid>
-              {status === "COMPLETED" ? (""): (<Grid item xs={11}>
+              ) : null}
+              {/*  Set add Completed disabled
+              {status === "COMPLETED" || !showButton? null : (<Grid item xs={11}>
                 <RegularButton
                   color="primary"
                   onClick={() => handleStatusAdv()}
@@ -227,26 +275,72 @@ console.log("showButton", showButton)
                   {" "}
                   Close Adv
                 </RegularButton>
-              </Grid>) }
-              {!showButton ? (""): (<Grid item xs={11}>
-                <RegularButton
-                  color="primary"
-                  onClick={() => handleInterestedAd()}
-                >
-                  {" "}
-                  Interested
-                </RegularButton>
-              </Grid>) }
+              </Grid>) } */}
+              {!showButton ||
+              status === "COMPLETED" ||
+              profileId === undefined ? null : (
+                <Grid item xs={4}>
+                  <RegularButton
+                    color="primary"
+                    size="sm"
+                    onClick={() => handleInterestedAd()}
+                  >
+                    {" "}
+                    Interested
+                  </RegularButton>
+                </Grid>
+              )}
             </Grid>
           </CardFooter>
         </Card>
         <Grid container justify="center" style={{ padding: "3vh 0" }}>
-          <Grid item xs={12}>
+          {/*NOTE show useres interested diabled */}
+          {/* <Grid item xs={12}>
             <Typography variant="h5">Users Interested</Typography>
-          </Grid>
-          <Grid item xs={12} style={{ padding: "3vh 0" }}>
+          </Grid> */}
+          {/* <Grid item xs={12} style={{ padding: "3vh 0" }}>
             <ExpansionPanelComponent interestedData={interestPeopleData} />
-          </Grid>
+          </Grid> */}
+          {showMessageInoput ? (
+            <Grid item xs={12}>
+              <Card>
+                <CardHeader>
+                  <Typography variant="h6">
+                    Send a message to the user
+                  </Typography>
+                </CardHeader>
+                <CardBody>
+                  <CustomInput
+                    id="standard-text-description "
+                    labelText="Description *"
+                    required
+                    fullWidth
+                    inputProps={{
+                      label: "Message ",
+                      multiline: true,
+                      placeholder: "Message",
+                      rows: 3,
+                      name: "Message ",
+                      onChange: e => setMessage(e.target.value)
+                    }}
+                    formControlProps={{
+                      fullWidth: true
+                    }}
+                  />
+                </CardBody>
+                <CardFooter>
+                  <RegularButton
+                    color="primary"
+                    onClick={() => {
+                      handleContactInNeed();
+                    }}
+                  >
+                    Send
+                  </RegularButton>
+                </CardFooter>
+              </Card>
+            </Grid>
+          ) : null}
         </Grid>
       </Grid>
     </Grid>
