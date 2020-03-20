@@ -6,10 +6,15 @@ import { FourOFour } from "./common/FourOFour/FourOFour";
 import { Register } from "./common/Register/Register";
 import { Home } from "./dependants/Home/Home";
 import { MobileMenu } from "./dependants/mobileMenu/mobileMenu";
+import { AdList } from "./dependants/MarketPlace/AdList";
+import { NewPost } from "./dependants/MarketPlace/NewPost";
 import FAQ  from "./dependants/FAQ/FAQ";
 import News  from "./dependants/News/News";
 import Charts  from "./dependants/Charts/Charts";
 import ConfirmRegistration  from "./common/Register/ConfirmRegistration";
+import Profile  from "./dependants/Profile/Profile";
+import AdView  from "./dependants/AdView/AdView";
+import AdEdit  from "./dependants/MarketPlace/AdEdit";
 
 
 
@@ -23,6 +28,10 @@ export {
   FourOFour,
   News,
   Charts,
-  ConfirmRegistration
-
+  AdList,
+  ConfirmRegistration,
+  Profile,
+  AdView,
+  AdEdit,
+  NewPost
 };

@@ -13,7 +13,12 @@ import {
   News,
   ConfirmRegistration,
   FourOFour,
-  Charts
+  Charts,
+  Profile,
+  AdView,
+  AdList,
+  AdEdit,
+  NewPost
 } from "views";
 import { Layout } from "../layout";
 import { LayoutConfig } from "configurations";
@@ -29,22 +34,21 @@ export const AppRoutes = props => {
       : "/";
   if (loginStatus === undefined) return <LoadingScreen />;
   return (
-
     <Switch>
       <Route
         exact
         path="/"
         render={() =>
           loginStatus ? (
-            <Redirect to={{ pathname: "/" }} {...props} />
+            <Redirect to={{ pathname: landingPage }} {...props} />
           ) : (
-            <Redirect
-              to={{
-                pathname: landingPage
-              }}
-              {...props}
-            />
-          )
+              <Redirect
+                to={{
+                  pathname: landingPage
+                }}
+                {...props}
+              />
+            )
         }
       />
 
@@ -55,8 +59,8 @@ export const AppRoutes = props => {
           !loginStatus ? (
             <Login {...props} />
           ) : (
-            <Redirect to={{ pathname: landingPage }} {...props} />
-          )
+              <Redirect to={{ pathname: landingPage }} {...props} />
+            )
         }
       />
       <Route
@@ -66,38 +70,52 @@ export const AppRoutes = props => {
           !loginStatus ? (
             <Register {...props} />
           ) : (
-            <Redirect to={{ pathname: landingPage }} {...props} />
-          )
+              <Redirect to={{ pathname: landingPage }} {...props} />
+            )
         }
       />
-  <Route
+      <Route
         exact
         path="/confirm-registration"
         render={() =>
           !loginStatus ? (
             <ConfirmRegistration {...props} />
           ) : (
-            <Redirect to={{ pathname: landingPage }} {...props} />
-          )
+              <Redirect to={{ pathname: landingPage }} {...props} />
+            )
         }
       />
 
       <Route
         exact
         path="/home"
-        render={() =>
-            <Layout>
-              <Home {...props} />
-            </Layout>
-        }
+        render={() => (
+          <Layout>
+            <Home {...props} />
+          </Layout>
+        )}
       />
       <Route
         exact
         path="/FAQ"
+        render={() => (
+          <Layout>
+            <FAQ {...props} />
+          </Layout>
+        )}
+      />
+      <Route
+        exact
+        path="/profile"
         render={() =>
-            <Layout>
-              <FAQ {...props} />
-            </Layout>
+          loginStatus === false ? (
+            <Redirect to={{ pathname: "/login" }} {...props} />
+          ) : (
+              <Layout>
+                {" "}
+                <Profile {...props} />
+              </Layout>
+            )
         }
       />
       <Route
@@ -105,33 +123,40 @@ export const AppRoutes = props => {
         path="/menu"
         render={() =>
           loginStatus === false ? (
-            
             <Redirect to={{ pathname: "/login" }} {...props} />
           ) : (
-            <Layout>
-              {" "}
-              <MobileMenu {...props} />
-            </Layout>
-          )
+              <Layout>
+                {" "}
+                <MobileMenu {...props} />
+              </Layout>
+            )
         }
       />
-       <Route
+      <Route
         exact
         path="/stats"
-        render={() =>
-        (
-            <Layout>
-              {" "}
-              <Charts {...props} />
-            </Layout>
-          )
-        }
+        render={() => (
+          <Layout>
+            {" "}
+            <Charts {...props} />
+          </Layout>
+        )}
+      />
+      <Route
+        exact
+        path="/adv"
+        render={() => (
+          <Layout>
+            {" "}
+            <AdView {...props} />
+          </Layout>
+        )}
       />
       <Route
         exact
         path="/news"
         render={() =>
-        (
+          (
             <Layout>
               {" "}
               <News {...props} />
@@ -139,15 +164,45 @@ export const AppRoutes = props => {
           )
         }
       />
+
+      <Route
+        exact
+        path="/marketplace"
+        render={() =>
+          <Layout>
+            <AdList {...props} />
+          </Layout>
+        }
+      />
+
+      <Route
+        exact
+        path="/newPost"
+        render={() =>
+          <Layout>
+            <NewPost {...props} />
+          </Layout>
+        }
+      />
+      <Route
+        exact
+        path="/adedit"
+        render={() =>
+          <Layout>
+            <AdEdit {...props} />
+          </Layout>
+        }
+      />
+
       <Route
         render={() =>
           loginStatus === false ? (
             <Redirect to={{ pathname: "/" }} {...props} />
           ) : (
-            <Layout>
-              <FourOFour {...props} />
-            </Layout>
-          )
+              <Layout>
+                <FourOFour {...props} />
+              </Layout>
+            )
         }
       />
     </Switch>
