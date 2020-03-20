@@ -130,7 +130,7 @@ export const AdList = () => {
     return (
       <Link to={{
         pathname: '/adv', state: ad ? {
-          item: { category: ad.category, description: ad.description, status: ad.status, title: title, createdAt: ad.createdAt, _id: ad._id, postedBy: ad.postedBy._id },
+          item: { category: ad.category, description: ad.description, status: ad.status, title: title, createdAt: ad.createdAt, _id: ad._id, postedBy: ad.postedBy._id, type},
           profileId: profile ? profile._id : undefined
         } : {}
       }}>

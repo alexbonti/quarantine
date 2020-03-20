@@ -20,10 +20,11 @@ import { FourOFour } from "views/common/FourOFour/FourOFour";
 
 import { API } from "helpers/index";
 import { CustomInput, RegularButton } from "components/index";
+import {notify} from "components"
 
 
 const AdEdit = props => {
-
+  const {_id} = props.location.state
   const [title, setTitle] = useState(props.location.state.title);
   const [description, setDescription] = useState(props.location.state.description);
   const [category, setCategory] = useState(props.location.state.category);
@@ -43,6 +44,24 @@ const AdEdit = props => {
 
   if (redirect) return <Redirect to={{ pathname: "/marketplace" }} />;
 
+
+  const updateListing = async () => {
+      const data = {
+          listId: _id,
+        title,
+        description,
+        images: [],
+        category,
+        postType: type
+      }
+
+    const dataResp = await API.updateListing(data)
+if(dataResp){
+    notify("Post updated")
+    setRedirect(true)
+
+}
+  }
   const content = (
     <Container
       maxWidth="sm"
@@ -147,22 +166,9 @@ const AdEdit = props => {
           <RegularButton
             fullWidth
             color="primary"
-            onClick={() =>
-              API.createListing(
-                {
-                  title: title,
-                  description: description,
-                  images: [],
-                  category: category,
-                  postType: type
-                },
-                () => {
-                  setRedirect(true);
-                }
-              )
-            }
+            onClick={() => updateListing()}
           >
-            Post
+            Edit
           </RegularButton>
         </Grid>
       </Grid>

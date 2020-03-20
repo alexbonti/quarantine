@@ -232,6 +232,32 @@ class API {
         errorHelper(err);
       });
   };
+
+  updateListing = async data => {
+    return await axiosInstance
+      .put("/listing/updateListing", data, {
+        headers: {
+          authorization: `Bearer ${AccessToken}`
+        }
+      })
+      .then(response => response)
+      .catch(err => {
+        errorHelper(err);
+      });
+  };
+
+  contactInNeed = async data => {
+    return await axiosInstance
+      .put("/listing/contactInNeed", data, {
+        headers: {
+          authorization: `Bearer ${AccessToken}`
+        }
+      })
+      .then(response => response)
+      .catch(err => {
+        errorHelper(err);
+      });
+  };
 //-----------------------------------------------------------
   getProfile = async () => {
     return await axiosInstance
