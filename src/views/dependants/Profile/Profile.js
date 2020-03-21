@@ -33,8 +33,8 @@ const Profile = props => {
   }, []);
 
   return profile.firstName !== undefined && offers !== undefined ? (
-    <Grid container justify="center" style={{ padding: "5vh 1vw" }}>
-      <Grid item container xs={12} md={6} lg={4}ustify="center" >
+    <Grid container justify="center">
+      <Grid item container xs={12} md={6} lg={4} justify="center"  style={{ padding: "5vh 1vw" }}>
       <Grid item xs={11} style={{ padding: "5vh  0" }}>
         <Typography variant="h6">
           {" "}
