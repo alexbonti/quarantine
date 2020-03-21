@@ -106,7 +106,7 @@ const ConfirmRegistration = (props) => {
                 <Card>
                     <CardBody>
                         <Typography variant="body1">
-                            An verification code has been sent to your email
+                            Anverification code has been sent to your email
                         </Typography>
                         <CustomInput 
                         id="OTP"

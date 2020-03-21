@@ -331,13 +331,13 @@ export const AdList = () => {
         <Grid>
           <Tabs
             value={value}
-            TabIndicatorProps={{ style: { background: "rgb(0, 172, 193)" } }}
-            textColor="primary"
+            TabIndicatorProps={{ style: { background: "rgb(255, 209, 30)" } }}
+            textColor="inherit"
             onChange={handleTabChange}
             centered
           >
-            <Tab label="Needs" />
-            <Tab label="Offers" />
+            <Tab label="Needs"style={{color: "rgb(0, 172, 193"}} />
+            <Tab label="Offers" style={{color: "rgb(0, 172, 193"}} />
           </Tabs>
         </Grid>
       ) : null}
@@ -359,13 +359,8 @@ export const AdList = () => {
           <Typography>No listings found.</Typography>
         )}
       </Grid>
-      {/* {!loginStatus ? null : (
-      <Fab color="primary" aria-label="add" style={{ position: 'absolute', right: 6, bottom: 75 }}
-        component={Link} to={{ pathname: 'newPost' }}>
-        <AddIcon />
-      </Fab>
 
-      )} */}
+
     </Container>
   );
 
