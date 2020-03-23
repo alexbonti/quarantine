@@ -20,7 +20,7 @@ export const NewsCard = props => {
           ></Card>
         </Grid>
         <Grid item style={{padding: "0 5px"}}>
-          <Typography variant="h6">Anim culpa couat dolore qui est eiusmod mollit laborum esse ipsum. </Typography>
+        <Typography variant="h5"  dangerouslySetInnerHTML={{ __html: props.news.title }}/>
         </Grid>
         <Grid item xs={11} style={{padding: "0 5px"}}>
             <Typography variant="caption">
