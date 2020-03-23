@@ -98,9 +98,9 @@ let applicationTheme = createMuiTheme({
       color: "white"
     },
     selection: {
-      '&:hover': {
-        color: "blue",
-      },
+      "&:hover": {
+        color: "blue"
+      }
     }
   }
 });
@@ -113,7 +113,6 @@ export const Register = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
-  console.log("Register -> phoneNumber", phoneNumber)
   const [response, setResponse] = useState("");
   const [redirect, setRedirect] = useState(false);
   const [suggestedLocations, setSuggestedLocaionts] = useState([]);
@@ -121,7 +120,17 @@ export const Register = () => {
   const [latitude, setLatitude] = useState("");
   const [longitude, setLongitude] = useState("");
 
-  const register = async () => {
+  /**
+   * Error Fields states
+   * @error default is false
+   */
+  const [emailErrorField, setEmailErrorField] = useState(false);
+  const [passwordErrorField, setPasswordErrorField] = useState(false);
+  const [firstNameErrorField, setFirstNameErrorField] = useState(false);
+  console.log("Register -> firstNameErrorField", firstNameErrorField);
+  const [lastNameErrorField, setLastNameErrorField] = useState(false);
+
+  const registerUser = async () => {
     const data = {
       firstName,
       lastName,
@@ -129,9 +138,9 @@ export const Register = () => {
       phoneNumber,
       countryCode: "+61",
       password,
-      "suburb": valueLocation,
-      "lat": latitude,
-      "long": longitude
+      suburb: valueLocation,
+      lat: latitude,
+      long: longitude
     };
 
     const dataResponseRegister = await API.registerUser(data);
@@ -141,45 +150,84 @@ export const Register = () => {
     }
   };
 
-  // const cleanPhoneNumber = (arrayPhoneNumber) => {
-  //   arrayPhoneNumber.shift().join("")
-  //   setPhoneNumber(arrayPhoneNumber)
-  //   validationCheck()
-  // }
+  const cleanPhoneNumber = phoneNumber => {
+    let arrayPhoneNumber = phoneNumber.split("");
+    if (arrayPhoneNumber[0] === "0" || arrayPhoneNumber[0] === 0) {
+      arrayPhoneNumber.shift();
+      setPhoneNumber(arrayPhoneNumber.join(""));
+    } else {
+      setPhoneNumber(phoneNumber);
+    }
+  };
 
   const validationCheck = () => {
-    // let arrayPhoneNumber = phoneNumber.split("")
-    // console.log("validationCheck -> arrayPhoneNumber", arrayPhoneNumber, phoneNumber)
-    // if(arrayPhoneNumber[0] === "0" || arrayPhoneNumber[0] === 0) {
-    //   cleanPhoneNumber(arrayPhoneNumber)
-    // }
-    if (
-      emailId.length < 0 ||
-      password.length < 0 ||
-      confirmPassword.length < 0 ||
-      firstName.length < 0 ||
-      lastName.length < 0 ||
-      emailId === "" ||
-      password === "" ||
-      confirmPassword === "" ||
-      firstName === "" ||
-      lastName === "" ||
-      phoneNumber === "" ||
-      phoneNumber.length < 0
-    ) {
-      return notify("Please fill in all the details.");
+    if (emailId.length < 0) {
+      setEmailErrorField(true);
+      return notify("Email is required");
     }
+
+    if (firstName.length < 0 || firstName.length === 0) {
+      setFirstNameErrorField(true);
+      return notify("first name field cannot be empty");
+    } else {
+      setFirstNameErrorField(false);
+    }
+
+    if (lastName.length < 0 || lastName.length === 0) {
+      setLastNameErrorField(true);
+      return notify("last name field cannot be empty");
+    } else {
+      setLastNameErrorField(false);
+    }
+
+    if (emailId.length < 0 || emailId === "") {
+      setEmailErrorField(true);
+      return notify("email field cannot be empty");
+    } else {
+      setEmailErrorField(false);
+    }
+    if (password.length < 0 || confirmPassword.length < 0) {
+      setPasswordErrorField(true);
+      return notify("Password field cannot be empty");
+    } else {
+      setPasswordErrorField(false);
+    }
+
     let emailPattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     let emailPatternTest = emailPattern.test(emailId);
+
+    const namePattern = /^[a-zA-Z]*$/;
+
+    const firstNamePatternTest = namePattern.test(firstName);
+    const lastNamePatternTest = namePattern.test(lastName);
+
+
+    if (!firstNamePatternTest) {
+      setFirstNameErrorField(true);
+      notify("First Name  should not include numbers or symbols");
+    } else {
+      setFirstNameErrorField(false);
+    }
+
+
+    if (!lastNamePatternTest) {
+      setLastNameErrorField(true);
+      notify("Last Name should not include numbers or symbols");
+    } else {
+      setLastNameErrorField(false);
+    }
+
     if (!emailPatternTest) {
+      // setEmailFieldError(true);
       notify("Email not in proper format");
     }
     if (password !== confirmPassword) {
-      return notify("Passwords don't match.");
+      return notify("Passwords are different.");
     }
-    if (emailPatternTest) {
-      return register();
+    if (emailPatternTest && firstNamePatternTest && lastNamePatternTest) {
+      return registerUser();
     }
+
   };
 
   const getLocation = async input => {
@@ -192,10 +240,10 @@ export const Register = () => {
   const getLatLong = async input => {
     const longLatResp = await API.getLatLong(input);
     if (longLatResp) {
-      setLatitude(longLatResp.response.latitude)
-      setLongitude(longLatResp.response.longitude)
+      setLatitude(longLatResp.response.latitude);
+      setLongitude(longLatResp.response.longitude);
     }
-  }
+  };
 
   let content = (
     <MuiThemeProvider theme={applicationTheme}>
@@ -227,6 +275,7 @@ export const Register = () => {
                   id="First Name"
                   labelText="First Name*"
                   required
+                  error={firstNameErrorField}
                   fullWidth
                   inputProps={{
                     label: "First Name",
@@ -241,6 +290,7 @@ export const Register = () => {
                 <CustomInput
                   id="Last Name"
                   labelText="Last Name*"
+                  error={lastNameErrorField}
                   required
                   fullWidth
                   inputProps={{
@@ -256,6 +306,7 @@ export const Register = () => {
                 <CustomInput
                   id="Email "
                   labelText="Email *"
+                  error={emailErrorField}
                   required
                   fullWidth
                   inputProps={{
@@ -269,27 +320,34 @@ export const Register = () => {
                     fullWidth: true
                   }}
                 />
-                <CustomInput
-                  id="phoneNumber "
-                  labelText="Mobile Number *"
-                  required
-                  fullWidth
-                  inputProps={{
-                    label: "Mobile Number ",
-                    placeholder: "Mobile Number ",
-                    name: "phoneNumber ",
-                    type: "tel",
-                    onChange: e => setPhoneNumber(e.target.value)
-                  }}
-                  formControlProps={{
-                    fullWidth: true
-                  }}
-                />
+                <Grid container alignItems="baseline" justify="space-between">
+                  <Grid item xs={1}>
+                    <Typography variant="body1">+61</Typography>
+                  </Grid>
+                  <Grid item xs={10}>
+                    <CustomInput
+                      id="phoneNumber "
+                      labelText="Mobile Number *"
+                      required
+                      inputProps={{
+                        label: "Mobile Number ",
+                        placeholder: "Mobile Number ",
+                        name: "phoneNumber ",
+                        type: "tel",
+                        onChange: e => cleanPhoneNumber(e.target.value)
+                      }}
+                      formControlProps={{
+                        fullWidth: true
+                      }}
+                    />
+                  </Grid>
+                </Grid>
                 <CustomInput
                   id="Password "
                   labelText="Password *"
                   required
                   fullWidth
+                  error={passwordErrorField}
                   inputProps={{
                     label: "Password ",
                     placeholder: "Password ",
@@ -306,6 +364,7 @@ export const Register = () => {
                   id="confirmPassword "
                   labelText="Confirm Password *"
                   required
+                  error={passwordErrorField}
                   fullWidth
                   inputProps={{
                     placeholder: "Confirm Password ",
@@ -329,29 +388,33 @@ export const Register = () => {
                     autoComplete: "hidden",
                     value: valueLocation !== "" ? valueLocation : "",
                     onChange: e => {
-                      getLocation(e.target.value)
-                      setValueLocation(e.target.value)
+                      getLocation(e.target.value);
+                      setValueLocation(e.target.value);
                     }
                   }}
                   formControlProps={{
                     fullWidth: true
                   }}
                 />
-   
+
                 {suggestedLocations !== undefined ? (
                   <Grid container>
                     {suggestedLocations.map((location, key) => {
-                     return (<Grid item key={key} xs={12}>
-                        <Typography variant="caption"  onClick={(e)=> {
-                          getLatLong(location.locationId)
-                          setValueLocation(e.target.innerText)
-                          setSuggestedLocaionts([])
-                          }}>
-                          {location.address.district }
-                          {" "}
-                          {location.address.postalCode}
-                        </Typography>
-                      </Grid>)
+                      return (
+                        <Grid item key={key} xs={12}>
+                          <Typography
+                            variant="caption"
+                            onClick={e => {
+                              getLatLong(location.locationId);
+                              setValueLocation(e.target.innerText);
+                              setSuggestedLocaionts([]);
+                            }}
+                          >
+                            {location.address.district}{" "}
+                            {location.address.postalCode}
+                          </Typography>
+                        </Grid>
+                      );
                     })}
                   </Grid>
                 ) : (
@@ -381,8 +444,6 @@ export const Register = () => {
             </Grid>
           </Paper>
         </Grid>
-
-        
       </Grid>
     </MuiThemeProvider>
   );
