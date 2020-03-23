@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { withRouter, Link } from "react-router-dom";
-import { Grid, Typography, Button } from "@material-ui/core";
+import { Grid, Typography } from "@material-ui/core";
 import { API } from "helpers/index";
 import { logout } from "contexts/helpers";
 import { CardBody, Card } from "components";
-import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
 import { RegularButton } from "components/index";
 
 const Profile = props => {
@@ -34,7 +33,8 @@ const Profile = props => {
   }, []);
 
   return profile.firstName !== undefined && offers !== undefined ? (
-    <Grid container justify="center" style={{ padding: "5vh 1vw" }}>
+    <Grid container justify="center">
+      <Grid item container xs={12} md={6} lg={4} justify="center"  style={{ padding: "5vh 1vw" }}>
       <Grid item xs={11} style={{ padding: "5vh  0" }}>
         <Typography variant="h6">
           {" "}
@@ -47,7 +47,7 @@ const Profile = props => {
         </Typography>
         <RegularButton variant="contained" color="primary" onClick={() => { logout(); }} style={{ marginTop: '10px' }} >Logout</RegularButton>
       </Grid>
-      <Grid item xs={12}>
+      <Grid item xs={11}>
         <hr style={{ border: ".5px solid grey" }} />
       </Grid>
 
@@ -74,7 +74,7 @@ const Profile = props => {
                       item
                       xs={12}
                       component={Link}
-                      to={{ pathname: "/adv", state: {item, profileId: profile._id} }}
+                      to={{ pathname: "/adv", state: {history:"profile", item, profileId: profile._id} }}
                     >
                       <Typography variant="h6">{item.title}</Typography>
                     </Grid>
@@ -87,7 +87,7 @@ const Profile = props => {
           );
         })}
       </Grid>
-      <Grid item xs={12}>
+      <Grid item xs={11}>
         <hr style={{ border: ".5px solid grey" }} />
       </Grid>
       <Grid item xs={11} container>
@@ -111,7 +111,7 @@ const Profile = props => {
                       item
                       xs={12}
                       component={Link}
-                      to={{ pathname: "/adv", state: {item, profileId: profile._id} }}
+                      to={{ pathname: "/adv", state: {history:"profile", item, profileId: profile._id,} }}
                     >
                       <Typography variant="h6">{item.title}</Typography>
                     </Grid>
@@ -122,6 +122,7 @@ const Profile = props => {
             </Grid>
           );
         })}
+      </Grid>
       </Grid>
     </Grid>
   ) : (

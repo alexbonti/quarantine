@@ -138,7 +138,6 @@ class API {
         // }
       })
       .then(response => {
-        console.log(response.data.data.data);
         performCallback(callback, response.data.data.data);
       })
       .catch(err => {

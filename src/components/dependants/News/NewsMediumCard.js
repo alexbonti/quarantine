@@ -4,7 +4,6 @@ import { Card } from "components";
 import moment from "moment";
 
 export const NewsMediumCard = props => {
-  console.log("props", props);
   return (
     <>
       <Grid container style={{ margin: "1vh 0vw", overflow: "hidden"}} justify="space-between">

@@ -3,7 +3,6 @@ import ReactEcharts from 'echarts-for-react';
 
 
 export const Chart = props => {
-console.log("props", props.data.stats.series)
   
 
     return props.data.stats.series !== undefined ? (<>

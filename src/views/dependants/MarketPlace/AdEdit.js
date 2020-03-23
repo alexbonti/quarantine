@@ -3,9 +3,7 @@ import {
   Grid,
   Typography,
   Container,
-  TextField,
   // IconButton,
-  Button,
   FormControl,
   MenuItem,
   Select
@@ -42,7 +40,7 @@ const AdEdit = props => {
     return <FourOFour />;
   }
 
-  if (redirect) return <Redirect to={{ pathname: "/marketplace" }} />;
+  if (redirect) return <Redirect to={{ pathname: "/locals" }} />;
 
 
   const updateListing = async () => {
@@ -131,7 +129,7 @@ if(dataResp){
                   <MenuItem value={"FOOD"}>Food</MenuItem>
                   <MenuItem value={"ESSENTIALS"}>Essentials</MenuItem>
                   <MenuItem value={"MEDICINES"}>Medicines</MenuItem>
-                  <MenuItem value={"FURNITURE"}>Furniture</MenuItem>
+                  <MenuItem value={"ACCOMMODATION"}>Accommodation</MenuItem>
                   <MenuItem value={"OTHER"}>Other</MenuItem>
                 </Select>
               </FormControl>

@@ -36,7 +36,6 @@ const Charts = () => {
   const classes = useStyles();
   const [stats, setStats] = useState([]);
   const [statsNewCases, setStatsNewCases] = useState([])
-  console.log("Charts -> statsNewCases", statsNewCases)
   const [statsTotalCases, setStatsTotalCases] = useState([])
 
   useEffect(() => {

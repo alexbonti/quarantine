@@ -6,7 +6,6 @@ import { API } from "helpers/index";
 
 const FAQ = props => {
   const [FAQData, setFAQData] = useState([]);
-  console.log("FAQData", FAQData);
 
   useEffect(() => {
     const callAPI = async () => {
@@ -24,9 +23,13 @@ const FAQ = props => {
   return (
     <Grid container justify="center" style={{padding: "2vh 0"}}>
 
-    <Grid item xs={11} md={7} lg={7}>
-        <Typography variant="h5">Frequent Asked Questions</Typography>
-    </Grid>
+
+    <Grid item xs={11}  md={7} lg={7}>
+        <hr />
+            <Typography variant="h6"> Proident dolore non commodo anim adipisicing nulla. Qui magna dolor adipisicing aute commodo irure culpa quis excepteur mollit in consectetur. Nisi dolor ea velit eiusmod. Eu id laborum qui nostrud irure elit aliqua laboris. </Typography>
+            <hr />
+          </Grid>
+    
       <Grid item xs={11} md={7} lg={7} style={{padding: "3vh 0"}}>
         <ExpansionPanelComponent faq={FAQData} />
       </Grid>

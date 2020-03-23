@@ -12,7 +12,6 @@ const useStyles = makeStyles(styles);
 
 export const SweetAlertSuccess=({callback}) =>{
 //const {signContract, modus, _id} = callback;
-  const classes = useStyles();
   const [alert,setAlert] = React.useState("");
   const hideAlert = () => {
     setAlert("");

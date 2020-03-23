@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import { List, ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
 import { LayoutConfig } from 'configurations';
-import { LayoutContext, UserContext } from 'contexts';
+import { LayoutContext } from 'contexts';
 import { API } from 'helpers';
 
 export const SideMenuItems = (props) => {

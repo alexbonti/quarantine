@@ -1,4 +1,4 @@
-import React, { useEffect, useContext, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Grid, Typography } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import { Heading, NewsMediumCard, NewsCard } from "components";
@@ -8,7 +8,6 @@ import { NewsLargeCard, LoadingScreen } from "components/index";
 
 export const Home = () => {
   const [news, setNews] = useState([]);
-  console.log("Home -> news", news);
 
   useEffect(() => {
     const callApi = async () => {
@@ -31,16 +30,19 @@ export const Home = () => {
         justify="center"
         style={{padding: "0 3vw"}}
       >
-        <Grid  item xs={12} md={7} container >
-          <Grid item xs={11} >
-            <Heading title="News" color="red" style={{fontSize: "24px"}} />
+       
+        <Grid  item xs={12} md={7} container style={{paddingTop: "2vh "}}>
+     
+    
+          <Grid item xs={12}>
+            <hr />
+            <Typography variant="h6"> Proident dolore non commodo anim adipisicing nulla. Qui magna dolor adipisicing aute commodo irure culpa quis excepteur mollit in consectetur. Nisi dolor ea velit eiusmod. Eu id laborum qui nostrud irure elit aliqua laboris. </Typography>
+            <hr />
           </Grid>
-          <Grid item xs={11}>
-            <Typography variant="h5">{moment().format("LLL")}</Typography>
-          </Grid>
-          <Grid item xs={12} style={{ borderBottom: "1px solid rgba(220, 220, 220, 0.39)" }}>
+          {/* <Grid item xs={12} style={{ borderBottom: "1px solid rgba(220, 220, 220, 0.39)" }}>
             <Typography variant="h6">Latest NEWS</Typography>
-          </Grid>
+          </Grid> */}
+          
         <Grid container alignItems="center" >
           <Grid
             item

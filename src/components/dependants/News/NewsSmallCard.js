@@ -5,7 +5,6 @@ import moment from "moment";
 
 
 export const NewsCard = props => {
-console.log("props", props)
   return (
     <>
       <Grid container style={{ margin: "1vh 0vw" }}>

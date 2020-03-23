@@ -1,13 +1,10 @@
 import React, {useState, useContext} from 'react'
 import { withRouter } from 'react-router-dom'
-import { CustomInput, RegularButton, Card, CardBody } from 'components/index'
+import { CustomInput, RegularButton, Card, CardBody, notify } from 'components/index'
 import {
-    TextField,
-    makeStyles,
+
     Typography,
-    Button,
-    Paper,
-    Box,
+
     Grid,
     MuiThemeProvider,
     createMuiTheme
@@ -96,9 +93,9 @@ const ConfirmRegistration = (props) => {
      
 
       const respResendOTP = await API.resendOTP( accessToken)
-      if(respResendOTP){
-          console.log(respResendOTP)
-      }
+    if(respResendOTP){
+      notify("Code sent")
+    }
   }
 
     return (
@@ -109,7 +106,7 @@ const ConfirmRegistration = (props) => {
                 <Card>
                     <CardBody>
                         <Typography variant="body1">
-                            An verification code has been sent to your email
+                            Anverification code has been sent to your email
                         </Typography>
                         <CustomInput 
                         id="OTP"

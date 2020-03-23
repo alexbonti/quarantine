@@ -5,20 +5,20 @@
   "landingPage": "/home",
   "menuItems": [
     {
-      "name": "News",
+      "name": "Home",
       "type": "button",
       "icon": "home",
       "controller": "/home",
-      "customTitle": "News",
+      "customTitle": "Home",
       "isFavourite": true,
       "color": "red",
       "subMenuItems": []
     },
     {
-      "name": "Faq",
+      "name": "FAQs",
       "type": "button",
       "icon": "facebook",
-      "controller": "/FAQ",
+      "controller": "/faq",
       "customTitle": "FAQ",
       "isFavourite": true,
       "color": "red",
@@ -27,11 +27,11 @@
     },
 
     {
-      "name": "Marketplace",
+      "name": "Locals",
       "type": "button",
       "icon": "store",
-      "controller": "/marketplace",
-      "customTitle": "Marketplace",
+      "controller": "/locals",
+      "customTitle": "Locals",
       "isFavourite": true,
       "color": "red",
 
