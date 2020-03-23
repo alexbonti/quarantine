@@ -373,7 +373,7 @@ export const AdList = () => {
             );
           })
         ) : (
-          <Typography>No listings found.</Typography>
+          <Typography variant="body1"  style={{lineHeight: "30px"}}>No listings found.</Typography>
         )}
       </Grid>
 

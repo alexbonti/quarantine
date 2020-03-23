@@ -3,6 +3,7 @@ import { Grid, Typography } from "@material-ui/core";
 import { Card, CardBody } from "components";
 
 export const NewsLargeCard = props => {
+console.log("props", props)
   return (
     <>
       <Grid container justify="center">
@@ -29,9 +30,7 @@ export const NewsLargeCard = props => {
           </Card>
         </Grid>
         <Grid item xs={12} style={{padding: "0 5px"}}>
-            <Typography variant="h5" >
-                Id tempor aliquip dolor elit officia veniam. Nisi esse magna magna quis in est. 
-            </Typography>
+            <Typography variant="h5"  dangerouslySetInnerHTML={{ __html: props.news.title }}/>
         </Grid>
       </Grid>
     </>
