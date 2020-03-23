@@ -42,23 +42,23 @@ import LabelImportantIcon from "@material-ui/icons/LabelImportant";
 //   }
 // ];
 
-// let categoriesData = [
-//   {
-//     name: "Food", image: "https://s3.au-syd.cloud-object-storage.appdomain.cloud/ipan-v2-bucket/image/profilePicture/thumb/Thumb_Profile_6HkhFuAGMeti.jpg"
-//   },
-//   {
-//     name: "Essentials", image: "https://s3.au-syd.cloud-object-storage.appdomain.cloud/ipan-v2-bucket/image/profilePicture/thumb/Thumb_Profile_PWq3f7t2LNwc.jpg"
-//   },
-//   {
-//     name: "Medicines", image: "https://s3.au-syd.cloud-object-storage.appdomain.cloud/ipan-v2-bucket/image/profilePicture/thumb/Thumb_Profile_xLQ07cnRHgae.jpg"
-//   },
-//   {
-//     name: "Furniture", image: "https://s3.au-syd.cloud-object-storage.appdomain.cloud/ipan-v2-bucket/image/profilePicture/thumb/Thumb_Profile_occWmjh69Mqj.jpg"
-//   },
-//   {
-//     name: "Other", image: "https://s3.au-syd.cloud-object-storage.appdomain.cloud/ipan-v2-bucket/image/profilePicture/thumb/Thumb_Profile_PWq3f7t2LNwc.jpg"
-//   }
-// ];
+let categoriesData = [
+  {
+    name: "FOOD", image: "https://s3.au-syd.cloud-object-storage.appdomain.cloud/ipan-v2-bucket/image/profilePicture/original/Profile_N3L5h3nENER5.png"
+  },
+  {
+    name: "ESSENTIALS", image: "https://s3.au-syd.cloud-object-storage.appdomain.cloud/ipan-v2-bucket/image/profilePicture/original/Profile_lIRnzttQ8gjH.png"
+  },
+  {
+    name: "MEDICINES", image: "https://s3.au-syd.cloud-object-storage.appdomain.cloud/ipan-v2-bucket/image/profilePicture/original/Profile_EzEpSUS34jfk.png"
+  },
+  {
+    name: "ACCOMMODATION", image: "https://s3.au-syd.cloud-object-storage.appdomain.cloud/ipan-v2-bucket/image/profilePicture/original/Profile_2ClsErydGuGn.png"
+  },
+  {
+    name: "OTHER", image: "https://s3.au-syd.cloud-object-storage.appdomain.cloud/ipan-v2-bucket/image/profilePicture/original/Profile_2ClsErydGuGn.png"
+  }
+];
 
 const titleCase = str => {
   var sentence = str.toLowerCase().split(" ");
@@ -165,6 +165,10 @@ export const AdList = () => {
       }
     }, [props]);
 
+
+    const imageCategory = category !== undefined ? (categoriesData.filter(categoryData=> categoryData.name === category)) : ""
+    const imageSrc = imageCategory[0] !== undefined ? imageCategory[0].image : ""
+
     return (
       <Link
         to={{
@@ -198,17 +202,20 @@ export const AdList = () => {
           <CardBody>
             <Grid container direction="row" spacing={3}>
               <Grid item xs={3}>
-                {/* <Image
+                <Image
                   style={{ width: '10vh', height: '10vh', borderRadius: 5 }}
-                  src={image ? image.thumbnail && image.thumbnail !== '' ? image.thumbnail : image.original && image.original !== '' ?
-                    image.original : 'https://penserra.com/wp-content/uploads/2018/03/dummy-post-square-1-300x300.jpg' :
-                    'https://penserra.com/wp-content/uploads/2018/03/dummy-post-square-1-300x300.jpg'}
+                  src={imageSrc}
+                  // 'https://penserra.com/wp-content/uploads/2018/03/dummy-post-square-1-300x300.jpg')}
+               
+                  
+                    // image.original : 'https://penserra.com/wp-content/uploads/2018/03/dummy-post-square-1-300x300.jpg' :
+                    // 'https://penserra.com/wp-content/uploads/2018/03/dummy-post-square-1-300x300.jpg'}
                   alt="imagepost"
-                /> */}
-                <LabelImportantIcon
+                />
+                {/* <LabelImportantIcon
                   color="primary"
                   style={{ fontSize: "55px", color: "white" }}
-                />
+                /> */}
               </Grid>
               <Grid item container xs={9}>
                 <Grid item xs={12} container justify="space-between" alignItems="baseline">
