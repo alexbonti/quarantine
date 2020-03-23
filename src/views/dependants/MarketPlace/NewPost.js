@@ -9,10 +9,11 @@ import {
   // Paper, MobileStepper, Icon
 } from "@material-ui/core";
 // import { makeStyles, useTheme } from '@material-ui/core/styles';
-import { Redirect } from "react-router-dom";
+import { Redirect,Link} from "react-router-dom";
 import {
   CustomInput,
-  RegularButton
+  RegularButton,
+  Heading
   // Image,
   // notify
 } from "components";
@@ -90,6 +91,11 @@ export const NewPost = () => {
       style={{ marginTop: "5%", marginBottom: "5%", alignItems: "center" }}
     >
       <Grid container >
+        <Grid item xs={12} style={{paddingBottom: "2vh "}}>
+        <Link to="/locals">
+      <Heading title=" < BACK" textAlign="left" color="white"/>
+        </Link>
+        </Grid>
         <Grid item xs={5}>
           <Typography variant="h5">Create Need/Offer</Typography>
         </Grid>

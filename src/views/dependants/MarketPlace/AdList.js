@@ -140,6 +140,7 @@ export const AdList = () => {
   const AdCard = props => {
     const [image, setImage] = useState("");
     const [title, setTitle] = useState();
+    const [category, setCategory] = useState("")
     const [suburb, setSuburb] = useState();
     const [type, setType] = useState();
     const [ad, setAd] = useState();
@@ -159,6 +160,8 @@ export const AdList = () => {
           setSuburb(props.item.postedBy.suburb);
         if (props.item.postType !== undefined && props.item.postType !== null)
           setType(props.item.postType);
+          if (props.item.category !== undefined && props.item.category !== null)
+          setCategory(props.item.category);
       }
     }, [props]);
 
@@ -194,7 +197,7 @@ export const AdList = () => {
         >
           <CardBody>
             <Grid container direction="row" spacing={3}>
-              <Grid item xs={4}>
+              <Grid item xs={3}>
                 {/* <Image
                   style={{ width: '10vh', height: '10vh', borderRadius: 5 }}
                   src={image ? image.thumbnail && image.thumbnail !== '' ? image.thumbnail : image.original && image.original !== '' ?
@@ -207,16 +210,23 @@ export const AdList = () => {
                   style={{ fontSize: "55px", color: "white" }}
                 />
               </Grid>
-              <Grid item xs={7}>
+              <Grid item container xs={9}>
+                <Grid item xs={12} container justify="space-between" alignItems="baseline">
+                  <Grid >
                 <Typography component="p" variant="h5">
                   {title}
                 </Typography>
-                <Typography variant="subtitle1">
-                  ({type === "NEED" ? "Needed" : "Offered"})
-                </Typography>
+                  </Grid>
+                  <Grid item xs={5} align="right">
                 <Typography variant="subtitle1">
                   {<Icon fontSize="small">room</Icon>}
                   {suburb}
+                </Typography>
+
+                  </Grid>
+                </Grid>
+                <Typography variant="caption">
+                  {category}
                 </Typography>
               </Grid>
             </Grid>
