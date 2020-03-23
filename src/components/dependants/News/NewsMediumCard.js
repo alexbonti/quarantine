@@ -9,9 +9,8 @@ export const NewsMediumCard = props => {
       <Grid container style={{ margin: "1vh 0vw", overflow: "hidden"}} justify="space-between">
         <Grid item xs={8} container>
           <Grid item xs={11} >
-            <Typography variant="h6">
-              Anim culpa couat dolore qui est eiusmod mollit laborum esse ipsum.loremLaboris voluptate commodo ex Irure ipsum officia deserunt fugiat.{" "}
-            </Typography>
+          <Typography variant="h5"  dangerouslySetInnerHTML={{ __html: props.news.title }}/>
+
           </Grid>
           <Grid item xs={11} style={{alignSelf: "center"}}>
             <Typography variant="caption">
