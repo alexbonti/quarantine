@@ -36,7 +36,7 @@ export const Home = () => {
     
           <Grid item xs={12}>
             <hr />
-            <Typography variant="h6"> Proident dolore non commodo anim adipisicing nulla. Qui magna dolor adipisicing aute commodo irure culpa quis excepteur mollit in consectetur. Nisi dolor ea velit eiusmod. Eu id laborum qui nostrud irure elit aliqua laboris. </Typography>
+            <Typography variant="h6"> Yeah </Typography>
             <hr />
           </Grid>
           {/* <Grid item xs={12} style={{ borderBottom: "1px solid rgba(220, 220, 220, 0.39)" }}>

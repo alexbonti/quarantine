@@ -154,17 +154,18 @@ export const Header = () => {
               <Grid container alignItems="center">
                 <Grid item xs={2}>
                   <PetsIcon />
+                  <img src={"https://www.ansa.it/webimages/img_700/2020/3/18/7dabe15c84bef38679ee823cc4e42c6a.jpg"} />
                 </Grid>
                 <Grid item xs={8}>
                   <Typography
                     component="h1"
                     variant="h4"
-                    color="inherit"
+                    color="white"
                     noWrap
                     className={classes.title}
                     align="center"
                   >
-                    {"Pandas.today"}
+                    {"Near But Far"}
                   </Typography>
                 </Grid>
               </Grid>
