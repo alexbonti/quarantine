@@ -41,19 +41,19 @@ export const ExpansionPanelComponent = ({ faq, interestedData }) => {
             key={key}
             expanded={expanded === `panelS${key}`}
             onChange={handleChange(`panelS${key}`)}
-            style={{ background: "#4c586a" }}
+            style={{ background: "#00acc1" }}
           >
             <ExpansionPanelSummary
               expandIcon={<ExpandMoreIcon />}
               aria-controls="panel1bh-content"
               id="panel1bh-header"
             >
-              <Typography style={{ flex: "100%" }} className={classes.heading}>
+              <Typography style={{ flex: "100%",color:"white ",fontWeight:"900" }} className={classes.heading}>
                 {faq.title}
               </Typography>
             </ExpansionPanelSummary>
             <ExpansionPanelDetails>
-              <Typography dangerouslySetInnerHTML={{ __html: faq.content }} />
+              <Typography style={{ flex: "100%",color:"white " }} dangerouslySetInnerHTML={{ __html: faq.content }} />
             </ExpansionPanelDetails>
           </ExpansionPanel>
         );
@@ -67,7 +67,7 @@ export const ExpansionPanelComponent = ({ faq, interestedData }) => {
           key={key}
           expanded={expanded === `panelS${key}`}
           onChange={handleChange(`panelS${key}`)}
-          style={{ background: "#4c586a" }}
+          style={{ background: "#0d6772" }}
         >
           <ExpansionPanelSummary
             expandIcon={<ExpandMoreIcon />}

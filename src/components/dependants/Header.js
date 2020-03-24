@@ -11,6 +11,7 @@ import {
   Toolbar,
   Typography
 } from "@material-ui/core";
+import dito_logo from 'assets/img/dito-logo-03-title.svg'
 import { SideMenuItems } from "./SideMenuItems";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import { LayoutConfig } from "configurations";
@@ -52,7 +53,8 @@ const useStyles = makeStyles(theme => ({
     ...theme.mixins.toolbar
   },
   title: {
-    flexGrow: 1
+    flexGrow: 1,
+    color:'#000000'
   },
   drawerPaper: {
     position: "relative",
@@ -152,20 +154,21 @@ export const Header = () => {
           ) : (
             <>
               <Grid container alignItems="center">
-                <Grid item xs={2}>
-                  <PetsIcon />
-                  <img src={"https://www.ansa.it/webimages/img_700/2020/3/18/7dabe15c84bef38679ee823cc4e42c6a.jpg"} />
+                <Grid item xs={12} align="center">
+                  <img src={dito_logo} style={{width:150}} align="center"/>
+                  
                 </Grid>
-                <Grid item xs={8}>
+                <Grid item xs={12}>
                   <Typography
                     component="h1"
-                    variant="h4"
-                    color="white"
+                    variant="h5"
+                    color="#000000"
+                    fontSize='10px'
                     noWrap
                     className={classes.title}
                     align="center"
                   >
-                    {"Near But Far"}
+                    {""}
                   </Typography>
                 </Grid>
               </Grid>

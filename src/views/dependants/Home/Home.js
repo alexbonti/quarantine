@@ -5,6 +5,7 @@ import { Heading, NewsMediumCard, NewsCard } from "components";
 import { API } from "helpers/index";
 import moment from "moment";
 import { NewsLargeCard, LoadingScreen } from "components/index";
+import lapd_logo from 'assets/img/lpad-logo.png'
 
 export const Home = () => {
   const [news, setNews] = useState([]);
@@ -35,9 +36,27 @@ export const Home = () => {
      
     
           <Grid item xs={12}>
+            <Grid item xs={12}>
+              <Grid item xs={12}>
+              <Typography variant="h5" align='center'>
+              DiTo is a collaborative effort Led by Deakin Launchpad, to create a tool that will help the community face the Covid-19 virus, by providing curated information and tools to help the community. Our plans are bold but we need more help, if you would like to contribute, find the link in the profile page!
+             </Typography>
+              </Grid>
+            
+             
+
+       
+          
+          
             <hr />
-            <Typography variant="h6"> Yeah </Typography>
-            <hr />
+            </Grid>
+            <br></br>
+            <Grid item xs={12}>
+            <Typography variant="h5" style={{color:"#5f5e5d",fontSize:"20px"}}> Latest News about COVID-19
+          </Typography>
+            </Grid>
+            
+            
           </Grid>
           {/* <Grid item xs={12} style={{ borderBottom: "1px solid rgba(220, 220, 220, 0.39)" }}>
             <Typography variant="h6">Latest NEWS</Typography>

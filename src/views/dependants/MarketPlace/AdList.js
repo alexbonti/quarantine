@@ -17,6 +17,12 @@ import { API } from "helpers/index";
 import { LoadingScreen, RegularButton } from "components/index";
 import { LoginContext } from "contexts";
 import LabelImportantIcon from "@material-ui/icons/LabelImportant";
+import FOOD from 'assets/img/food_logo.svg'
+import MEDICINES from 'assets/img/medicine_logo.svg'
+import ESSENTIALS from 'assets/img/essentials_logo.svg'
+import ACCOMMODATION from 'assets/img/accomodation_logo.svg'
+import OTHER from 'assets/img/other_logo.svg'
+
 
 // let data = [
 //   {
@@ -44,19 +50,19 @@ import LabelImportantIcon from "@material-ui/icons/LabelImportant";
 
 let categoriesData = [
   {
-    name: "FOOD", image: "https://s3.au-syd.cloud-object-storage.appdomain.cloud/ipan-v2-bucket/image/profilePicture/original/Profile_N3L5h3nENER5.png"
+    name: "FOOD", image: FOOD
   },
   {
-    name: "ESSENTIALS", image: "https://s3.au-syd.cloud-object-storage.appdomain.cloud/ipan-v2-bucket/image/profilePicture/original/Profile_lIRnzttQ8gjH.png"
+    name: "ESSENTIALS", image: ESSENTIALS
   },
   {
-    name: "MEDICINES", image: "https://s3.au-syd.cloud-object-storage.appdomain.cloud/ipan-v2-bucket/image/profilePicture/original/Profile_EzEpSUS34jfk.png"
+    name: "MEDICINES", image: MEDICINES
   },
   {
-    name: "ACCOMMODATION", image: "https://s3.au-syd.cloud-object-storage.appdomain.cloud/ipan-v2-bucket/image/profilePicture/original/Profile_2ClsErydGuGn.png"
+    name: "ACCOMMODATION", image: ACCOMMODATION
   },
   {
-    name: "OTHER", image: "https://s3.au-syd.cloud-object-storage.appdomain.cloud/ipan-v2-bucket/image/profilePicture/original/Profile_2ClsErydGuGn.png"
+    name: "OTHER", image: OTHER
   }
 ];
 
@@ -193,10 +199,9 @@ export const AdList = () => {
       >
         <Card
           style={{
-            height: "100%",
+            height: "80px",
             width: "100%",
-            background: "#4c586a",
-            backgroundColor: "#4c586a"
+            backgroundColor: "white"
           }}
         >
           <CardBody>
@@ -226,15 +231,11 @@ export const AdList = () => {
                   </Grid>
                   <Grid item xs={5} align="right">
                 <Typography variant="subtitle1">
-                  {<Icon fontSize="small">room</Icon>}
-                  {suburb}
+                 <span style={{color:'red'}}>Area:</span> <span style={{color:'#00acc1'}}>{suburb}</span>
                 </Typography>
 
                   </Grid>
                 </Grid>
-                <Typography variant="caption">
-                  {category}
-                </Typography>
               </Grid>
             </Grid>
           </CardBody>
@@ -251,13 +252,13 @@ export const AdList = () => {
       <Grid item container xs={12} justify="space-between" alignItems="center">
 
         <Grid item xs={12}>
-          <hr />
-          <Typography variant="h6">
-            {" "}
-            Proident dolore non commodo anim adipisicing nulla. Qui magna dolor
-            adipisicing aute commodo irure culpa quis excepteur mollit in
-            consectetur. Nisi dolor ea velit eiusmod. Eu id laborum qui nostrud
-            irure elit aliqua laboris.{" "}
+         
+          <Typography variant="h5" align="center">
+            
+          Locals allows you to offer help or ask for it from the rest of the comunity.
+            We all need some random act of kindness!
+            Register and Login to start helping!
+       
           </Typography>
           <hr />
         </Grid>
@@ -273,6 +274,27 @@ export const AdList = () => {
           <LoadingScreen />
         ) : categories.length > 0 ? (
           categories.map((item, index) => {
+            console.log(index)
+            switch(index){
+              case 0:
+                item.image=FOOD;
+                break;
+              case 1:
+                item.image=ESSENTIALS;
+                break;
+              case 2:
+                item.image=MEDICINES
+                break;
+              case 3:
+                item.image=ACCOMMODATION
+                break;
+              case 4:
+                item.image=OTHER
+                break;
+
+
+            }
+            console.log(item.image)
             return (
               <Grid
                 item
@@ -291,10 +313,12 @@ export const AdList = () => {
               >
                 <div>
                   <center>
-                    {item.image && item.image !== "" ? (
+                    
+                    {
+                    item.image && item.image !== "" ? (
                       <Image
-                        style={{ width: "6vh", height: "6vh", borderRadius: 5 }}
-                        src={item.image && item.image !== "" ? item.image : ""}
+                        style={{ width: "8.5vh" }}
+                        src={item.image && item.image !== "" ? item.image : ""} height="60px"
                         alt="imagepost"
                       />
                     ) : null}

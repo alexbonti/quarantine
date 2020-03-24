@@ -3,6 +3,11 @@ import { withRouter, Redirect, Link } from "react-router-dom";
 import { Grid, Typography } from "@material-ui/core";
 import { Card, CardHeader, CardBody, CardFooter, Heading } from "components";
 import { FourOFour } from "views/common/FourOFour/FourOFour";
+import FOOD from 'assets/img/food_logo.svg'
+import MEDICINES from 'assets/img/medicine_logo.svg'
+import ESSENTIALS from 'assets/img/essentials_logo.svg'
+import ACCOMMODATION from 'assets/img/accomodation_logo.svg'
+import OTHER from 'assets/img/other_logo.svg'
 import {
   RegularButton,
   //ExpansionPanelComponent,
@@ -59,7 +64,33 @@ import { API } from "helpers/index";
 //   }
 // ];
 
+const getCategory = (category)=>{
+  console.log('categories called',category)
+  
+  switch(category){
+    case 'ACCOMMODATION':
+    return ACCOMMODATION;
+    case 'FOOD':
+    return FOOD;
+    case 'MEDICINES':
+    return MEDICINES;
+    case 'ESSENTIALS':
+    return ESSENTIALS;
+    case 'OTHER':
+    return OTHER;
+    
+
+
+  }
+}
+
 const AdView = props => {
+  //setImage based on the requirement
+  
+  
+
+
+
   //context get login status
   const { loginStatus } = useContext(LoginContext);
   //state
@@ -180,20 +211,38 @@ const AdView = props => {
       : false
     : null;
   return redirect ? (
+    
     <Redirect to="/profile" />
   ) : (
+    
+    
     <Grid container justify="center" style={{ padding: "5vh 0" }}>
+      <Grid item xs={12}>
+         
+         <Typography variant="h5" align="center">
+         Click to let your local in need you want to help! <br></br>You will both receive an email.
+         </Typography>
+         <hr />
+       </Grid>
       <Grid item xs={11} md={6} lg={4}>
       <Grid item xs={11} >
         <Link to={history}>
       <Heading title=" < BACK" textAlign="left" color="white"/>
         </Link>
       </Grid>
-        <Card>
+        <Card
+        style={{
+          height: "100%px",
+          width: "100%",
+          backgroundColor: "white"
+        }}>
+          
           <CardHeader>
             <Grid container justify="space-between">
               <Grid item xs={5} md={6}>
-                <Typography variant="caption">{category}</Typography>
+              <Typography variant="caption">
+                  {moment(createdAt).format("LL")}
+                </Typography>
               </Grid>
               <Grid item xs={5} md={6} align="right">
                 <Typography
@@ -206,11 +255,7 @@ const AdView = props => {
                   {status}
                 </Typography>
               </Grid>
-              <Grid item xs={5}>
-                <Typography variant="caption">
-                  {moment(createdAt).format("LL")}
-                </Typography>
-              </Grid>
+           
               {/* 
               DELETE UPDATE BUTTONS
               <Grid item xs={3} container align="right" justify="space-evenly">
@@ -258,8 +303,9 @@ const AdView = props => {
                 </Grid> */}
               {/* </Grid> */}
               {type === "NEED" && showButton ? (
-                <Grid item xs={4}>
+                <Grid item xs={12}>
                   <RegularButton
+                    fullWidth
                     color="warning"
                     size="sm"
                     onClick={() => setShowMessageInput(!showMessageInoput)}
@@ -297,6 +343,14 @@ const AdView = props => {
             </Grid>
           </CardFooter>
         </Card>
+        <Grid xs={12} align="center">
+         
+        
+
+        <img src={getCategory(category)} style={{marginTop:"30px"}} height="150px"></img>
+
+        </Grid>
+
         <Grid container justify="center" style={{ padding: "3vh 0" }}>
           {/*NOTE show useres interested diabled */}
           {/* <Grid item xs={12}>

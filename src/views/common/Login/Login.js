@@ -21,6 +21,8 @@ import { RegularButton, CustomInput } from "components";
 import { createMuiTheme, MuiThemeProvider } from "@material-ui/core";
 import { LayoutConfig } from "configurations";
 import AlternateEmailIcon from '@material-ui/icons/AlternateEmail';import LockOpenIcon from "@material-ui/icons/LockOpen";
+import dito_logo from 'assets/img/dito-logo-03-title.svg'
+
 
 const useStyles = makeStyles(theme => ({
   "@global": {
@@ -29,7 +31,7 @@ const useStyles = makeStyles(theme => ({
     }
   },
   paper: {
-    marginTop: theme.spacing(8),
+    marginTop: theme.spacing(2),
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
@@ -43,7 +45,7 @@ const useStyles = makeStyles(theme => ({
   },
   loginBox: {
     width: "100%", // Fix IE 11 issue.
-    marginTop: theme.spacing(10)
+    marginTop: "10px"
   },
   submit: {
     margin: theme.spacing(3, 0, 2)
@@ -174,7 +176,26 @@ export const Login = () => {
 
   let content = (
     <MuiThemeProvider theme={applicationTheme}>
+       
       <Grid container spacing={0} justify="center">
+      <Grid item xs={12} align="center">
+                  <img src={dito_logo} style={{width:150}} align="center"/>
+                  <Typography
+            
+              variant="h5" style={{fontSize:"14px"}}
+            >
+             DiTo is a volountary project, and we are looking for great people to help us develop it further.
+             Our Project page will soon be available. 
+            </Typography>
+            <a href="www.google.com">
+              <RegularButton
+            halfWidth
+            size="sm"
+            color="primary"
+           
+              >Click to collaborate with us!</RegularButton></a>
+            
+        </Grid>
         <Grid
           className={classes.loginBox}
           item
@@ -185,12 +206,13 @@ export const Login = () => {
           xl={2}
         >
           <Paper className={classes.paper}>
+         
             <Typography
               component="h1"
               variant="h5"
               style={{ fontWeight: "bold", color: "#00acc1" }}
             >
-              Quarantine
+              Distant but Together
             </Typography>
             <form noValidate>
             <CustomInput

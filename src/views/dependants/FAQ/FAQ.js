@@ -25,8 +25,8 @@ const FAQ = props => {
 
 
     <Grid item xs={11}  md={7} lg={7}>
-        <hr />
-            <Typography variant="h6"> Proident dolore non commodo anim adipisicing nulla. Qui magna dolor adipisicing aute commodo irure culpa quis excepteur mollit in consectetur. Nisi dolor ea velit eiusmod. Eu id laborum qui nostrud irure elit aliqua laboris. </Typography>
+      
+            <Typography variant="h5" align="center"> These are confusing times, so we have collected the most important information! </Typography>
             <hr />
           </Grid>
     

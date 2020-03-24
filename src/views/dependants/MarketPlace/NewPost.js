@@ -88,17 +88,20 @@ export const NewPost = () => {
   const content = (
     <Container
       maxWidth="sm"
-      style={{ marginTop: "5%", marginBottom: "5%", alignItems: "center" }}
+      style={{ marginTop: "10px", marginBottom: "5%", alignItems: "center" }}
     >
+      <Grid item xs={12}>
+              <Typography variant="h5" align='center'>
+                If you can help or need help, create a post for the community, people will see it, only your suburb will be revealed!
+             </Typography>
+              </Grid>
       <Grid container >
         <Grid item xs={12} style={{paddingBottom: "2vh "}}>
         <Link to="/locals">
       <Heading title=" < BACK" textAlign="left" color="white"/>
         </Link>
         </Grid>
-        <Grid item xs={5}>
-          <Typography variant="h5">Create Need/Offer</Typography>
-        </Grid>
+        
         <Grid item container xs={12}>
           <Grid container direction="row">
     
@@ -106,7 +109,7 @@ export const NewPost = () => {
                 <Select
                   value={type}
                   fullWidth
-                  style={{paddingTop: "28px", marginBottom: "17px"}}
+                  style={{paddingTop: "28px", marginBottom: "17px",color:'white', backgroundColor:'rgb(0, 172, 193'}}
 
                   onChange={e => {
                     setType(e.target.value);
@@ -126,12 +129,14 @@ export const NewPost = () => {
           <Grid container >
             <Grid item xs={12} >
                 <Select
+                  
+
                   fullWidth
                   value={category}
                   onChange={e => {
                     setCategory(e.target.value);
                   }}
-                  style={{paddingTop: "28px", marginBottom: "17px"}}
+                  style={{paddingTop: "28px", marginBottom: "17px",color:'white',backgroundColor:'rgb(0, 172, 193'}}
                   displayEmpty
                 >
                   <MenuItem value="" disabled>

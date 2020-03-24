@@ -50,17 +50,17 @@ export const Layout = (props) => {
       h5: {
         fontFamily: "Arial Rounded MT, Helvetica, sans-serif",
         fontWeight: "bold",
-        fontSize: 18,
-        color: "#ded6d6"
+        fontSize: 14,
+        color: "rgb(0, 172, 193)"
       },
       body1: {
         fontFamily: "Arial Unicode MS, Helvetica, sans-serif",
         fontSize: 16,
-        color: "#ded6d6"
+        color: "#000000"
       },
       body2: { fontFamily: "Helvetica, sans-serif", fontSize: 12 },
       caption: {
-        color: "#ded6d6 ",
+        color: "#000000 ",
         fontSize: "12px ",
         fontFamily: "Helvetica, sans-serif"
       },
@@ -68,13 +68,13 @@ export const Layout = (props) => {
         fontFamily: "Arial Rounded MT, Helvetica, sans-serif",
         fontWeight: "bold",
         fontSize: 12,
-        color: "#ded6d6"
+        color: "#000000"
       },
       h4: {
         fontFamily: "Arial Rounded MT, Helvetica, sans-serif",
         fontWeight: "bold",
         fontSize: 28,
-        color: "#ded6d6"
+        color: "#000000"
       },
       subtitle1: {
         fontFamily: "Arial Rounded MT, Helvetica, sans-serif",
