@@ -17,11 +17,11 @@ import { API } from "helpers/index";
 import { LoadingScreen, RegularButton } from "components/index";
 import { LoginContext } from "contexts";
 import LabelImportantIcon from "@material-ui/icons/LabelImportant";
-import FOOD from 'assets/img/food_logo.svg'
-import MEDICINES from 'assets/img/medicine_logo.svg'
-import ESSENTIALS from 'assets/img/essentials_logo.svg'
-import ACCOMMODATION from 'assets/img/accomodation_logo.svg'
-import OTHER from 'assets/img/other_logo.svg'
+import FOOD from 'assets/img/foods.svg'
+import MEDICINES from 'assets/img/medicine.svg'
+import ESSENTIALS from 'assets/img/essentials.svg'
+import ACCOMMODATION from 'assets/img/accomodation.svg'
+import OTHER from 'assets/img/other.svg'
 
 
 // let data = [
@@ -208,7 +208,7 @@ export const AdList = () => {
             <Grid container direction="row" spacing={3}>
               <Grid item xs={3}>
                 <Image
-                  style={{ width: '10vh', height: '10vh', borderRadius: 5 }}
+                  style={{ width: '5vh', height: '5vh', borderRadius: 5 }}
                   src={imageSrc}
                   // 'https://penserra.com/wp-content/uploads/2018/03/dummy-post-square-1-300x300.jpg')}
                
@@ -317,7 +317,7 @@ export const AdList = () => {
                     {
                     item.image && item.image !== "" ? (
                       <Image
-                        style={{ width: "8.5vh" }}
+                        style={{ width: "7vh" }}
                         src={item.image && item.image !== "" ? item.image : ""} height="60px"
                         alt="imagepost"
                       />
