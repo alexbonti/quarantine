@@ -39,7 +39,7 @@ export const Home = () => {
             <Grid item xs={12}>
               <Grid item xs={12}>
               <Typography variant="h5" align='center'>
-              DiTo is a collaborative effort Led by Deakin Launchpad, to create a tool that will help the community face the Covid-19 virus, by providing curated information and tools to help the community. Our plans are bold but we need more help, if you would like to contribute, find the link in the profile page!
+              DiTo is a collaborative effort Led by Deakin Launchpad, to create a tool that will help the community face the Covid-19 virus, by providing curated information and tools to help the community. Our plans are bold but we need more help, if you would like to contribute, find the link in the profile page! Ale
              </Typography>
               </Grid>
             
