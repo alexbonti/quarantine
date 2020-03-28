@@ -14,4 +14,4 @@ jobs:
             cf_password: ${{ secrets.CF_PASSWORD }}
             cf_org: rocketpunch
             cf_space: dev
-            command: push -f manifest-dev.yml
+            run: ls
