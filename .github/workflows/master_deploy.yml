@@ -21,6 +21,7 @@ jobs:
       run: npm run build
   deploy:
     runs-on: ubuntu-latest
+    needs: build
     steps:
         - uses: citizen-of-planet-earth/cf-cli-action@master
           with:
@@ -28,5 +29,5 @@ jobs:
             cf_username: ${{ secrets.CF_USER }}
             cf_password: ${{ secrets.CF_PASSWORD }}
             cf_org: rocketpunch
-            cf_space: dev
+            cf_space: dev 
             command: push -f manifest.yml
