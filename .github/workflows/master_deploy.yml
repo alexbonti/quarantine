@@ -19,8 +19,8 @@ jobs:
       run: npm install
     - name: Build page
       run: npm run build
+    - name: Deploy
     - uses: citizen-of-planet-earth/cf-cli-action@master
-    - name: Install Packages
       with:
         cf_api: https://api.au-syd.cf.cloud.ibm.com
         cf_username: ${{ secrets.CF_USER }}
