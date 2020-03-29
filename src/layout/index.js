@@ -91,9 +91,9 @@ export const Layout = (props) => {
     <MuiThemeProvider theme={applicationTheme} >
 
       <div className={classes.root}>
-        {isItDesktop ? <Header /> : LayoutConfig.bottomMobileNavigation ? LayoutConfig.displayMobileHeader ? <Header /> : null : <Header />}
+        {isItDesktop ? null: LayoutConfig.bottomMobileNavigation ? LayoutConfig.displayMobileHeader ? <Header /> : null : <Header />}
         <main className={isItDesktop ? classes.content : classes.mobileContent}>
-        {isItDesktop ? <NavBar /> : ""}
+        {isItDesktop ?<div className="layercover" style={{height: "100vh", width: "100vw", position: "fixed", zIndex: "1000", backgroundColor: "white",}}> Optimized for mobile</div>: ""}
           {/* <div className={isItDesktop ? classes.appBarSpacer : LayoutConfig.displayMobileHeader ? classes.appBarSpacer : null} /> */}
           {props.children}
           <div className={isItDesktop ? null : LayoutConfig.bottomMobileNavigation ? classes.appBarSpacer : null} />
