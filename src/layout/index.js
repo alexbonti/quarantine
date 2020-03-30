@@ -2,6 +2,9 @@ import React from 'react';
 import { makeStyles, useMediaQuery, createMuiTheme, MuiThemeProvider } from '@material-ui/core';
 import { Header, BottomNavToolbar , NavBar} from 'components';
 import { LayoutConfig } from 'configurations';
+import dito_logo from 'assets/img/dito-logo-03-title.svg'
+import dito1 from 'assets/img/dito1.png'
+import dito3 from 'assets/img/dito3.png'
 
 const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
 const useStyles = makeStyles(theme => ({
@@ -92,8 +95,40 @@ export const Layout = (props) => {
 
       <div className={classes.root}>
         {isItDesktop ? null: LayoutConfig.bottomMobileNavigation ? LayoutConfig.displayMobileHeader ? <Header /> : null : <Header />}
-        <main className={isItDesktop ? classes.content : classes.mobileContent}>
-        {isItDesktop ?<div className="layercover" style={{height: "100vh", width: "100vw", position: "fixed", zIndex: "1000", backgroundColor: "white",}}> Optimized for mobile</div>: ""}
+        <main className={isItDesktop ? classes.content : classes.mobileContent} id="desktopVersion">
+        {isItDesktop ?<div className="layercover" style={{height: "100vh", width: "100vw", position: "fixed", zIndex: "1000", backgroundColor: "white",}}> 
+   
+
+  <header class="text-black">
+    <div class="container text-center">
+      
+      <div class="container">
+      <div class="row" >
+        
+        <div class="col-lg-6" style={{height:600}}>
+        <img src={dito_logo} height="200px"></img>
+          <div style={{paddingLeft:60}}>
+          <h3>Locals helping Locals</h3>
+          <p class="lead"><b>Distant but Together</b> is a collaborations of academics, developers and comunity leaders who have worked together to help people in need.
+          </p>
+          <p><b>It is a race against time, so for now we are fully focusing on the mobile view, please make your screen smaller if you want to try, or access directly from your phone!</b></p>
+          
+          </div>
+        
+        </div>
+        <div class="col-lg-4 mx-auto">
+        <img src={dito3} height="600px"></img>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <p class="m-0 text-center text-black">Copyright &copy; DiTo 2020</p>
+    </div>
+    </div>
+  </header>
+        
+        </div>: ""}
+
           {/* <div className={isItDesktop ? classes.appBarSpacer : LayoutConfig.displayMobileHeader ? classes.appBarSpacer : null} /> */}
           {props.children}
           <div className={isItDesktop ? null : LayoutConfig.bottomMobileNavigation ? classes.appBarSpacer : null} />
