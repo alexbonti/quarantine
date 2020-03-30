@@ -37,7 +37,7 @@ export const Layout = (props) => {
 
    let applicationTheme = createMuiTheme({
     palette: {
-       type: "dark",
+       type: "light",
       primary: {
         main: LayoutConfig.theme !== undefined ? LayoutConfig.theme.colors !== undefined ? LayoutConfig.theme.colors.primary !== undefined ? LayoutConfig.theme.colors.primary : null : null : null
       },
