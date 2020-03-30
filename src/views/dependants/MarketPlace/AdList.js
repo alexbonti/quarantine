@@ -83,6 +83,7 @@ export const AdList = () => {
   const [value, setValue] = useState(0);
   const { loginStatus } = useContext(LoginContext);
   const [profile, setProfile] = useState();
+  const [isSelected, setIsSelected] =  useState(false)
 
   useEffect(() => {
     API.getCategories(setCategories);
@@ -268,13 +269,13 @@ export const AdList = () => {
         direction="row"
         spacing={1}
         justify="space-between"
+        alignItems="baseline"
         style={{ marginTop: "2%", padding:"2vh 0" }}
       >
         {categories === undefined ? (
           <LoadingScreen />
         ) : categories.length > 0 ? (
           categories.map((item, index) => {
-            console.log(index)
             switch(index){
               case 0:
                 item.image=FOOD;
@@ -291,10 +292,7 @@ export const AdList = () => {
               case 4:
                 item.image=OTHER
                 break;
-
-
             }
-            console.log(item.image)
             return (
               <Grid
                 item
@@ -311,19 +309,32 @@ export const AdList = () => {
                   }
                 }}
               >
-                <div>
+                <Grid item  style={{
+                  borderRadius: "5px",
+                        border: `${
+                          selectedCategory &&
+                          selectedCategory.name === item.name
+                            ? "1px solid rgb(255, 209, 30)"
+                            : ""
+                        }`,
+                        
+                      
+                      }}> 
                   <center>
                     
                     {
                     item.image && item.image !== "" ? (
                       <Image
-                        style={{ width: "7vh" }}
+                        style={{ width: "30px", heigh: "25px", padding: "5px" }}
                         src={item.image && item.image !== "" ? item.image : ""} height="60px"
                         alt="imagepost"
                       />
                     ) : null}
+                  </center>
+                  </Grid>
+                  <Grid>
                     <Typography
-                      variant="subtitle1"
+                      variant="h6"
                       style={{
                         color: `${
                           selectedCategory &&
@@ -335,8 +346,7 @@ export const AdList = () => {
                     >
                       {titleCase(item.name)}
                     </Typography>
-                  </center>
-                </div>
+                    </Grid>
               </Grid>
             );
           })
