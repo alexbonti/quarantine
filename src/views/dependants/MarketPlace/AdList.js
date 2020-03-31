@@ -279,23 +279,29 @@ export const AdList = () => {
             switch(index){
               case 0:
                 item.image=FOOD;
+                item.uiName='Food'
                 break;
               case 1:
                 item.image=ESSENTIALS;
+                item.uiName='Common'
                 break;
               case 2:
                 item.image=MEDICINES
+                item.uiName='Meds'
                 break;
               case 3:
                 item.image=ACCOMMODATION
+                item.uiName='stays'
                 break;
               case 4:
                 item.image=OTHER
+                item.uiName='Other'
                 break;
             }
             return (
               <Grid
                 item
+                style={{height:"100px"}}
                 key={index}
                 onClick={() => {
                   setSearch("");
@@ -325,14 +331,15 @@ export const AdList = () => {
                     {
                     item.image && item.image !== "" ? (
                       <Image
-                        style={{ width: "30px", heigh: "25px", padding: "5px" }}
-                        src={item.image && item.image !== "" ? item.image : ""} height="60px"
+                        style={{ width: "55px", heigh: "25px", padding: "3px" }}
+                        src={item.image && item.image !== "" ? item.image : ""}
                         alt="imagepost"
                       />
                     ) : null}
                   </center>
                   </Grid>
-                  <Grid>
+                  <Grid
+                  align="center">
                     <Typography
                       variant="h6"
                       style={{
@@ -344,7 +351,7 @@ export const AdList = () => {
                         }`
                       }}
                     >
-                      {titleCase(item.name)}
+                      {titleCase(item.uiName)}
                     </Typography>
                     </Grid>
               </Grid>

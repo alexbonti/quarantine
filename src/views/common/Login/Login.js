@@ -22,6 +22,8 @@ import { createMuiTheme, MuiThemeProvider } from "@material-ui/core";
 import { LayoutConfig } from "configurations";
 import AlternateEmailIcon from '@material-ui/icons/AlternateEmail';import LockOpenIcon from "@material-ui/icons/LockOpen";
 import dito_logo from 'assets/img/dito-logo-03-title.svg'
+import slack from 'assets/img/Slack-dito.png'
+import contact from 'assets/img/dito-contact.png'
 
 
 const useStyles = makeStyles(theme => ({
@@ -187,13 +189,10 @@ export const Login = () => {
              DiTo is a volountary project, and we are looking for great people to help us develop it further.
              Our Project page will soon be available. 
             </Typography>
-            <a href="www.google.com">
-              <RegularButton
-            halfWidth
-            size="sm"
-            color="primary"
-           
-              >Click to collaborate with us!</RegularButton></a>
+            
+              <p><a href="https://join.slack.com/t/dito-space/shared_invite/zt-d8iz2vyd-G2wTkd7cH_JFergOkYsDew"><img src={slack} height="75px"></img></a>
+              <a href="https://forms.gle/HDCnCRwFLVgwPxZt5"><img src={contact} height="75px"></img></a></p>
+
             
         </Grid>
         <Grid
@@ -206,14 +205,6 @@ export const Login = () => {
           xl={2}
         >
           <Paper className={classes.paper}>
-         
-            <Typography
-              component="h1"
-              variant="h5"
-              style={{ fontWeight: "bold", color: "#00acc1" }}
-            >
-              Distant but Together
-            </Typography>
             <form noValidate>
             <CustomInput
                 id="emailId"
