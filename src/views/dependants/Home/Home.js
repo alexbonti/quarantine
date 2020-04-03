@@ -60,19 +60,19 @@ export const Home = () => {
               </Grid>
               <Grid item container xs={12} justify="space-evenly">
                 <Grid item xs={4} align="center">
-                  <Typography variant="h5" style={{color: "black"}}>New Cases</Typography>
+                  <Typography variant="h6" style={{color: "black"}}>New Cases</Typography>
                   <Typography variant="h5" style={{ fontSize: 20 }}>
                     533
                   </Typography>
                 </Grid>
                 <Grid item xs={4} align="center">
-                  <Typography variant="h5" style={{color: "black"}}>Total Recovered</Typography>
+                  <Typography variant="h6" style={{color: "black"}}>Total Recovered</Typography>
                   <Typography variant="h5" style={{ fontSize: 20 }}>
                     512
                   </Typography>
                 </Grid>
                 <Grid item xs={4} align="center">
-                  <Typography variant="h5" style={{color: "black"}}>Total Cases</Typography>
+                  <Typography variant="h6" style={{color: "black"}}>Total Cases</Typography>
                   <Typography variant="h5" style={{ fontSize: 20 }}>
                     512
                   </Typography>
@@ -80,19 +80,19 @@ export const Home = () => {
               </Grid>
               <Grid item container xs={12} justify="space-evenly">
                 <Grid item xs={4} align="center">
-                  <Typography variant="h5" style={{color: "black"}}>Total Deaths</Typography>
+                  <Typography variant="h6" style={{color: "black"}}>Total Deaths</Typography>
                   <Typography variant="h5" style={{ fontSize: 20 }}>
                     5121
                   </Typography>
                 </Grid>
                 <Grid item xs={4} align="center">
-                  <Typography variant="h5" style={{color: "black"}}>New Deaths</Typography>
+                  <Typography variant="h6" style={{color: "black"}}>New Deaths</Typography>
                   <Typography variant="h5" style={{ fontSize: 20 }}>
                     521
                   </Typography>
                 </Grid>
                 <Grid item xs={4} align="center">
-                  <Typography variant="h5" style={{color: "black"}}>Total Dismissed</Typography>
+                  <Typography variant="h6" style={{color: "black"}}>Total Dismissed</Typography>
                   <Typography variant="h5" style={{ fontSize: 20 }}>
                     512
                   </Typography>
