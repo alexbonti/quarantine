@@ -345,10 +345,10 @@ class API {
   };
 
   getStats = async () => {
-    return await axiosInstanceStats
-      .get("/getdata")
+    return await axiosInstance
+      .get("/user/getCovidStats")
       .then(response => {
-        return response.data;
+        return response;
       })
       .catch(error => {
         return errorHelper(error);

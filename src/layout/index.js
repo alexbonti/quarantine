@@ -79,7 +79,7 @@ export const Layout = (props) => {
       h4: {
         fontFamily: "Arial Rounded MT, Helvetica, sans-serif",
         fontWeight: "bold",
-        fontSize: 28,
+        fontSize: 20,
         color: "#000000"
       },
       subtitle1: {
