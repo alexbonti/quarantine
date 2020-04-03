@@ -66,7 +66,7 @@ export const Home = () => {
                   </Typography>
                 </Grid>
                 <Grid item xs={4} align="center">
-                  <Typography variant="h5" style={{color: "black"}}>New Deaths</Typography>
+                  <Typography variant="h5" style={{color: "black"}}>Total Recovered</Typography>
                   <Typography variant="h5" style={{ fontSize: 20 }}>
                     512
                   </Typography>
@@ -86,7 +86,7 @@ export const Home = () => {
                   </Typography>
                 </Grid>
                 <Grid item xs={4} align="center">
-                  <Typography variant="h5" style={{color: "black"}}>Total Recovered</Typography>
+                  <Typography variant="h5" style={{color: "black"}}>New Deaths</Typography>
                   <Typography variant="h5" style={{ fontSize: 20 }}>
                     521
                   </Typography>
