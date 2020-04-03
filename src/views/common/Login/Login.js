@@ -56,7 +56,7 @@ const useStyles = makeStyles(theme => ({
   },
   developMessage: {
     position: "absolute",
-    bottom: "2vh"
+    bottom: "1vh"
   }
 }));
 let applicationTheme = createMuiTheme({
@@ -176,6 +176,7 @@ export const Login = () => {
   });
 
   let content = (
+    <>
     <MuiThemeProvider theme={applicationTheme}>
        
       <Grid container spacing={0} justify="center">
@@ -261,6 +262,9 @@ export const Login = () => {
           </Paper>
         </Grid>
 
+      </Grid>
+    </MuiThemeProvider>
+    <Grid container justify="center">
         <Grid item xs={12} className={classes.developMessage}>
           <Box mt={5}>
             <Typography variant="body2" color="textSecondary" align="center" style={{indexZ: -1}}>
@@ -268,8 +272,8 @@ export const Login = () => {
             </Typography>
           </Box>
         </Grid>
-      </Grid>
-    </MuiThemeProvider>
+        </Grid>
+        </>
   );
   return content;
 };
