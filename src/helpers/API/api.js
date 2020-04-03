@@ -99,6 +99,28 @@ class API {
       .catch(error => errorHelper(error));
   };
 
+  forgotPassword = async (data, accessToken) => {
+    return await axiosInstance
+      .post("user/forgotPassword", data, {
+        headers: {
+          authorization: `Bearer ${accessToken}`
+        }
+      })
+      .then(response => response.data.data)
+      .catch(error => errorHelper(error));
+  };
+
+  resetPassword = async (data, accessToken) => {
+    return await axiosInstance
+      .post("user/resetPassword", data, {
+        headers: {
+          authorization: `Bearer ${accessToken}`
+        }
+      })
+      .then(response => response.data.data)
+      .catch(error => errorHelper(error));
+  };
+
   getAds = async (data, callback) => {
     return await axiosInstance
       .post("/listing/getListings", data, {

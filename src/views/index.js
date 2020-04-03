@@ -15,6 +15,9 @@ import ConfirmRegistration  from "./common/Register/ConfirmRegistration";
 import Profile  from "./dependants/Profile/Profile";
 import AdView  from "./dependants/AdView/AdView";
 import AdEdit  from "./dependants/MarketPlace/AdEdit";
+import ForgotPassword  from "./common/ForgotPassword/ForgotPassword";
+import ResetPassword  from "./common/ForgotPassword/ResetPassword";
+
 
 
 
@@ -33,5 +36,7 @@ export {
   Profile,
   AdView,
   AdEdit,
-  NewPost
+  NewPost,
+  ForgotPassword,
+  ResetPassword
 };

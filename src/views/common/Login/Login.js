@@ -38,7 +38,6 @@ const useStyles = makeStyles(theme => ({
     flexDirection: "column",
     alignItems: "center",
     padding: theme.spacing(4),
-    background: "linear-gradient(#36404b, #1b2127)"
   },
 
   avatar: {
@@ -226,6 +225,7 @@ export const Login = () => {
                 }}
               />
               <CustomInput
+              style={{margin: " 0px important"}}
                 id="password"
                 labelText= "Password*"
                 inputProps={{
@@ -244,13 +244,14 @@ export const Login = () => {
                   fullWidth: true
                 }}
               />
-      
+              <Link to="/forgot-password" style={{fontSize: "10px", borderBottom: "1px solid rgb(74, 74, 74)", color: "rgb(74, 74, 74)"}}>Forgot password ?</Link>
               <RegularButton
                 fullWidth
                 variant="contained"
                 color="info"
                 className={classes.buttons}
                 onClick={validationCheck}
+                style={{marginTop: "30px"}}
               >
                 Login
               </RegularButton>

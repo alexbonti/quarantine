@@ -18,7 +18,9 @@ import {
   AdView,
   AdList,
   AdEdit,
-  NewPost
+  NewPost,
+  ForgotPassword,
+  ResetPassword
 } from "views";
 import { Layout } from "../layout";
 import { LayoutConfig } from "configurations";
@@ -79,7 +81,7 @@ export const AppRoutes = props => {
         path="/confirm-registration"
         render={() =>
           !loginStatus ? (
-            <ConfirmRegistration {...props} />
+           <Layout> <ConfirmRegistration {...props} /></Layout>
           ) : (
               <Redirect to={{ pathname: landingPage }} {...props} />
             )
@@ -101,6 +103,24 @@ export const AppRoutes = props => {
         render={() => (
           <Layout>
             <FAQ {...props} />
+          </Layout>
+        )}
+      />
+       <Route
+        exact
+        path="/forgot-password"
+        render={() => (
+          <Layout>
+            <ForgotPassword {...props} />
+          </Layout>
+        )}
+      />
+      <Route
+        exact
+        path="/reset-password"
+        render={() => (
+          <Layout>
+            <ResetPassword {...props} />
           </Layout>
         )}
       />

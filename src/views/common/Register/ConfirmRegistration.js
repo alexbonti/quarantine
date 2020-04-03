@@ -12,6 +12,7 @@ import {
 import { API } from "helpers/index";
 import { LayoutConfig } from "configurations";
 import {LoginContext} from "contexts"
+import { FourOFour } from '../FourOFour/FourOFour';
 
 
   const  applicationTheme = createMuiTheme({
@@ -72,9 +73,10 @@ import {LoginContext} from "contexts"
   });
 
 const ConfirmRegistration = (props) => {
+  const [OTP, setOTP] = useState("")
+  const {setAccessToken, setLoginStatus} = useContext(LoginContext)
+    if(props.location.state === undefined || props.location.state === null) return <FourOFour />
     const {accessToken} = (props.location.state.response)
-    const [OTP, setOTP] = useState("")
-    const {setAccessToken, setLoginStatus} = useContext(LoginContext)
 
 
     const sendOTP = async () =>{
@@ -106,7 +108,7 @@ const ConfirmRegistration = (props) => {
                 <Card>
                     <CardBody>
                         <Typography variant="body1">
-                            Anverification code has been sent to your email
+                            A verification code has been sent to your email
                         </Typography>
                         <CustomInput 
                         id="OTP"

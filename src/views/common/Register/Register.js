@@ -22,7 +22,7 @@ const useStyles = makeStyles(theme => ({
     display: "flex",
     alignItems: "center",
     padding: theme.spacing(3),
-    background: "linear-gradient(#36404b, #1b2127)"
+    background: "white"
   },
   avatar: {
     margin: theme.spacing(1),
@@ -72,16 +72,16 @@ let applicationTheme = createMuiTheme({
       fontFamily: "Arial Rounded MT, Helvetica, sans-serif",
       fontWeight: "bold",
       fontSize: 18,
-      color: "white"
+      color: "rgb(74, 74, 74)"
     },
     body1: {
       fontFamily: "Arial Unicode MS, Helvetica, sans-serif",
       fontSize: 16,
-      color: "#fff"
+      color: "rgb(74, 74, 74)"
     },
     body2: { fontFamily: "Helvetica, sans-serif", fontSize: 12 },
     caption: {
-      color: "#fff ",
+      color: "rgb(74, 74, 74) ",
       fontSize: "12px ",
       fontFamily: "Helvetica, sans-serif"
     },
@@ -89,13 +89,13 @@ let applicationTheme = createMuiTheme({
       fontFamily: "Arial Rounded MT, Helvetica, sans-serif",
       fontWeight: "bold",
       fontSize: 21,
-      color: "#00acc1"
+      color: "rgb(74, 74, 74)"
     },
     subtitle1: {
       fontFamily: "Arial Rounded MT, Helvetica, sans-serif",
       fontWeight: "bold",
       fontSize: 10,
-      color: "white"
+      color: "rgb(74, 74, 74)"
     },
     selection: {
       "&:hover": {
