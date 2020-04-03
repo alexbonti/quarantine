@@ -311,7 +311,7 @@ class API {
     const app_code = "SOaMBDA1FYyc8mAtg7STgg";
     return axios({
       method: "get",
-      url: ` http://autocomplete.geocoder.api.here.com/6.2/suggest.json?app_id=${app_id}&app_code=${app_code}&query=${input}&country=AUS`
+      url: ` https://autocomplete.geocoder.api.here.com/6.2/suggest.json?app_id=${app_id}&app_code=${app_code}&query=${input}&country=AUS`
     })
       .then(response => response.data)
       .catch(error => errorHelper(error));
@@ -322,7 +322,7 @@ class API {
     const app_code = "SOaMBDA1FYyc8mAtg7STgg";
     return await axios({
       method: "get",
-      url: ` http://geocoder.api.here.com/6.2/geocode.json?locationid=${input}&jsonattributes=1&gen=9&app_id=${app_id}&app_code=${app_code}`
+      url: ` https://geocoder.api.here.com/6.2/geocode.json?locationid=${input}&jsonattributes=1&gen=9&app_id=${app_id}&app_code=${app_code}`
     })
       .then(response => {
         return {
