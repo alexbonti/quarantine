@@ -9,7 +9,7 @@ import lapd_logo from "assets/img/lpad-logo.png";
 
 export const Home = () => {
   const [news, setNews] = useState([]);
-  const [stats, setStats] = useState([]);
+  const [stats, setStats] = useState({});
   console.log("Home -> stats", stats);
 
   useEffect(() => {
@@ -25,8 +25,7 @@ export const Home = () => {
       const getStatsData = await API.getStats();
 
       if (getStatsData) {
-        console.log(getStatsData);
-        setStats(getStatsData);
+        setStats(getStatsData.data.data);
       }
     };
     callApi();
@@ -44,7 +43,7 @@ export const Home = () => {
   //     "activeCases": "4,701"
   //   }
   // }
-  return news !== undefined && news.length > 0 ? (
+  return news !== undefined && news.length > 0 && stats !== undefined ? (
     <>
       <Grid container justify="center" style={{ padding: "0 3vw" }}>
         <Grid item xs={12} md={7} container style={{ paddingTop: ".5vh " }}>
@@ -62,19 +61,19 @@ export const Home = () => {
                 <Grid item xs={4} align="center">
                   <Typography variant="h5" style={{color: "black"}}>New Cases</Typography>
                   <Typography variant="h5" style={{ fontSize: 20 }}>
-                    533
+                    {stats.newCases}
                   </Typography>
                 </Grid>
                 <Grid item xs={4} align="center">
                   <Typography variant="h5" style={{color: "black"}}>New Deaths</Typography>
                   <Typography variant="h5" style={{ fontSize: 20 }}>
-                    512
+                    {stats.newDeaths}
                   </Typography>
                 </Grid>
                 <Grid item xs={4} align="center">
                   <Typography variant="h5" style={{color: "black"}}>Total Cases</Typography>
                   <Typography variant="h5" style={{ fontSize: 20 }}>
-                    512
+                    {stats.totalCases}
                   </Typography>
                 </Grid>
               </Grid>
@@ -82,19 +81,19 @@ export const Home = () => {
                 <Grid item xs={4} align="center">
                   <Typography variant="h5" style={{color: "black"}}>Total Deaths</Typography>
                   <Typography variant="h5" style={{ fontSize: 20 }}>
-                    5121
+                    {stats.totalDeaths}
                   </Typography>
                 </Grid>
                 <Grid item xs={4} align="center">
                   <Typography variant="h5" style={{color: "black"}}>Total Recovered</Typography>
                   <Typography variant="h5" style={{ fontSize: 20 }}>
-                    521
+                    {stats.totalRecovered}
                   </Typography>
                 </Grid>
                 <Grid item xs={4} align="center">
-                  <Typography variant="h5" style={{color: "black"}}>Total Dismissed</Typography>
+                  <Typography variant="h5" style={{color: "black"}}>Active Cases</Typography>
                   <Typography variant="h5" style={{ fontSize: 20 }}>
-                    512
+                    {stats.activeCases}
                   </Typography>
                 </Grid>
               </Grid>
