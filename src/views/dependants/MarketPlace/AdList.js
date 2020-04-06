@@ -444,7 +444,7 @@ export const AdList = () => {
         item
         xs={12}
         justify="center"
-        style={{ position: "absolute", bottom: 80, backgroundColor: "rgb(225, 242, 245)" }}
+        style={{ position: "absolute", bottom: 100, backgroundColor: "rgb(225, 242, 245)" }}
       >
         <Grid item xs={12} align="center">
         <Link to="/register">Register</Link>
