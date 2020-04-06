@@ -81,6 +81,7 @@ const titleCase = str => {
 
 export const AdList = () => {
   const [categories, setCategories] = useState();
+  console.log("AdList -> categories", categories)
   const [selectedCategory, setSelectedCategory] = useState();
   const [ads, setAds] = useState();
   const [search, setSearch] = useState();
@@ -90,7 +91,15 @@ export const AdList = () => {
   const [isSelected, setIsSelected] = useState(false);
 
   useEffect(() => {
-    API.getCategories(setCategories);
+    const triggerAPI = async() => {
+     const dataRespCategories = await API.getCategories();
+      if(dataRespCategories){
+        console.log("triggerAPI -> dataRespCategories", dataRespCategories)
+        const filteredData = dataRespCategories.filter((category) => category.name !== "ESSENTIALS")
+        console.log("triggerAPI -> filteredData", filteredData)
+        setCategories(filteredData)
+      }
+    }
     API.getAds(
       {
         type: "NEED",
@@ -100,6 +109,8 @@ export const AdList = () => {
       },
       setAds
     );
+
+    triggerAPI()
   }, []);
 
   useEffect(() => {
@@ -155,6 +166,7 @@ export const AdList = () => {
     const [suburb, setSuburb] = useState();
     const [type, setType] = useState();
     const [ad, setAd] = useState();
+
     useEffect(() => {
       if (props.image !== undefined && props.image !== null)
         setImage(props.image);
@@ -171,7 +183,7 @@ export const AdList = () => {
           setSuburb(props.item.postedBy.suburb);
         if (props.item.postType !== undefined && props.item.postType !== null)
           setType(props.item.postType);
-        if (props.item.category !== undefined && props.item.category !== null)
+        if (props.item.category !== undefined && props.item.category !== null )
           setCategory(props.item.category);
       }
     }, [props]);
@@ -285,7 +297,7 @@ export const AdList = () => {
           spacing={1}
           justify="space-between"
           alignItems="baseline"
-          style={{ marginTop: "2%", padding: "2vh 0" }}
+          style={{ marginTop: "2%"}}
         >
           {categories === undefined ? (
             <LoadingScreen />
@@ -297,21 +309,18 @@ export const AdList = () => {
                   item.uiName = "Food";
                   break;
                 case 1:
-                  item.image = ESSENTIALS;
-                  item.uiName = "Common";
-                  break;
-                case 2:
                   item.image = MEDICINES;
                   item.uiName = "Meds";
                   break;
-                case 3:
+                case 2:
                   item.image = ACCOMMODATION;
                   item.uiName = "stays";
                   break;
-                case 4:
+                case 3:
                   item.image = OTHER;
                   item.uiName = "Other";
                   break;
+            
               }
               return (
                 <Grid
@@ -383,6 +392,7 @@ export const AdList = () => {
           <Grid item xs={12} align="right">
             <RegularButton
               fullWidth
+              size="lg"
               color="primary"
               component={Link}
               to={{ pathname: "newPost" }}
@@ -412,8 +422,8 @@ export const AdList = () => {
               onChange={handleTabChange}
               centered
             >
-              <Tab label="Needs" style={{ color: "rgb(0, 172, 193" }} />
-              <Tab label="Offers" style={{ color: "rgb(0, 172, 193" }} />
+              <Tab label="Needs" style={{ color: "rgb(0, 172, 193", fontSize: "26px"}} />
+              <Tab label="Offers" style={{ color: "rgb(0, 172, 193", fontSize: "26px" }} />
             </Tabs>
           </Grid>
         ) : null}

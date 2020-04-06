@@ -143,7 +143,6 @@ export const NewPost = () => {
                     Category
                   </MenuItem>
                   <MenuItem value={"FOOD"}>Food</MenuItem>
-                  <MenuItem value={"ESSENTIALS"}>Essentials</MenuItem>
                   <MenuItem value={"MEDICINES"}>Medicines</MenuItem>
                   <MenuItem value={"ACCOMMODATION"}>Accommodation</MenuItem>
                   <MenuItem value={"OTHER"}>Other</MenuItem>
