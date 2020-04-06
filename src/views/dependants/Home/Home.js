@@ -58,10 +58,10 @@ export const Home = () => {
                 <Typography variant="h4"> Coronavirus Australia</Typography>
               </Grid>
               <Grid item container xs={12} justify="space-evenly">
-                <Grid item xs={4} align="center">
-                  <Typography variant="h6" style={{color: "black"}}>New Cases</Typography>
+              <Grid item xs={4} align="center">
+                  <Typography variant="h6" style={{color: "black"}}>Total Cases</Typography>
                   <Typography variant="h5" style={{ fontSize: 20 }}>
-                    {stats.newCases}
+                    {stats.totalCases}
                   </Typography>
                 </Grid>
                 <Grid item xs={4} align="center">
@@ -71,11 +71,12 @@ export const Home = () => {
                   </Typography>
                 </Grid>
                 <Grid item xs={4} align="center">
-                  <Typography variant="h6" style={{color: "black"}}>Total Cases</Typography>
+                  <Typography variant="h6" style={{color: "black"}}>New Cases</Typography>
                   <Typography variant="h5" style={{ fontSize: 20 }}>
-                    {stats.totalCases}
+                    {stats.newCases}
                   </Typography>
                 </Grid>
+               
               </Grid>
               <Grid item container xs={12} justify="space-evenly">
                 <Grid item xs={4} align="center">
@@ -85,17 +86,18 @@ export const Home = () => {
                   </Typography>
                 </Grid>
                 <Grid item xs={4} align="center">
-                  <Typography variant="h6" style={{color: "black"}}>New Deaths</Typography>
-                  <Typography variant="h5" style={{ fontSize: 20 }}>
-                    {stats.totalRecovered}
-                  </Typography>
-                </Grid>
-                <Grid item xs={4} align="center">
                   <Typography variant="h5" style={{color: "black"}}>Active Cases</Typography>
                   <Typography variant="h5" style={{ fontSize: 20 }}>
                     {stats.activeCases}
                   </Typography>
                 </Grid>
+                <Grid item xs={4} align="center">
+                  <Typography variant="h6" style={{color: "black"}}>New Deaths</Typography>
+                  <Typography variant="h5" style={{ fontSize: 20 }}>
+                    {stats.totalRecovered}
+                  </Typography>
+                </Grid>
+              
               </Grid>
             </Grid>
             <Grid item xs={12} style={{padding: 0}}>
