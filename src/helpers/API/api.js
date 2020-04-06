@@ -152,16 +152,14 @@ class API {
       });
   };
 
-  getCategories = async callback => {
+  getCategories = async () => {
     return await axiosInstance
       .get("/listing/getCategories", {
         // headers: {
         //   authorization: `Bearer ${AccessToken}`
         // }
       })
-      .then(response => {
-        performCallback(callback, response.data.data.data);
-      })
+      .then(response =>  response.data.data.data)
       .catch(err => {
         errorHelper(err);
       });
