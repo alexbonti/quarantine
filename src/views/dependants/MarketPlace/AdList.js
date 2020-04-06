@@ -216,7 +216,7 @@ export const AdList = () => {
             <Grid container direction="row" spacing={3}>
               <Grid item xs={3}>
                 <Image
-                  style={{ width: "5vh", height: "2vh", borderRadius: 5 }}
+                  style={{ width: "30px", height: "30px", borderRadius: 5 }}
                   src={imageSrc}
                   // 'https://penserra.com/wp-content/uploads/2018/03/dummy-post-square-1-300x300.jpg')}
 

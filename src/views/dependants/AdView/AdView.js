@@ -227,7 +227,7 @@ const AdView = props => {
       <Grid item xs={11} md={6} lg={4}>
       <Grid item xs={11} >
         <Link to={history}>
-      <Heading title=" < BACK" textAlign="left" color="white"/>
+      <Heading title=" < BACK" textAlign="left" color="primary"/>
         </Link>
       </Grid>
         <Card
@@ -252,7 +252,7 @@ const AdView = props => {
                       : { color: "red" }
                   }
                 >
-                  {status}
+                  {status === "AVAILABLE" ? "OPEN" : "CLOSED"}
                 </Typography>
               </Grid>
            

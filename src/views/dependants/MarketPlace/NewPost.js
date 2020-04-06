@@ -98,7 +98,7 @@ export const NewPost = () => {
       <Grid container >
         <Grid item xs={12} style={{paddingBottom: "2vh "}}>
         <Link to="/locals">
-      <Heading title=" < BACK" textAlign="left" color="white"/>
+      <Heading title=" < BACK" textAlign="left" color="primary"/>
         </Link>
         </Grid>
         
@@ -161,10 +161,10 @@ export const NewPost = () => {
             style={{color: "white"}}
             inputProps={{
               label: "Title ",
-              placeholder: "Title ",
+              placeholder: "Max 25 characters ",
               name: "Title ",
               value: title,
-              onChange: e => handleChange(e, "title")
+              onChange: e => e.target.value.length < 25 ? handleChange(e, "title") :  e.target.value = title
             }}
             formControlProps={{
               fullWidth: true

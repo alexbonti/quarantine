@@ -13,7 +13,7 @@ const News = props => {
     return news !== undefined ? (<> 
     <Grid container justify="center">
         <Grid item xs={11} md={7} component={Link} to="/home"  style={{textDecoration: "none"}}>
-        <Heading title="  <  Back" color="red" />
+        <Heading title="  <  Back" color="primary" />
         </Grid>
         <Grid item xs={11} md={7} style={{padding: "1vh 0"}}>
             <Typography variant="h4">{news.title}</Typography>
