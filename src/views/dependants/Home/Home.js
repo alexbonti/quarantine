@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState,useContext} from "react";
 import { Grid, Typography } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import { Heading, NewsMediumCard, NewsCard } from "components";
 import { LayoutConfig } from "configurations";
 import {NewsBox} from "components"
 import { API } from "helpers/index";
+import { LoginContext } from "contexts";
+
 import moment from "moment";
 import { NewsLargeCard, LoadingScreen, GridContainer } from "components/index";
 import { RegularButton } from "components";
@@ -13,13 +15,14 @@ import Button from '@material-ui/core/Button';
 
 import lapd_logo from "assets/img/lpad-logo.png";
 import help from "assets/img/help.png";
-
 const padding=15;
 
 export const Home = () => {
   const [news, setNews] = useState([]);
   const [stats, setStats] = useState({});
   const [ads,setAds]=useState({});
+  const { loginStatus } = useContext(LoginContext);
+
   //console.log("Home -> stats", stats);
   console.log("Home -> ads", ads.length);
 
@@ -114,7 +117,7 @@ export const Home = () => {
               </Grid>
 
               <Grid item xs={12} style={{paddingTop:40}} align='center'>
-              <Button size='large'  variant="contained"  style={{backgroundColor:LayoutConfig.theme.colors.color4,width:250,height:50,fontSize:22, color:'white'}}>NEED HELP?</Button>
+              <Link to="/locals"><Button size='large'  variant="contained"  style={{backgroundColor:LayoutConfig.theme.colors.color4,width:250,height:50,fontSize:22, color:'white'}}>NEED HELP?</Button></Link>
 
 
             </Grid>
@@ -157,7 +160,10 @@ export const Home = () => {
               }
               </Grid>
               <Grid item xs={12} style={{paddingTop:5}} align='center'>
-              <Button size='large'  variant="contained" color='secondary'  style={{width:250,height:50,fontSize:22, backgroundColor:LayoutConfig.theme.colors.color5}}>Start helping</Button>
+                
+              {
+              !loginStatus ? (<Link to="/locals"><Button size='large'  variant="contained" color='secondary'  style={{width:250,height:50,fontSize:22, backgroundColor:LayoutConfig.theme.colors.color5}}>Start helping</Button></Link>
+              ):(<Link to="/locals"><Button size='large'  variant="contained" color='secondary'  style={{width:250,height:50,fontSize:22, backgroundColor:LayoutConfig.theme.colors.color5}}>Start helping</Button></Link>)}
             </Grid>
           </Grid>
           
