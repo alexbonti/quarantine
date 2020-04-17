@@ -53,7 +53,7 @@ const useStyles = makeStyles(theme => ({
   },
   buttons: {
     marginTop: theme.spacing(1)
-  },
+  }, 
   developMessage: {
     position: "absolute",
     bottom: "1vh"

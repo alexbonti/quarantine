@@ -3,7 +3,7 @@ import { Grid, Typography } from "@material-ui/core";
 import { Card, CardBody } from "components";
 
 export const NewsLargeCard = props => {
-console.log("props", props)
+//console.log("props", props)
   return (
     <>
       <Grid container justify="center">

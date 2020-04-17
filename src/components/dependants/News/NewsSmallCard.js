@@ -19,10 +19,10 @@ export const NewsCard = props => {
             }}
           ></Card>
         </Grid>
-        <Grid item style={{padding: "0 5px"}}>
+        <Grid item style={{padding: "0 20px"}}>
         <Typography variant="h5"  dangerouslySetInnerHTML={{ __html: props.news.title }}/>
         </Grid>
-        <Grid item xs={11} style={{padding: "0 5px"}}>
+        <Grid item xs={11} style={{padding: "0 50px"}}>
             <Typography variant="caption">
               {moment(props.news.datePublished).format("LT")}
             </Typography>

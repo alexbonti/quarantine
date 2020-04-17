@@ -19,6 +19,8 @@ import {
   AdList,
   AdEdit,
   NewPost,
+  NewOffer,
+  NewNeed,
   ForgotPassword,
   ResetPassword
 } from "views";
@@ -201,6 +203,24 @@ export const AppRoutes = props => {
         render={() =>
           <Layout>
             <NewPost {...props} />
+          </Layout>
+        }
+      />
+      <Route
+        exact
+        path="/newOffer"
+        render={() =>
+          <Layout>
+            <NewOffer {...props} />
+          </Layout>
+        }
+      />
+      <Route
+        exact
+        path="/newNeed"
+        render={() =>
+          <Layout>
+            <NewNeed {...props} />
           </Layout>
         }
       />

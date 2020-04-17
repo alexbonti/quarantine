@@ -15,6 +15,8 @@ import { Link } from "react-router-dom";
 import { Image, Card, CardBody } from "components";
 import { API } from "helpers/index";
 import { LoadingScreen, RegularButton } from "components/index";
+import Button from '@material-ui/core/Button';
+
 import { LoginContext } from "contexts";
 import LabelImportantIcon from "@material-ui/icons/LabelImportant";
 import FOOD from "assets/img/foods.svg";
@@ -22,6 +24,9 @@ import MEDICINES from "assets/img/medicine.svg";
 import ESSENTIALS from "assets/img/essentials.svg";
 import ACCOMMODATION from "assets/img/accomodation.svg";
 import OTHER from "assets/img/other.svg";
+import { LayoutConfig } from "configurations";
+
+const padding = 15;
 
 // let data = [
 //   {
@@ -91,9 +96,9 @@ export const AdList = () => {
   const [isSelected, setIsSelected] = useState(false);
 
   useEffect(() => {
-    const triggerAPI = async() => {
-     const dataRespCategories = await API.getCategories();
-      if(dataRespCategories){
+    const triggerAPI = async () => {
+      const dataRespCategories = await API.getCategories();
+      if (dataRespCategories) {
         console.log("triggerAPI -> dataRespCategories", dataRespCategories)
         const filteredData = dataRespCategories.filter((category) => category.name !== "ESSENTIALS")
         console.log("triggerAPI -> filteredData", filteredData)
@@ -183,7 +188,7 @@ export const AdList = () => {
           setSuburb(props.item.postedBy.suburb);
         if (props.item.postType !== undefined && props.item.postType !== null)
           setType(props.item.postType);
-        if (props.item.category !== undefined && props.item.category !== null )
+        if (props.item.category !== undefined && props.item.category !== null)
           setCategory(props.item.category);
       }
     }, [props]);
@@ -201,19 +206,19 @@ export const AdList = () => {
           pathname: "/adv",
           state: ad
             ? {
-                item: {
-                  category: ad.category,
-                  description: ad.description,
-                  status: ad.status,
-                  title: title,
-                  createdAt: ad.createdAt,
-                  _id: ad._id,
-                  postedBy: ad.postedBy._id,
-                  type
-                },
-                history: "locals",
-                profileId: profile ? profile._id : undefined
-              }
+              item: {
+                category: ad.category,
+                description: ad.description,
+                status: ad.status,
+                title: title,
+                createdAt: ad.createdAt,
+                _id: ad._id,
+                postedBy: ad.postedBy._id,
+                type
+              },
+              history: "locals",
+              profileId: profile ? profile._id : undefined
+            }
             : {}
         }}
       >
@@ -225,10 +230,10 @@ export const AdList = () => {
           }}
         >
           <CardBody>
-            <Grid container direction="row" spacing={3}>
-              <Grid item xs={3}>
+            <Grid container  xs={12}>
+              <Grid item xs={2}>
                 <Image
-                  style={{ width: "30px", height: "30px", borderRadius: 5 }}
+                  style={{ width: "50px", height: "50px", borderRadius: 5 }}
                   src={imageSrc}
                   // 'https://penserra.com/wp-content/uploads/2018/03/dummy-post-square-1-300x300.jpg')}
 
@@ -241,26 +246,28 @@ export const AdList = () => {
                   style={{ fontSize: "55px", color: "white" }}
                 /> */}
               </Grid>
-              <Grid item container xs={9}>
+              <Grid container xs={10} style={{backgroundColor:''}}>
                 <Grid
                   item
-                  xs={12}
-                  container
+                  xs={6}
                   justify="space-between"
                   alignItems="baseline"
+                  
                 >
-                  <Grid>
-                    <Typography component="p" variant="h5">
+                  <Typography component="p" variant="h5" style={{fontSize:20}}>
                       {title}
                     </Typography>
-                  </Grid>
-                  <Grid item xs={5} align="right">
-                    <Typography variant="subtitle1">
-                      <span style={{ color: "red" }}>Area:</span>{" "}
-                      <span style={{ color: "#00acc1" }}>{suburb}</span>
+                </Grid>
+                
+                    
+                 
+                  <Grid item xs={6} align="right" style={{backgroundColor:''}}>
+                    <Typography variant="subtitle1" style={{fontSize:18,lineHeight:'18px' }}>
+                    
+                      <span style={{ color: "#00acc1"}}>{suburb}</span>
                     </Typography>
                   </Grid>
-                </Grid>
+                
               </Grid>
             </Grid>
           </CardBody>
@@ -272,32 +279,52 @@ export const AdList = () => {
   const content = (
     <>
       <Container
-        maxWidth="sm"
-        style={{ marginTop: "4%", alignItems: "center", overflow: "hidden" }}
+
+        style={{ alignItems: "center", overflow: "hidden", padding: 0 }}
       >
-        <Grid
-          item
-          container
-          xs={12}
-          justify="space-between"
-          alignItems="center"
-        >
-          <Grid item xs={12}>
-            <Typography variant="h5" align="center">
-              Locals allows you to offer help or ask for it from the rest of the
-              comunity. We all need some random act of kindness! Register and
-              Login to start helping!
-            </Typography>
-            <hr />
+        <Grid item xs={12} style={{ height: 300, backgroundColor: LayoutConfig.theme.colors.color5, paddingLeft: padding, paddingRight: padding, paddingTop: 30, paddingBottom: 30 }}>
+          <Grid item style={{ height: 80 }}>
+            {
+              !loginStatus ? (
+                <Grid container xs={12} align='center'>
+                     <Grid item xs={6} align='center'>
+                     <Link to="/login"><Button size='large'  variant="contained"  style={{backgroundColor:LayoutConfig.theme.colors.color4,width:170,height:50,fontSize:19, color:'white'}}>Login</Button></Link>
+                    </Grid>
+                    <Grid item xs={6} align='center'>
+                    <Link to="/register"><Button size='large'  variant="contained"  style={{backgroundColor:LayoutConfig.theme.colors.color4,width:170,height:50,fontSize:19, color:'white'}}>Register</Button></Link>
+                    </Grid>
+                  </Grid>
+              ) : (
+                  <Grid container xs={12}>
+                    <Grid item xs={6} align='center'>
+                    <Link to={{ pathname: "newNeed" }}><Button size='large'  variant="contained"  style={{backgroundColor:LayoutConfig.theme.colors.color4,width:170,height:50,fontSize:19, color:'white'}}>Need Help</Button></Link>
+                    </Grid>
+                    <Grid item xs={6} align='center'>
+                    <Link to={{ pathname: "newOffer" }}><Button size='large'  variant="contained"  style={{backgroundColor:LayoutConfig.theme.colors.color4,width:170,height:50,fontSize:19, color:'white'}}>Offer Help</Button></Link>
+                    </Grid>
+
+                  </Grid>
+                )}
+
           </Grid>
-        </Grid>
+          <Grid item xs={12} style={{paddingLeft:padding,paddingRight:padding,height:100}}>
+          <Grid item xs={12}>
+          <Typography variant="h5" align="left" style={{color:'white', fontSize:28,fontWeight:'bold'}}>
+                Filters
+          </Typography>
+          <Typography variant="h5" align="left" style={{color:'white', fontSize:20}}>
+                Click the icons to filter items 
+          </Typography>
+          </Grid>
+                
         <Grid
           container
-          direction="row"
-          spacing={1}
-          justify="space-between"
+          //direction="row"
+          //spacing={1}
+          xs={12}
+          //justify="space-between"
           alignItems="baseline"
-          style={{ marginTop: "2%"}}
+          style={{ marginTop: 30 }}
         >
           {categories === undefined ? (
             <LoadingScreen />
@@ -320,12 +347,13 @@ export const AdList = () => {
                   item.image = OTHER;
                   item.uiName = "Other";
                   break;
-            
+
               }
               return (
                 <Grid
                   item
-                  style={{ height: "100px" }}
+                  xs={3}
+               
                   key={index}
                   onClick={() => {
                     setSearch("");
@@ -341,22 +369,23 @@ export const AdList = () => {
                 >
                   <Grid
                     item
+                    xs={12}
                     style={{
                       borderRadius: "5px",
                       border: `${
                         selectedCategory && selectedCategory.name === item.name
-                          ? "1px solid rgb(255, 209, 30)"
+                          ? "2px solid "+LayoutConfig.theme.colors.color6
                           : ""
-                      }`
+                        }`
                     }}
                   >
                     <center>
                       {item.image && item.image !== "" ? (
-                        <Image
+                        <img
                           style={{
-                            width: "55px",
-                            heigh: "25px",
-                            padding: "3px"
+                            
+                            height: "60px",
+                            padding: "1px"
                           }}
                           src={
                             item.image && item.image !== "" ? item.image : ""
@@ -370,12 +399,13 @@ export const AdList = () => {
                     <Typography
                       variant="h6"
                       style={{
+                        fontSize:20,
                         color: `${
                           selectedCategory &&
-                          selectedCategory.name === item.name
+                            selectedCategory.name === item.name
                             ? "#35a1b6"
                             : ""
-                        }`
+                          }`
                       }}
                     >
                       {titleCase(item.uiName)}
@@ -385,22 +415,21 @@ export const AdList = () => {
               );
             })
           ) : (
-            <Typography>No categories found.</Typography>
-          )}
+                <Typography>No categories found.</Typography>
+              )}
         </Grid>
-        {!loginStatus ? null : (
-          <Grid item xs={12} align="right">
-            <RegularButton
-              fullWidth
-              size="lg"
-              color="primary"
-              component={Link}
-              to={{ pathname: "newPost" }}
-            >
-              Add a new post{" "}
-            </RegularButton>
+
+
           </Grid>
-        )}
+
+
+
+
+        </Grid>
+
+
+     
+       
         <Grid container direction="row" spacing={1} style={{ marginTop: "2%" }}>
           {/* <Grid item xs={10}>
           <TextField id='standard-text' variant='outlined' label='Search' value={search} fullWidth
@@ -417,13 +446,13 @@ export const AdList = () => {
           <Grid>
             <Tabs
               value={value}
-              TabIndicatorProps={{ style: { background: "rgb(255, 209, 30)" } }}
+              TabIndicatorProps={{ style: { background: LayoutConfig.theme.colors.tertiary} }}
               textColor="inherit"
               onChange={handleTabChange}
               centered
             >
-              <Tab label="Needs" style={{ color: "rgb(0, 172, 193", fontSize: "26px"}} />
-              <Tab label="Offers" style={{ color: "rgb(0, 172, 193", fontSize: "26px" }} />
+              <Tab label="Needs" style={{ color: LayoutConfig.theme.colors.color5, fontSize: "26px" }} />
+              <Tab label="Offers" style={{ color: LayoutConfig.theme.colors.color5, fontSize: "26px" }} />
             </Tabs>
           </Grid>
         ) : null}
@@ -442,28 +471,31 @@ export const AdList = () => {
               );
             })
           ) : (
-            <Typography variant="body1" style={{ lineHeight: "30px" }}>
-              No listings found.
-            </Typography>
-          )}
+            <Grid item xs={12} style={{paddingLeft:padding,paddingRight:padding,align:'center'}}>
+              <Typography variant="body1" style={{ lineHeight: "30px", fontSize:30 }}>
+                  No listings found.
+                </Typography>
+              </Grid>
+                
+              )}
         </Grid>
       </Container>{
         !loginStatus ? (
-      <Grid
-      container
-        item
-        xs={12}
-        justify="center"
-        style={{ position: "absolute", bottom: 100, backgroundColor: "rgb(225, 242, 245)" }}
-      >
-        <Grid item xs={12} align="center">
-        <Link to="/register">Register</Link>
-        {" or "}
-        <Link to="/login">Login</Link>
-        {" to use Locals "}
-      </Grid>
+          <Grid
+            container
+            item
+            xs={12}
+            justify="center"
+            style={{ position: "absolute", bottom: 100, backgroundColor: "rgb(225, 242, 245)" }}
+          >
+            <Grid item xs={12} align="center">
+              <Link to="/register">Register</Link>
+              {" or "}
+              <Link to="/login">Login</Link>
+              {" to use Locals "}
+            </Grid>
 
-        </Grid>) : ""}
+          </Grid>) : ""}
     </>
   );
 

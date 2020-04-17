@@ -7,6 +7,7 @@ import dito1 from 'assets/img/dito1.png'
 import dito3 from 'assets/img/dito3.png'
 import slack from 'assets/img/Slack-dito.png'
 import contact from 'assets/img/dito-contact.png'
+import { whiteColor, blackColor } from 'assets/jss/baseJss';
 
 
 const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
@@ -55,9 +56,10 @@ export const Layout = (props) => {
     typography: {
       h5: {
         fontFamily: "Arial Rounded MT, Helvetica, sans-serif",
-        fontWeight: "bold",
+        fontWeight: "0",
         fontSize: 14,
-        color: "rgb(0, 172, 193)"
+        color: LayoutConfig.theme.colors.color4,
+        //color: "rgb(0, 172, 193)"
       },
       body1: {
         fontFamily: "Arial Unicode MS, Helvetica, sans-serif",
@@ -66,7 +68,7 @@ export const Layout = (props) => {
       },
       body2: { fontFamily: "Helvetica, sans-serif", fontSize: 12 },
       caption: {
-        color: "#000000 ",
+        color: LayoutConfig.theme.colors.secondary ,
         fontSize: "12px ",
         fontFamily: "Helvetica, sans-serif"
       },
@@ -74,7 +76,8 @@ export const Layout = (props) => {
         fontFamily: "Arial Rounded MT, Helvetica, sans-serif",
         fontWeight: "bold",
         fontSize: 12,
-        color: "#000000"
+        color: LayoutConfig.theme.colors.primary,
+        //color: "#000000"
       },
       h4: {
         fontFamily: "Arial Rounded MT, Helvetica, sans-serif",
@@ -86,7 +89,8 @@ export const Layout = (props) => {
         fontFamily: "Arial Rounded MT, Helvetica, sans-serif",
         fontWeight: "bold",
         fontSize: 10,
-        color: "white"
+        color: LayoutConfig.theme.colors.primary,
+        //color: "white"
       },
       mobileContent: {
       }

@@ -18,9 +18,6 @@ import {
   // notify
 } from "components";
 import { API } from "helpers/index";
-import { LayoutConfig } from "configurations/index";
-import Button from '@material-ui/core/Button';
-
 // import DeleteIcon from '@material-ui/icons/Delete';
 // import Dropzone from 'react-dropzone';
 // import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
@@ -91,15 +88,68 @@ export const NewPost = () => {
   const content = (
     <Container
       maxWidth="sm"
-      style={{ marginBottom: "5%", alignItems: "center",paddingLeft:0,paddingRight:0, height:600}}
+      style={{ marginTop: "10px", marginBottom: "5%", alignItems: "center" }}
     >
-      <Grid item xs={12} style={{paddingTop:30, height:300, backgroundColor:LayoutConfig.theme.colors.color5,paddingLeft:15,paddingRight:15}}>
-      <Typography variant="h5" align="left" style={{color:'white', fontSize:20,fontWeight:'bold'}}>
-        Let the community know what you need, only your suburb is revealed!
-                </Typography>
-                <Grid container >
+      <Grid item xs={12}>
+              <Typography variant="h5" align='center'>
+                If you can help or need help, create a post for the community, people will see it, only your suburb will be revealed!
+             </Typography>
+              </Grid>
+      <Grid container >
+        <Grid item xs={12} style={{paddingBottom: "2vh "}}>
+        <Link to="/locals">
+      <Heading title=" < BACK" textAlign="left" color="primary"/>
+        </Link>
+        </Grid>
         
-        
+        <Grid item container xs={12}>
+          <Grid container direction="row">
+    
+            <Grid item xs={12}>
+                <Select
+                  value={type}
+                  fullWidth
+                  style={{paddingTop: "28px", marginBottom: "17px",color:'white', backgroundColor:'rgb(0, 172, 193'}}
+
+                  onChange={e => {
+                    setType(e.target.value);
+                  }}
+                  displayEmpty
+                >
+                  <MenuItem value="" disabled>
+                    Type
+                  </MenuItem>
+                  <MenuItem value={"NEED"}>Need</MenuItem>
+                  <MenuItem value={"OFFER"}>Offer</MenuItem>
+                </Select>
+            </Grid>
+          </Grid>
+        </Grid>
+        <Grid item  container xs={12}>
+          <Grid container >
+            <Grid item xs={12} >
+                <Select
+                  
+
+                  fullWidth
+                  value={category}
+                  onChange={e => {
+                    setCategory(e.target.value);
+                  }}
+                  style={{paddingTop: "28px", marginBottom: "17px",color:'white',backgroundColor:'rgb(0, 172, 193'}}
+                  displayEmpty
+                >
+                  <MenuItem value="" disabled>
+                    Category
+                  </MenuItem>
+                  <MenuItem value={"FOOD"}>Food</MenuItem>
+                  <MenuItem value={"MEDICINES"}>Medicines</MenuItem>
+                  <MenuItem value={"ACCOMMODATION"}>Accommodation</MenuItem>
+                  <MenuItem value={"OTHER"}>Other</MenuItem>
+                </Select>
+            </Grid>
+          </Grid>
+        </Grid>
         <Grid item xs={12}>
           {/* <TextField label='Title' id='standard-text' variant='outlined' fullWidth value={title} onChange={(e) => handleChange(e, 'title')} /> */}
           <CustomInput
@@ -204,57 +254,26 @@ export const NewPost = () => {
             }}
           />
         </Grid>
+       
 
-            
-      </Grid>
-    
-        <Grid item  container xs={12}>
-          <Grid container >
-            <Grid item xs={12} >
-                <Select
-                  
-
-                  fullWidth
-                  value={category}
-                  onChange={e => {
-                    setCategory(e.target.value);
-                  }}
-                  style={{paddingTop: "28px", marginBottom: "17px",color:'white',backgroundColor:'rgb(0, 172, 193'}}
-                  displayEmpty
-                >
-                  <MenuItem value="" disabled>
-                    Category
-                  </MenuItem>
-                  <MenuItem value={"FOOD"}>Food</MenuItem>
-                  <MenuItem value={"MEDICINES"}>Medicines</MenuItem>
-                  <MenuItem value={"ACCOMMODATION"}>Accommodation</MenuItem>
-                  <MenuItem value={"OTHER"}>Other</MenuItem>
-                </Select>
-            </Grid>
-          </Grid>
+        <Grid item xs={12}>
+          {/* <Button variant='outlined' fullWidth onClick={() =>
+            API.createListing({ title: title, description: description, images: [], category: category, postType: type }, () => {
+              setRedirect(true);
+            })}>Post</Button> */}
+          <RegularButton
+            fullWidth
+            size="lg"
+            color="primary"
+            onClick={() => {
+              API.createListing({ title: title, description: description, images: [], category: category, postType: type }, () => {
+                setRedirect(true);
+              })
+            }}
+          >
+            Post
+          </RegularButton>
         </Grid>
-      
-        <Grid container xs={12}>
-                    <Grid item xs={6} align='center'>
-                    <Link to="/locals"><Button size='large'  variant="contained"  style={{backgroundColor:LayoutConfig.theme.colors.color4,width:170,height:50,fontSize:19, color:'white'}}>Cancel</Button></Link>
-                    </Grid>
-                    <Grid item xs={6} align='center'>
-                    <Button 
-                    onClick={() => {
-                      API.createListing({ title: title, description: description, images: [], category: category, postType: 'NEED' }, () => {
-                        setRedirect(true);
-                      })
-                    }}
-                    size='large'  variant="contained"  style={{backgroundColor:LayoutConfig.theme.colors.color4,width:170,height:50,fontSize:19, color:'white'}}>Confirm</Button>
-                    </Grid>
-              
-          </Grid>
-          <Grid item xs={12}>
-                <Typography variant="h5" align="left" style={{color:LayoutConfig.theme.colors.color5,fontSize:18,paddingTop:50}}>
-                  Your post will be seen by the community and our control centre. When matched, you will receive an email from the other person, check your spam!
-                </Typography>
-              </Grid>
-          
       </Grid>
     </Container>
   );

@@ -11,20 +11,22 @@ import {
   Toolbar,
   Typography
 } from "@material-ui/core";
-import dito_logo from 'assets/img/dito-logo-03-title.svg'
+import dito_logo from 'assets/img/dito_logo_04.svg'
 import { SideMenuItems } from "./SideMenuItems";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import { LayoutConfig } from "configurations";
 import { LayoutContext } from "contexts";
 import MenuIcon from "@material-ui/icons/Menu";
 import PetsIcon from "@material-ui/icons/Pets";
+import { blackColor } from "assets/jss/baseJss";
 
 const drawerWidth = 240;
 const useStyles = makeStyles(theme => ({
   toolbar: {
-    paddingRight: 24 // keep right padding when drawer closed
+    paddingRight: 100 // keep right padding when drawer closed
   },
   appBar: {
+    backgroundColor:LayoutConfig.theme.colors.color5,
     zIndex: theme.zIndex.drawer + 1,
     transition: theme.transitions.create(["width", "margin"], {
       easing: theme.transitions.easing.sharp,
@@ -54,7 +56,7 @@ const useStyles = makeStyles(theme => ({
   },
   title: {
     flexGrow: 1,
-    color:'#000000'
+    color:'red'
   },
   drawerPaper: {
     position: "relative",
@@ -132,7 +134,9 @@ export const Header = () => {
             : clsx(classes.appBar, open && classes.appBarShift)
         }
       >
-        <Toolbar className={classes.toolbar}>
+        <Toolbar className={classes.toolbar}
+              style={{paddingLeft:0}}
+              >
           {isItDesktop ? (
             LayoutConfig.sideMenu.permanent ? null : (
               <IconButton
@@ -153,12 +157,13 @@ export const Header = () => {
             headerElements
           ) : (
             <>
-              <Grid container alignItems="center">
-                <Grid item xs={12} align="center">
-                  <img src={dito_logo} style={{width:150}} align="center"/>
+              <Grid container alignItems="center" style={{paddingLeft:0}}>
+                <Grid item xs={6} align="center">
+                  <img src={dito_logo} style={{width:150}} align="left"/>
+                  
                   
                 </Grid>
-                <Grid item xs={12}>
+                <Grid item xs={6}>
                   <Typography
                     component="h1"
                     variant="h5"

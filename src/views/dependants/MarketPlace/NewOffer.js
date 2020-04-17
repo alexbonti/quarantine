@@ -47,7 +47,7 @@ import Button from '@material-ui/core/Button';
 //   },
 // }));
 
-export const NewPost = () => {
+export const NewOffer = () => {
   // const classes = useStyles();
   // const theme = useTheme();
   const [title, setTitle] = useState();
@@ -241,7 +241,7 @@ export const NewPost = () => {
                     <Grid item xs={6} align='center'>
                     <Button 
                     onClick={() => {
-                      API.createListing({ title: title, description: description, images: [], category: category, postType: 'NEED' }, () => {
+                      API.createListing({ title: title, description: description, images: [], category: category, postType: 'OFFER' }, () => {
                         setRedirect(true);
                       })
                     }}

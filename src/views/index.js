@@ -8,6 +8,8 @@ import { Home } from "./dependants/Home/Home";
 import { MobileMenu } from "./dependants/mobileMenu/mobileMenu";
 import { AdList } from "./dependants/MarketPlace/AdList";
 import { NewPost } from "./dependants/MarketPlace/NewPost";
+import { NewNeed } from "./dependants/MarketPlace/NewNeed";
+import { NewOffer } from "./dependants/MarketPlace/NewOffer";
 import FAQ  from "./dependants/FAQ/FAQ";
 import News  from "./dependants/News/News";
 import Charts  from "./dependants/Charts/Charts";
@@ -37,6 +39,8 @@ export {
   AdView,
   AdEdit,
   NewPost,
+  NewNeed,
+  NewOffer,
   ForgotPassword,
   ResetPassword
 };

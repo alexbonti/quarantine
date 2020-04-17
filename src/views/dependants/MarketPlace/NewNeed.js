@@ -47,7 +47,7 @@ import Button from '@material-ui/core/Button';
 //   },
 // }));
 
-export const NewPost = () => {
+export const NewNeed = () => {
   // const classes = useStyles();
   // const theme = useTheme();
   const [title, setTitle] = useState();
