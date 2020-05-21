@@ -13,6 +13,7 @@ import { EnhancedEditor } from "./common/EnhancedEditor";
 import { EnhancedDrawer } from "./common/EnhancedDrawer";
 import { LoginCheck } from "./helpers/LoginCheck.js";
 import { CVE } from "./helpers/ContentVariablesExtrapolator";
+import { Chatbot } from './dependants/Chatbot';
 
 import {CustomInput} from "components/dependants/CustomInput/CustomInput"
   import {Card} from "../components/dependants/Card/Card";
@@ -97,5 +98,6 @@ export {
   NewsMediumCard,
   ExpansionPanelComponent,
   NavBar,
-  Chart
+  Chart,
+  Chatbot
 };

@@ -7,6 +7,8 @@ import dito1 from 'assets/img/dito1.png'
 import dito3 from 'assets/img/dito3.png'
 import slack from 'assets/img/Slack-dito.png'
 import contact from 'assets/img/dito-contact.png'
+import { SweetAlertSuccess } from 'components/index';
+import { Chatbot } from 'components/index';
 
 
 const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
@@ -116,13 +118,13 @@ export const Layout = (props) => {
           </p>
           <p><b>It is a race against time, so for now we are fully focusing on the mobile view, please make your screen smaller if you want to try, or access directly from your phone!</b></p>
           <p><a href="https://join.slack.com/t/dito-space/shared_invite/zt-d8iz2vyd-G2wTkd7cH_JFergOkYsDew"><img src={slack} height="100px"></img></a><a href="https://forms.gle/HDCnCRwFLVgwPxZt5"><img src={contact} height="100px"></img></a></p>
-
           </div>
-        
+
         </div>
         <div class="col-lg-4 mx-auto">
         <img src={dito3} height="600px"></img>
         </div>
+        <Chatbot></Chatbot>
       </div>
     </div>
     <div class="container">
