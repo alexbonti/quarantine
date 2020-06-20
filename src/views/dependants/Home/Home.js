@@ -169,7 +169,7 @@ export const Home = () => {
           
 
           
-          <Grid xs={12} container alignItems="center" style={{paddingLeft:padding,paddingRight:padding}}>
+          <Grid xs={12} container alignItems="center" style={{paddingLeft:padding,paddingRight:padding, paddingTop:'6px'}}>
           {news.map((news, key) =>(
                 <Grid
                   item

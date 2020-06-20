@@ -4,7 +4,7 @@ import { Header, BottomNavToolbar , NavBar} from 'components';
 import { LayoutConfig } from 'configurations';
 import dito_logo from 'assets/img/dito-logo-03-title.svg'
 import dito1 from 'assets/img/dito1.png'
-import dito3 from 'assets/img/dito3.png'
+import callforcode from 'assets/img/call_for_code.png'
 import slack from 'assets/img/Slack-dito.png'
 import contact from 'assets/img/dito-contact.png'
 import { whiteColor, blackColor } from 'assets/jss/baseJss';
@@ -113,24 +113,25 @@ export const Layout = (props) => {
       <div class="row" >
         
         <div class="col-lg-6" style={{height:600}}>
-        <img src={dito_logo} height="200px"></img>
+        {/* <img src={dito_logo} height="200px"></img> */}
+          <h1 style={{paddingLeft:60}}>#CallForCode 2020</h1>
           <div style={{paddingLeft:60}}>
           <h3>Locals helping Locals</h3>
           <p class="lead"><b>Distant but Together</b> is a collaborations of academics, developers and comunity leaders who have worked together to help people in need.
           </p>
           <p><b>It is a race against time, so for now we are fully focusing on the mobile view, please make your screen smaller if you want to try, or access directly from your phone!</b></p>
-          <p><a href="https://join.slack.com/t/dito-space/shared_invite/zt-d8iz2vyd-G2wTkd7cH_JFergOkYsDew"><img src={slack} height="100px"></img></a><a href="https://forms.gle/HDCnCRwFLVgwPxZt5"><img src={contact} height="100px"></img></a></p>
+          {/* <p><a href="https://join.slack.com/t/dito-space/shared_invite/zt-d8iz2vyd-G2wTkd7cH_JFergOkYsDew"><img src={slack} height="100px"></img></a><a href="https://forms.gle/HDCnCRwFLVgwPxZt5"><img src={contact} height="100px"></img></a></p> */}
 
           </div>
         
         </div>
         <div class="col-lg-4 mx-auto">
-        <img src={dito3} height="600px"></img>
+        <img src={callforcode} height="600px"></img>
         </div>
       </div>
     </div>
     <div class="container">
-      <p class="m-0 text-center text-black">Copyright &copy; DiTo 2020</p>
+      <p class="m-0 text-center text-black">Copyright &copy; CallForCode 2020</p>
     </div>
     </div>
   </header>

@@ -14,18 +14,7 @@
       "color": "red",
       "subMenuItems": []
     },
-    {
-      "name": "FAQs",
-      "type": "button",
-      "icon": "facebook",
-      "controller": "/faq",
-      "customTitle": "FAQ",
-      "isFavourite": true,
-      "color": "red",
-
-      "subMenuItems": []
-    },
-
+    
     {
       "name": "Locals",
       "type": "button",
@@ -43,6 +32,17 @@
       "icon": "people",
       "controller": "/profile",
       "customTitle": "Profile",
+      "isFavourite": true,
+      "color": "red",
+
+      "subMenuItems": []
+    },
+    {
+      "name": "FAQs",
+      "type": "button",
+      "icon": "facebook",
+      "controller": "/faq",
+      "customTitle": "FAQ",
       "isFavourite": true,
       "color": "red",
 

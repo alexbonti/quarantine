@@ -181,8 +181,12 @@ export const Login = () => {
        
       <Grid container spacing={0} justify="center">
       <Grid item xs={12} align="center">
-                  <img src={dito_logo} style={{width:150}} align="center"/>
-                  <Typography
+                  {/* <img src={dito_logo} style={{width:150}} align="center"/> */}
+
+                  <Typography variant="h5" align="center" style={{fontSize:24,color:'black',fontFamily:'fantasy',fontWeight:'400'}}>
+                    #CallforCode2020
+                </Typography>
+                  {/* <Typography
             
               variant="h5" style={{fontSize:"14px"}}
             >
@@ -191,7 +195,7 @@ export const Login = () => {
             </Typography>
             
               <p><a href="https://join.slack.com/t/dito-space/shared_invite/zt-d8iz2vyd-G2wTkd7cH_JFergOkYsDew"><img src={slack} height="75px"></img></a>
-              <a href="https://forms.gle/HDCnCRwFLVgwPxZt5"><img src={contact} height="75px"></img></a></p>
+              <a href="https://forms.gle/HDCnCRwFLVgwPxZt5"><img src={contact} height="75px"></img></a></p> */}
 
             
         </Grid>
