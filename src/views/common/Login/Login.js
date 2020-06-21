@@ -21,7 +21,8 @@ import { RegularButton, CustomInput } from "components";
 import { createMuiTheme, MuiThemeProvider } from "@material-ui/core";
 import { LayoutConfig } from "configurations";
 import AlternateEmailIcon from '@material-ui/icons/AlternateEmail';import LockOpenIcon from "@material-ui/icons/LockOpen";
-import dito_logo from 'assets/img/dito-logo-03-title.svg'
+import dito_logo from 'assets/img/dito-logo-03-title.svg';
+import cfc_logo from 'assets/img/CallForCodeLogo.png';
 import slack from 'assets/img/Slack-dito.png'
 import contact from 'assets/img/dito-contact.png'
 
@@ -181,11 +182,11 @@ export const Login = () => {
        
       <Grid container spacing={0} justify="center">
       <Grid item xs={12} align="center">
-                  {/* <img src={dito_logo} style={{width:150}} align="center"/> */}
+                  <img src={cfc_logo} style={{width:150}} align="center"/>
 
-                  <Typography variant="h5" align="center" style={{fontSize:24,color:'black',fontFamily:'fantasy',fontWeight:'400'}}>
+                  {/* <Typography variant="h5" align="center" style={{fontSize:24,color:'black',fontFamily:'fantasy',fontWeight:'400'}}>
                     #CallforCode2020
-                </Typography>
+                </Typography> */}
                   {/* <Typography
             
               variant="h5" style={{fontSize:"14px"}}

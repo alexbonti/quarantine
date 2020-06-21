@@ -11,7 +11,8 @@ import {
   Toolbar,
   Typography
 } from "@material-ui/core";
-import dito_logo from 'assets/img/dito_logo_04.svg'
+import dito_logo from 'assets/img/dito_logo_04.svg';
+import cfc_home_logo from 'assets/img/CallForCodeHome.png';
 import { SideMenuItems } from "./SideMenuItems";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import { LayoutConfig } from "configurations";
@@ -159,7 +160,7 @@ export const Header = () => {
             <>
               <Grid container alignItems="center" style={{paddingLeft:0}}>
                 <Grid item xs={6} align="center">
-                  {/* <img src={dito_logo} style={{width:150}} align="left"/> */}
+                  {/* <img src={cfc_home_logo} style={{width:150}} align="left"/> */}
 
                   <Typography variant="h5" align="center" style={{fontSize:24,color:'white',fontFamily:'fantasy',fontWeight:'400'}}>
                     #CallForCode2020
